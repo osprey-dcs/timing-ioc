@@ -88,6 +88,7 @@ struct EventQueue {
     epicsTime last;
     IOSCANPVT onChange;
 
+    uint32_t nOccur=0u;
     uint32_t nLimit=0u;
     uint8_t event=0u;
     unsigned changing=0u; // onChange scan priority mask in progress, for rate limiting
@@ -251,6 +252,7 @@ long eventLogInput(aaoRecord *prec) noexcept {
                 for(; it!=end; ++it) {
                     auto que = it->second;
                     que->last = ts;
+                    que->nOccur++;
 
                     if(que->unused.empty()) {
                         log->nOverflows++;
@@ -363,7 +365,7 @@ long eventLogOutLast(longinRecord *prec) noexcept
 
         Guard G(pvt->queue->log->lock);
 
-        prec->val++;
+        prec->val = epicsInt32(pvt->queue->nOccur);
         prec->time = pvt->queue->last;
 
         return 0;

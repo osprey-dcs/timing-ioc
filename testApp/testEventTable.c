@@ -48,7 +48,7 @@ MAIN(testEventTable)
     testdbPutFieldOk("TST:mult", DBF_LONG, 2);
 
     testdbPutFieldOk("TST:last1.PROC", DBF_LONG, 0);
-    testdbGetFieldEqual("TST:last1", DBF_LONG, 1);
+    testdbGetFieldEqual("TST:last1", DBF_LONG, 0);
     testTIMEeq("TST:last1", 0, 0);
 
     testDiag("Push nothing");
@@ -57,7 +57,7 @@ MAIN(testEventTable)
         testdbPutArrFieldOk("TST:input", DBF_ULONG, NELEMENTS(evtlog), evtlog);
     }
     testSyncCallback();
-    testdbGetFieldEqual("TST:last1", DBF_LONG, 1); // no event code
+    testdbGetFieldEqual("TST:last1", DBF_LONG, 0); // no event code
     testTIMEeq("TST:last1", 0, 0);
 
     testdbPutFieldOk("TST:code1", DBF_LONG, 100);
@@ -69,7 +69,7 @@ MAIN(testEventTable)
         testdbPutArrFieldOk("TST:input", DBF_ULONG, NELEMENTS(evtlog), evtlog);
     }
     testSyncCallback();
-    testdbGetFieldEqual("TST:last1", DBF_LONG, 1); // nothing happened
+    testdbGetFieldEqual("TST:last1", DBF_LONG, 0); // nothing happened
     testdbGetFieldEqual("TST:last2", DBF_LONG, 0);
     testTIMEeq("TST:last1", 0, 0);
 
@@ -81,7 +81,7 @@ MAIN(testEventTable)
     testSyncCallback();
     testdbGetFieldEqual("TST:last1", DBF_LONG, 2);
     testTIMEeq("TST:last1", 12, 3*2); // time of last
-    testdbGetFieldEqual("TST:last2", DBF_LONG, 1);
+    testdbGetFieldEqual("TST:last2", DBF_LONG, 2);
     testTIMEeq("TST:last2", 12, 4*2);
 
     testTIMEeq("TST:buf1", 12, 2*2); // time of first in buffer
@@ -97,7 +97,7 @@ MAIN(testEventTable)
     }
     testSyncCallback();
     testdbGetFieldEqual("TST:last1", DBF_LONG, 2);
-    testdbGetFieldEqual("TST:last2", DBF_LONG, 2);
+    testdbGetFieldEqual("TST:last2", DBF_LONG, 3);
 
     testIocShutdownOk();
     testdbCleanup();
