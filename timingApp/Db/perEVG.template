@@ -2,8 +2,36 @@ record(longin, "$(P)EVG:status") {
     field(DESC, "EVG status register")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
-    field(SCAN, "2 second")
+    field(SCAN, ".5 second")
 }
+record(bi, "$(P)EVG:PPS:Vld") {
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:status")
+    field(SCAN, "I/O Intr")
+    field(MASK, "0x1")
+    field(ZNAM, "No PPS")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Valid")
+}
+record(bi, "$(P)EVG:TS:Vld") {
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:status")
+    field(SCAN, "I/O Intr")
+    field(MASK, "0x2")
+    field(ZNAM, "No Time")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Time OK")
+}
+record(bi, "$(P)EVG:PPS:Tgl") {
+    field(DESC, "PPS activity toggle")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:status")
+    field(SCAN, "I/O Intr")
+    field(MASK, "0x4")
+    field(ZNAM, "+")
+    field(ONAM, "X")
+}
+
 record(longin, "$(P)EVG:onConnect_") {
     field(DESC, "Process records on FPGA connection")
     field(DTYP, "FEED On Connect")
