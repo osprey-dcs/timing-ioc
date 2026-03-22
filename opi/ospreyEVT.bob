@@ -37,15 +37,9 @@
     <square>true</square>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>Label_2</name>
-    <text>EVG Status</text>
-    <y>100</y>
-  </widget>
-  <widget type="label" version="2.0.0">
     <name>Label_3</name>
     <text>EVR Status</text>
-    <x>210</x>
-    <y>100</y>
+    <y>77</y>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Input State</name>
@@ -276,18 +270,10 @@
     <format>4</format>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>Text Update_1</name>
-    <pv_name>$(P)EVG:status</pv_name>
-    <x>110</x>
-    <y>100</y>
-    <width>90</width>
-    <format>4</format>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
     <name>Text Update_2</name>
     <pv_name>$(P)EVR:status</pv_name>
-    <x>320</x>
-    <y>100</y>
+    <x>110</x>
+    <y>77</y>
     <width>90</width>
     <format>4</format>
   </widget>
@@ -373,18 +359,6 @@
       <width>125</width>
     </widget>
   </widget>
-  <widget type="embedded" version="2.0.0">
-    <name>Embedded Display_16</name>
-    <macros>
-      <I>1</I>
-    </macros>
-    <file>_ospreyEVGtimer.bob</file>
-    <x>300</x>
-    <y>510</y>
-    <width>300</width>
-    <height>30</height>
-    <resize>2</resize>
-  </widget>
   <widget type="label" version="2.0.0">
     <name>Label_19</name>
     <text>Event #s</text>
@@ -395,13 +369,13 @@
   <widget type="label" version="2.0.0">
     <name>Label_20</name>
     <text>EVT Mode</text>
-    <y>75</y>
+    <y>102</y>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_6</name>
     <pv_name>$(P)FPGA:Mode</pv_name>
     <x>110</x>
-    <y>75</y>
+    <y>102</y>
     <width>90</width>
   </widget>
   <widget type="label" version="2.0.0">
@@ -495,8 +469,8 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_7</name>
     <pv_name>$(P)EVR:now</pv_name>
-    <x>420</x>
-    <y>100</y>
+    <x>260</x>
+    <y>77</y>
     <width>200</width>
     <format>4</format>
   </widget>
@@ -534,5 +508,28 @@
     <x>1010</x>
     <y>127</y>
     <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_3</name>
+    <actions>
+      <action type="open_display">
+        <description>Open Display</description>
+        <file>ospreyEVTgen.bob</file>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Generator Config</text>
+    <x>210</x>
+    <y>102</y>
+    <width>140</width>
+    <height>20</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_23</name>
+    <text>Now</text>
+    <x>210</x>
+    <y>77</y>
+    <width>50</width>
   </widget>
 </display>
