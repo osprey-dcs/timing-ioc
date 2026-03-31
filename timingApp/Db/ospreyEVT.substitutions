@@ -66,6 +66,10 @@ file "perEVGtimer.template" {
   {I="2" }
   {I="3" }
   {I="4" }
+  {I="5" }
+  {I="6" }
+  {I="7" }
+  {I="8" }
 }
 file "perEVGlink.template" {
   {I="1" }
@@ -87,6 +91,14 @@ pattern { EDGE,   E,  I }
   {"fall", "f", 3 }
   {"rise", "r", 4 }
   {"fall", "f", 4 }
+  {"rise", "r", 5 }
+  {"fall", "f", 5 }
+  {"rise", "r", 6 }
+  {"fall", "f", 6 }
+  {"rise", "r", 7 }
+  {"fall", "f", 7 }
+  {"rise", "r", 8 }
+  {"fall", "f", 8 }
 }
 file "perEVGseqBank.template" {
   {I="1" }

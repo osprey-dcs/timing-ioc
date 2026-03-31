@@ -1,3 +1,8 @@
+record(fanout, "$(P)EVG:TRIG:$(I):$(EDGE):I_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):afterDisable") # <-- perEVG.template
+    field(LNK1, "$(P)EVG:TRIG:$(I):$(EDGE)")
+}
 record(longout, "$(P)EVG:TRIG:$(I):$(EDGE)") {
     field(DESC, "Event code for hardware trigger $(I) $(EDGE)")
     field(DTYP, "FEED Register Write")
@@ -6,4 +11,5 @@ record(longout, "$(P)EVG:TRIG:$(I):$(EDGE)") {
     field(HOPR, "255")
     field(DRVL, "0")
     field(DRVH, "255")
+    info(autosaveFields_pass0, "VAL")
 }

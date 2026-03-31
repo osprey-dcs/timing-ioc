@@ -1,9 +1,17 @@
+record(fanout, "$(P)EVG:SEQ:$(I):I_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):afterDisable") # <-- perEVG.template
+    field(LNK1, "$(P)EVG:SEQ:$(I):pattern")
+    field(LNK2, "$(P)EVG:SEQ:$(I):HWrise")
+    field(LNK3, "$(P)EVG:SEQ:$(I):HWfall")
+}
 record(aao, "$(P)EVG:SEQ:$(I):pattern") {
     field(DESC, "Sequencer bank $(I) delay:event pairs")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:$(I):pattern")
     field(FTVL, "ULONG")
     field(NELM, "4096")
+    info(autosaveFields_pass1, "VAL")
 }
 record(longout, "$(P)EVG:SEQ:$(I):HWrise") {
     field(DESC, "Bank $(I) rising edge hw trigger bitmap")
@@ -13,6 +21,7 @@ record(longout, "$(P)EVG:SEQ:$(I):HWrise") {
     field(HOPR, "255")
     field(DRVL, "0")
     field(DRVH, "255")
+    info(autosaveFields_pass0, "VAL")
 }
 record(longout, "$(P)EVG:SEQ:$(I):HWfall") {
     field(DESC, "Bank $(I) falling edge hw trigger bitmap")
@@ -22,4 +31,5 @@ record(longout, "$(P)EVG:SEQ:$(I):HWfall") {
     field(HOPR, "255")
     field(DRVL, "0")
     field(DRVH, "255")
+    info(autosaveFields_pass0, "VAL")
 }

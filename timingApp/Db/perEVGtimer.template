@@ -1,3 +1,9 @@
+record(fanout, "$(P)EVG:TMR:$(I):I_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):afterDisable") # <-- perEVG.template
+    field(LNK1, "$(P)EVG:TMR:$(I):event")
+    field(LNK2, "$(P)EVG:TMR:$(I):divisor")
+}
 record(longout, "$(P)EVG:TMR:$(I):event") {
     field(DESC, "Timer $(I)")
     field(DTYP, "FEED Register Write")
@@ -6,6 +12,8 @@ record(longout, "$(P)EVG:TMR:$(I):event") {
     field(HOPR, "255")
     field(DRVL, "0")
     field(DRVH, "255")
+    field(VAL , "0")
+    info(autosaveFields_pass0, "VAL")
 }
 record(longout, "$(P)EVG:TMR:$(I):divisor") {
     field(DESC, "EVG Timer $(I) divisor")
@@ -13,4 +21,6 @@ record(longout, "$(P)EVG:TMR:$(I):divisor") {
     field(OUT,  "@name=$(NAME) reg=EVG:TMR:$(I):divisor")
     field(LOPR, "0")
     field(DRVL, "0")
+    field(VAL , "0")
+    info(autosaveFields_pass0, "VAL")
 }
