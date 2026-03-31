@@ -18,6 +18,7 @@ DBD += ospreyTimingIoc.dbd
 
 # ospreyTimingIoc.dbd will be made up from these files:
 ospreyTimingIoc_DBD += base.dbd
+ospreyTimingIoc_DBD += system.dbd
 ospreyTimingIoc_DBD += feed.dbd
 ospreyTimingIoc_DBD += asSupport.dbd
 ospreyTimingIoc_DBD += ospreyTiming.dbd
