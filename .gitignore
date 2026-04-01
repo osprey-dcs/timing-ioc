@@ -24,6 +24,10 @@
 # iocsh
 .iocsh_history
 
+# autosave
+*.sav*
+*.req
+
 # Build directories
 O.*/
 
