@@ -1,18 +1,11 @@
 record(fanout, "$(P)EVG:SEQ:$(I):I_") {
     field(SCAN, "Event")
     field(EVNT, "$(NAME):afterDisable") # <-- perEVG.template
-    field(LNK1, "$(P)EVG:SEQ:$(I):pattern")
+    field(LNK1, "$(P)EVG:SEQ:$(I):store")
     field(LNK2, "$(P)EVG:SEQ:$(I):HWrise")
     field(LNK3, "$(P)EVG:SEQ:$(I):HWfall")
 }
-record(aao, "$(P)EVG:SEQ:$(I):pattern") {
-    field(DESC, "Sequencer bank $(I) delay:event pairs")
-    field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:SEQ:$(I):pattern")
-    field(FTVL, "ULONG")
-    field(NELM, "4096")
-    info(autosaveFields_pass1, "VAL")
-}
+
 record(longout, "$(P)EVG:SEQ:$(I):HWrise") {
     field(DESC, "Bank $(I) rising edge hw trigger bitmap")
     field(DTYP, "FEED Register Write")
@@ -32,4 +25,70 @@ record(longout, "$(P)EVG:SEQ:$(I):HWfall") {
     field(DRVL, "0")
     field(DRVH, "255")
     info(autosaveFields_pass0, "VAL")
+}
+
+record(aao, "$(P)EVG:SEQ:$(I):codes") {
+    field(FTVL, "UCHAR")
+    field(NELM, "2048")
+    #field(FLNK, "$(P)EVG:SEQ:$(I):store")
+    info(autosaveFields_pass1, "VAL")
+    info(Q:group, {
+        "$(P)EVG:SEQ:$(I)":{
+            "value.evt":{+type:"plain", +channel:"VAL", +putorder:0}
+        }
+    })
+}
+record(aao, "$(P)EVG:SEQ:$(I):times") {
+    field(FTVL, "ULONG")
+    field(NELM, "2048")
+    #field(FLNK, "$(P)EVG:SEQ:$(I):store")
+    info(autosaveFields_pass1, "VAL")
+    info(Q:group, {
+        "$(P)EVG:SEQ:$(I)":{
+            "value.ns":{+type:"plain", +channel:"VAL", +putorder:1}
+        }
+    })
+}
+record(aSub, "$(P)EVG:SEQ:$(I):store") {
+    field(SNAM, "timingSeqMux")
+    field(FTA , "UCHAR") # event codes
+    field(NOA , "1024")
+    field(INPA, "$(P)EVG:SEQ:$(I):codes MSS")
+    field(FTB , "ULONG") # time delays (ns)
+    field(NOB , "1024") # == NOA
+    field(INPB, "$(P)EVG:SEQ:$(I):times MSS")
+    field(FTC , "ULONG") # delay field bit width
+    field(INPC, "12") # TODO: link to EVG:config
+
+    field(FTVA, "ULONG") # mux.d output array
+    field(NOVA, "2048") # 2x NOA
+    field(OUTA, "$(P)EVG:SEQ:$(I):pattern_")
+    info(Q:group, {
+        "$(P)EVG:SEQ:$(I)":{
+            "":{+type:"meta", +channel:"VAL"},
+            "_save":{+type:"proc",
+                     +channel:"VAL",
+                     +putorder:2,
+                     +trigger:"*"}
+        }
+    })
+}
+record(aao, "$(P)EVG:SEQ:$(I):pattern_") {
+    field(DESC, "Sequencer bank $(I) delay:event pairs")
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(NAME) reg=EVG:SEQ:$(I):pattern")
+    field(FTVL, "ULONG")
+    field(NELM, "4096")
+}
+
+record(aai, "$(P)EVG:SEQ:$(I):L_") {
+    field(FTVL, "STRING")
+    field(NELM, "2")
+    field(INP , {const:["Evt", "NS"]})
+    info(Q:group, {
+        "$(P)EVG:SEQ:$(I)":{
+            +id:"epics:nt/NTTable:1.0",
+            "labels":{+type:"plain", +channel:"VAL"}
+        }
+    })
 }
