@@ -1,0 +1,11 @@
+record(aSub, "$(P)mux") {
+    field(SNAM, "timingSeqMux")
+    field(FTA , "UCHAR") # event codes
+    field(NOA , "1024")
+    field(FTB , "ULONG") # time delays (ns)
+    field(NOB , "1024") # == NOA
+    field(FTC , "ULONG") # delay field bit width
+
+    field(FTVA, "ULONG") # mux.d output array
+    field(NOVA, "2048") # 2x NOA
+}

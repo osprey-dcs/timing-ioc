@@ -22,3 +22,5 @@ device(longout, INST_IO, devEventTableClear, "Event Table Clear")
 device(longin, INST_IO, devEventTableLast, "Event Table Last")
 # INP="@log=NAME queue=QNAME autoclear=true"
 device(aai, INST_IO, devEventTableBuf, "Event Table Buffer")
+
+function(timingSeqMux)

@@ -21,6 +21,10 @@ TESTPROD_IOC += testEventTable
 testEventTable_SRCS += testEventTable.c
 testEventTable_SRCS += testBitTable_registerRecordDeviceDriver.cpp
 
+TESTPROD_IOC += testSeqMux
+testSeqMux_SRCS += testSeqMux.c
+testSeqMux_SRCS += testBitTable_registerRecordDeviceDriver.cpp
+
 PROD_LIBS += ospreyTiming
 PROD_LIBS += $(EPICS_BASE_IOC_LIBS)
 
