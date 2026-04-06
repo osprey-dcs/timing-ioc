@@ -206,7 +206,7 @@ record(aao, "$(P)EVR:LOG2_") {
     field(DTYP, "Event Table Input")
     field(OUT , "@log=$(P)")
     field(OMSL, "closed_loop")
-    field(DOL , "$(P)EVR:LOG1_")
+    field(DOL , "$(P)EVR:LOG1_ MSS")
     field(TSEL, "$(P)EVR:LOG:E.TIME")
 }
 

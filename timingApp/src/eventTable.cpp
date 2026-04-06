@@ -223,6 +223,9 @@ long eventLogInput(aaoRecord *prec) noexcept {
         if(prec->ftvl!=menuFtypeULONG) {
             recGblSetSevrMsg(prec, WRITE_ALARM, INVALID_ALARM, "Bad FTVL");
             return -1;
+        } else if(prec->nsev>=INVALID_ALARM) {
+            // refuse to consume invalid input
+            return -1;
         }
         auto log = pvt->queue->log; // queue not relevant
 
