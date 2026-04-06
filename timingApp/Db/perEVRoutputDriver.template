@@ -5,7 +5,6 @@ record(longin, "$(P)EVR:OUT:$(N):onConn_") {
     field(SCAN, "Event")
     field(EVNT, "$(NAME):initOutputs") # <-- from perEVR.template
     field(FLNK, "$(P)EVR:OUT:$(N):onConn1_")
-    field(TPRO, "1")
 }
 record(fanout, "$(P)EVR:OUT:$(N):onConn1_") {
     field(LNK0, "$(P)EVR:OUT:$(N):source")
