@@ -4,7 +4,7 @@ record(longout, "$(P)EVR:LOG:evt$(N)") {
     field(OUT , "@table=$(NAME) action=17")
     field(DRVH, "255")
     field(VAL , "0")
-    field(PINI, "1")
+    field(PINI, "RUNNING")
     field(FLNK, "$(P)EVR:LOG:evt$(N)_")
     info(autosaveFields_pass0, "VAL")
 }
