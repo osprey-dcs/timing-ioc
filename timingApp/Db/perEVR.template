@@ -80,7 +80,7 @@ record(longout, "$(P)EVR:mapsz") {
     field(OMSL, "closed_loop")
     field(DOL , "$(P)EVR:mapsz_")
     field(DTYP, "Bit Table Set Words")
-    field(OUT , "@table=$(NAME)")
+    field(OUT , "@table=$(NAME)") # will scan $(P)EVR:map_
 }
 
 record(aai, "$(P)EVR:map_") {

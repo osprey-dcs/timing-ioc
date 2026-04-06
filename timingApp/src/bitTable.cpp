@@ -221,18 +221,15 @@ long bitTableSetWords(longoutRecord *prec) noexcept
         nbit++;
         unsigned nwords = nbit/32u;
 
-        bool change;
         {
             Guard G(pvt->table->lock);
 
             pvt->table->wordsPerEvent = nwords;
             pvt->table->bitsPerEvent = prec->val; // store original
 
-            change = !pvt->table->changing;
             pvt->table->changing = true;
         }
-        if(change)
-            scanIoRequest(pvt->table->onChange);
+        scanIoRequest(pvt->table->onChange);
 
         return 0;
     } CATCH
