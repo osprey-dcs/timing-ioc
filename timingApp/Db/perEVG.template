@@ -123,6 +123,7 @@ record(longout, "$(P)EVG:MAP:hwTrigger") {
     field(DESC, "Map hardware inputs to triggers")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:MAP:hwTrig")
+    field(VAL, "0x87654321") # 1 to 1 mapping
     info(autosaveFields_pass0, "VAL")
 }
 record(longout, "$(P)EVG:MAP:dbus") {
