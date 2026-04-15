@@ -132,20 +132,14 @@ record(longout, "$(P)EVG:MAP:dbus") {
     field(OUT,  "@name=$(NAME) reg=EVG:MAP:dbus")
     info(autosaveFields_pass0, "VAL")
 }
-
-record(longin, "$(P)EVG:IN:PMOD") {
-    field(DTYP, "FEED Register Read")
-    field(SCAN, "1 second")
-    field(INP , "@name=$(NAME) reg=MARBLE:PMOD:inputs")
-}
-
-record(bo, "$(P)FPGA:reboot") {
-    field(ZNAM, "Boot")
-    field(ONAM, "Boot")
-    field(FLNK, "$(P)FPGA:reboot_")
-}
-record(longout, "$(P)FPGA:reboot_") {
+record(longout, "$(P)EVG:TMR:control") {
+    field(DESC, "Control timers")
     field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=FPGA:reboot")
-    field(VAL , "100")
+    field(OUT,  "@name=$(NAME) reg=EVG:TMR:control")
+    field("$(P)EVG:TMR:status")
+}
+record(longin, "$(P)EVG:TMR:status") {
+    field(DESC, "Timer status")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:TMR:status")
 }

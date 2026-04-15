@@ -5,22 +5,22 @@ record(fanout, "$(P)EVG:TMR:$(I):I_") {
     field(LNK2, "$(P)EVG:TMR:$(I):divisor")
 }
 record(longout, "$(P)EVG:TMR:$(I):event") {
-    field(DESC, "Timer $(I)")
+    field(DESC, "EVG Timer $(I) event")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:TMR:$(I):event")
-    field(LOPR, "0")
+    field(LOPR, "1")
     field(HOPR, "255")
-    field(DRVL, "0")
+    field(DRVL, "1")
     field(DRVH, "255")
-    field(VAL , "0")
+    field(VAL , "1")
     info(autosaveFields_pass0, "VAL")
 }
 record(longout, "$(P)EVG:TMR:$(I):divisor") {
     field(DESC, "EVG Timer $(I) divisor")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:TMR:$(I):divisor")
-    field(LOPR, "0")
-    field(DRVL, "0")
+    field(LOPR, "40")
+    field(DRVL, "40")
     field(VAL , "0")
     info(autosaveFields_pass0, "VAL")
 }
