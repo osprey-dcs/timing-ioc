@@ -3,6 +3,8 @@
 * SPDX-License-Identifier: BSD
 \*************************************************************************/
 
+#define USE_TYPED_RSET
+
 #include <string.h>
 
 #include <testMain.h>

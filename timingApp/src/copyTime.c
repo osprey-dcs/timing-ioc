@@ -6,6 +6,7 @@
  */
 
 #define USE_TYPED_DSET
+#define USE_TYPED_RSET
 
 #include <epicsMath.h>
 #include <alarm.h>
