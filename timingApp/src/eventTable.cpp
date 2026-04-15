@@ -142,7 +142,7 @@ long eventLogInitRecord(dbCommon *prec) noexcept {
         bool autoclear = true;
 
         char *saved = nullptr;
-        for(char* word = epicsStrtok_r(lstr.data(), " ", &saved)
+        for(char* word = epicsStrtok_r((char*)lstr.data(), " ", &saved)
              ; word
              ; word = epicsStrtok_r(NULL, " ", &saved))
         {

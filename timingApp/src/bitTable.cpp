@@ -151,7 +151,7 @@ long bitTableInitRecord(dbCommon *prec) noexcept {
         int action = -1;
 
         char *saved = nullptr;
-        for(char* word = epicsStrtok_r(lstr.data(), " ", &saved)
+        for(char* word = epicsStrtok_r((char*)lstr.data(), " ", &saved)
              ; word
              ; word = epicsStrtok_r(NULL, " ", &saved))
         {
