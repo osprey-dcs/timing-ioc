@@ -7,24 +7,48 @@ env:
   FEED_CORE_REPONAME: feed-core
   FEED_CORE_REPOOWNER: osprey-dcs
   SETUP_PATH: .ci-local:.ci
-  CMP: gcc
   SET: feed
   BCFG: default
-  BASE: "7.0"
 
 jobs:
   native:
-    runs-on: ubuntu-latest
-    steps:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    env:
+      CMP: ${{ matrix.cmplr }}
+      BASE: ${{ matrix.base }}
+      EXTRA: ${{ matrix.extra }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: MD
+            os: ubuntu-latest
+            cmplr: gcc
+            base: "7.0"
+            extra: "CMD_CPPFLAGS=-Werror"
 
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
+          - name: EN
+            os: macos-latest
+            cmplr: clang
+            base: R7.0.9
+            extra: "CMD_CPPFLAGS=-Werror"
+
+    steps:
+    - uses: actions/checkout@v6
+    - run: git submodule update --init .ci
 
     - name: "apt-get install"
+      if: runner.os == 'Linux'
       run: |
         sudo apt-get update
         sudo apt-get -y install libreadline-dev python3
+
+    - name: "brew"
+      if: runner.os == 'macOS'
+      run: |
+        brew install libevent
+        echo "LIBEVENT=$(brew --prefix)" > "$GITHUB_ENV"
 
     - name: Prepare and compile dependencies
       run: python .ci/cue.py prepare
