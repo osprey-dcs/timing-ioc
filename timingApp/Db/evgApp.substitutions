@@ -63,4 +63,6 @@ file "perSysmonLI.template" {
   { \$(P),\$(NAME),    "Marble:VCXO:SR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust status register" }
   { \$(P),\$(NAME),   "Marble:VCXO:ASR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust auxiliary status register" }
   { \$(P),\$(NAME),   "Marble:VCXO:PPS",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust PPS status register" }
+  { \$(P),\$(NAME),"MARBLE:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
+  { \$(P),\$(NAME), "MARBLE:FMC:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of FMC input lines" }
 }
