@@ -37,30 +37,45 @@ record(longin, "$(P)EVG:onConnect_") {
     field(DTYP, "FEED On Connect")
     field(INP, "@name=$(NAME)")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)EVG:config")
+    field(FLNK, "$(P)EVG:init:1_")
+}
+# phase 1: probe, interrupt/stop previous
+# sync
+# phase 2: write known configuration
+# sync
+# phase 3: (re)start
+record(fanout, "$(P)EVG:init:1_") {
+    # probe static configuration
+    field(LNK1, "$(P)EVG:config")
+    # interrupt/shutdown
+    field(LNK2, "$(P)EVG:SEQ:disarm:I_")
+    field(LNK3, "$(P)EVG:SEQ:cancel:I_")
+    field(LNK4, "$(P)EVG:TMR:stop_")
+    field(FLNK, "$(P)EVG:sync:12_")
 }
 record(longin, "$(P)EVG:config") {
     field(DESC, "EVG sequencer configuration")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:config")
-    field(FLNK, "$(P)EVG:SEQ:disarm:I_")
 }
-# disarm and cancel all sequencers
 record(longout, "$(P)EVG:SEQ:disarm:I_") {
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:disarm")
     field(VAL, "0xffff") # disarm all
-    field(FLNK, "$(P)EVG:SEQ:cancel:I_")
 }
 record(longout, "$(P)EVG:SEQ:cancel:I_") {
     field(DESC, "Immediately cancel active sequence")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:cancel")
     field(VAL, "0xffff") # abort running all
-    field(FLNK, "$(P)EVG:init_")
+}
+record(longin, "$(P)EVG:sync:12_") {
+    field(DTYP, "FEED Sync")
+    field(INP , "@name=$(NAME)")
+    field(FLNK, "$(P)EVG:init:2_")
 }
 # (re)initialize sub-units
-record(fanout, "$(P)EVG:init_") {
+record(fanout, "$(P)EVG:init:2_") {
     field(LNK1, "$(P)EVG:hbDivisor")
     field(LNK2, "$(P)EVG:MAP:hwTrigger")
     field(LNK3, "$(P)EVG:MAP:dbus")
@@ -68,6 +83,15 @@ record(fanout, "$(P)EVG:init_") {
 }
 record(event, "$(P)EVG:onConn2_") {
     field(VAL, "$(NAME):afterDisable") # --> to perEVG*.template
+    field(FLNK, "$(P)EVG:sync:23_")
+}
+record(longin, "$(P)EVG:sync:23_") {
+    field(DTYP, "FEED Sync")
+    field(INP , "@name=$(NAME)")
+    field(FLNK, "$(P)EVG:init:3_")
+}
+record(fanout, "$(P)EVG:init:3_") {
+    field(LNK1, "$(P)EVG:TMR:start")
 }
 
 
@@ -132,14 +156,30 @@ record(longout, "$(P)EVG:MAP:dbus") {
     field(OUT,  "@name=$(NAME) reg=EVG:MAP:dbus")
     info(autosaveFields_pass0, "VAL")
 }
-record(longout, "$(P)EVG:TMR:control") {
+record(bo, "$(P)EVG:TMR:start") {
+    field(DESC, "Reset/start all timers")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+    field(FLNK, "$(P)EVG:TMR:start_")
+}
+record(longout, "$(P)EVG:TMR:start_") {
     field(DESC, "Control timers")
     field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:TMR:control")
-    field("$(P)EVG:TMR:status")
+    field(OUT , "@name=$(NAME) reg=EVG:TMR:control")
+    # (re)start all timers
+    field(VAL , "0xffffffff")
+}
+record(longout, "$(P)EVG:TMR:stop_") {
+    field(DESC, "Control timers")
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=EVG:TMR:control")
+    # (re)start all timers
+    # stop all timers
+    field(VAL , "0x55555555")
 }
 record(longin, "$(P)EVG:TMR:status") {
     field(DESC, "Timer status")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:TMR:status")
+    field(SCAN, ".5 second")
 }
