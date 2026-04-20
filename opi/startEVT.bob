@@ -5,15 +5,15 @@
   <macros>
     <P>EVT:</P>
   </macros>
-  <width>820</width>
-  <height>670</height>
+  <width>1530</width>
+  <height>660</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
     <file>ospreyEVT.bob</file>
     <x>10</x>
     <y>60</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1510</width>
+    <height>590</height>
     <resize>2</resize>
   </widget>
   <widget type="label" version="2.0.0">
@@ -24,5 +24,22 @@ The example below defined P="$(P)"</text>
     <y>10</y>
     <width>740</width>
     <height>40</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <description>EVT2</description>
+        <file>ospreyEVT.bob</file>
+        <macros>
+          <P>EVT2:</P>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <x>840</x>
+    <y>30</y>
+    <width>130</width>
+    <height>20</height>
   </widget>
 </display>

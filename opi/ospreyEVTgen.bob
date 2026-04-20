@@ -309,4 +309,19 @@ Event#</text>
     <width>90</width>
     <format>4</format>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="write_pv">
+        <description>Reset Phase</description>
+        <pv_name>$(pv_name)</pv_name>
+        <value>0</value>
+      </action>
+    </actions>
+    <pv_name>$(P)EVG:TMR:start</pv_name>
+    <x>110</x>
+    <y>150</y>
+    <width>130</width>
+    <height>20</height>
+  </widget>
 </display>
