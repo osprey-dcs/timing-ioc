@@ -25,11 +25,11 @@ file "evgApp.db" {
 # Output 7 -> PMOD2, OUT3 -> Bit6
 # Output 8 -> PMOD2, OUT4 -> Bit7
 
-file "perEVR.template" {
+file "evr/perEVR.template" {
   {NOUT="8"}
 }
 # NOUT count must match the following
-file "perEVRoutputDriver.template" {
+file "evr/perEVRoutputDriver.template" {
   { N="1", TRG="0", DESC="OUT1" }
   { N="2", TRG="1", DESC="OUT2" }
   { N="3", TRG="2", DESC="OUT3" }
@@ -39,7 +39,7 @@ file "perEVRoutputDriver.template" {
   { N="7", TRG="6", DESC="OUT7" }
   { N="8", TRG="7", DESC="OUT8" }
 }
-file "perEVRevent.template" {
+file "evr/perEVRevent.template" {
   { N="1" }
   { N="2" }
   { N="3" }
@@ -58,10 +58,10 @@ file "perEVRevent.template" {
 # Input 7 -> PMOD2, IN3 -> Bit6
 # Input 8 -> PMOD2, IN4 -> Bit7
 
-file "perEVG.template" {
+file "evg/perEVG.template" {
 {}
 }
-file "perEVGtimer.template" {
+file "evg/perEVGtimer.template" {
   {I="1" }
   {I="2" }
   {I="3" }
@@ -71,7 +71,7 @@ file "perEVGtimer.template" {
   {I="7" }
   {I="8" }
 }
-file "perEVGlink.template" {
+file "evg/perEVGlink.template" {
   {I="1" }
   {I="2" }
   {I="3" }
@@ -81,7 +81,7 @@ file "perEVGlink.template" {
   {I="7" }
   {I="8" }
 }
-file "perEVGhwTrigger.template" {
+file "evg/perEVGhwTrigger.template" {
 pattern { EDGE,   E,  I }
   {"rise", "r", 1 }
   {"fall", "f", 1 }
@@ -100,7 +100,7 @@ pattern { EDGE,   E,  I }
   {"rise", "r", 8 }
   {"fall", "f", 8 }
 }
-file "perEVGseqBank.template" {
+file "evg/perEVGseqBank.template" {
   {I="1" }
   {I="2" }
   {I="3" }
