@@ -59,7 +59,7 @@ file "evr/perEVRevent.template" {
 # Input 8 -> PMOD2, IN4 -> Bit7
 
 file "evg/perEVG.template" {
-{}
+{ NTMR="8" }
 }
 file "evg/perEVGtimer.template" {
   {I="1" }
