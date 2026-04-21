@@ -84,7 +84,7 @@ record(bi, "$(P)FPGA:Mode") {
 # Marble:VCXO:PPS
 record(bi, "$(P)PPS:Ok") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     field(MASK, "0x80000000")
     field(ZNAM, "Invalid")
     field(ZSV , "MAJOR")
@@ -92,7 +92,7 @@ record(bi, "$(P)PPS:Ok") {
 }
 record(mbbi, "$(P)PPS:Src") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     # 0x40000000 - source 3 valid (recovered/internal)
     # 0x20000000 - source 2 valid (PMOD)
     # 0x10000000 - source 1 valid (FMC)
@@ -111,14 +111,14 @@ record(mbbi, "$(P)PPS:Src") {
 }
 record(bi, "$(P)PPS:Tgl") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     field(MASK, "0x08000000")
     field(ZNAM, "*")
     field(ONAM, ".")
 }
 record(calc, "$(P)PPS:Err") {
     field(DESC, "PPS period error")
-    field(INPA, "$(P)Marble:VCXO:PPS CP")
+    field(INPA, "$(P)MARBLE:VCXO:PPS CP")
     field(INPB, "0x07ffffff")
     field(INPC, "8e-9") # tick period (s)
     field(INPD, "1.0") # expected period
