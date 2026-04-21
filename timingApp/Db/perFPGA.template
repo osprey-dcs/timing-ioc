@@ -131,3 +131,18 @@ record(calc, "$(P)PPS:Err") {
     field(LSV , "MAJOR")
     info(Q:form, "Engineering")
 }
+
+record(ai, "$(P)RFIN:Level1") {
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=MARBLE:RFIN:ADCx wait=true offset=0")
+    field(SCAN, "1 second")
+    field(PREC, "3")
+    field(LINR, "LINEAR")
+    field(ESLO, "22.568e-6")
+    field(EOFF, "0")
+    field(EGU,  "Vrms")
+    field(LOLO, "-3")
+    field(LOW,  "-2")
+    field(LLSV, "MAJOR")
+    field(LSV,  "MINOR")
+}
