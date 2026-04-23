@@ -53,6 +53,8 @@ file "perSysmonAI.template" {
   { \$(P),\$(NAME),  "Marble:U27:Tach2",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
   { \$(P),\$(NAME),   "Marble:U27:Fan1",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
   { \$(P),\$(NAME),   "Marble:U27:Fan2",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
+  { \$(P),\$(NAME),"Marble:RFIN:level1",  "Vrms",          24e-6,       0,    0,     2,   0.2,   0.4,    4.0   5.0, "RFIN FMC input 1 level" }
+  { \$(P),\$(NAME),"Marble:RFIN:level2",  "Vrms",          24e-6,       0,    0,     2,   0.2,   0.3,    4.0   5.0, "RFIN FMC input 2 level" }
 }
 
 file "perSysmonLI.template" {
@@ -63,6 +65,6 @@ file "perSysmonLI.template" {
   { \$(P),\$(NAME),    "Marble:VCXO:SR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust status register" }
   { \$(P),\$(NAME),   "Marble:VCXO:ASR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust auxiliary status register" }
   { \$(P),\$(NAME),   "Marble:VCXO:PPS",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust PPS status register" }
-  { \$(P),\$(NAME),"MARBLE:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
-  { \$(P),\$(NAME), "MARBLE:FMC:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of FMC input lines" }
+  { \$(P),\$(NAME),"Marble:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
+  { \$(P),\$(NAME), "Marble:FMC:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of FMC input lines" }
 }
