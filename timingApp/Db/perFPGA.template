@@ -70,6 +70,24 @@ record(mbbo, "$(P)Marble:MGTCLK0") {
     field(EIVL, "8")
     field(EIST, "Disable")
 }
+record(longout, "$(P)Marble:VCXO:DAC_Y1") {
+    field(DESC, "Set system clock DAC")
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(NAME) reg=MARBLE:PLL:SET_Y1")
+    field(LOPR, "-32768")
+    field(HOPR, "32767")
+    field(DRVL, "-32768")
+    field(DRVH, "32767")
+}
+record(longout, "$(P)Marble:VCXO:DAC_Y3") {
+    field(DESC, "Set CLK20 adjust DAC")
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(NAME) reg=MARBLE:PLL:SET_Y3")
+    field(LOPR, "-32768")
+    field(HOPR, "32767")
+    field(DRVL, "-32768")
+    field(DRVH, "32767")
+}
 
 # FPGA:IO:select
 # 0x00000001 - 0 = EVR, 1 = EVG

@@ -24,6 +24,8 @@
       text-decoration-thickness: auto; text-decoration-style: solid;"><span
         style="font-family: &quot;Times New Roman&quot;, Times, serif;">Build
 
+
+
         Information<br>
       </span></h2>
     <h2 style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
@@ -534,6 +536,8 @@
                       Times, serif;"><span style="font-family:
                         &quot;Times New Roman&quot;, Times, serif;">Primary
 
+
+
                         hardware PPS marker is valid.</span><span
                         style="font-family: &quot;Times New Roman&quot;,
                         Times, serif;"><br>
@@ -546,11 +550,14 @@
                       Roman&quot;, Times, serif;">27</span><span
                       style="font-family: &quot;Times New Roman&quot;,
                       Times, serif;"><br>
-                    </span></td>
+                    </span><span style="font-family: &quot;Times New
+                      Roman&quot;, Times, serif;"> </span></td>
                   <td style="vertical-align: middle; text-align: left;"><span
                       style="font-family: &quot;Times New Roman&quot;,
                       Times, serif;"><span style="font-family:
                         &quot;Times New Roman&quot;, Times, serif;">Toggles
+
+
 
                         state on rising edge of<span
                           class="Apple-converted-space">&nbsp;</span></span><span
@@ -654,6 +661,8 @@
               New Roman, Times, serif;">State of PMOD TTL I/O </span><span
               style="font-family: Times New Roman, Times, serif;"><span
                 style="font-family: Times New Roman, Times, serif;"></span>digital
+
+
               inputs.</span></td>
         </tr>
       </tbody>
@@ -671,10 +680,98 @@
     <h2><span style="font-family: Times New Roman, Times, serif;">Event
         Generator and Event Receiver</span><span style="font-family:
         Times New Roman, Times, serif;"> Records</span></h2>
-    <span style="font-family: Times New Roman, Times, serif;">Event
-      generator and event receiver records are described in the
-      documentation for their respective support modules.<br>
-      <br>
+    <p> <span style="font-family: Times New Roman, Times, serif;">Event
+        generator and event receiver records are described in the
+        documentation for their respective support modules.</span></p>
+    <p><span style="font-family: Times New Roman, Times, serif;">The
+        Marble:MGTCLK0 mbbo record selects the </span><span
+        style="font-family: Times New Roman, Times, serif;"><span
+          style="font-family: Times New Roman, Times, serif;">multi-gigabit
+          transceivers reference clock </span></span><span
+        style="font-family: Times New Roman, Times, serif;">source.&nbsp;
+        Typical values are FPGA_REFCLK0 which selects the Marble system
+        125 MHz clock and FMC1_GBTCLK0 which selects the front panel SMA
+        clock.&nbsp; The value is stored in Marble non-volatile memory
+        and used for subsequent FPGA reboots.</span><br>
+      <span style="font-family: Times New Roman, Times, serif;"></span></p>
+    <h2><span style="font-family: Times New Roman, Times, serif;">Development</span><span
+        style="font-family: Times New Roman, Times, serif;"> Records</span></h2>
+    <p><span style="font-family: Times New Roman, Times, serif;">These
+        records are intended for use during development.<br>
+      </span></p>
+    <span style="font-family: Times New Roman, Times, serif;"> </span>
+    <table style=" text-align: left; width: 80%;" cellspacing="2"
+      cellpadding="2" border="1">
+      <tbody>
+        <tr>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: Times New Roman, Times,
+                serif;">Name</span></span><span style="font-family:
+              Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: Times New Roman, Times,
+                serif;">Type</span></span><span style="font-family:
+              Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="vertical-align: middle; text-align: center;"><span
+              style="font-weight: bold;"><span style="font-family: Times
+                New Roman, Times, serif;">Description</span></span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">Marble:PPS:Local</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">bo</span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="text-align: left;"><span style="font-family: Times
+              New Roman, Times, serif;">When set a local PPS reference
+              is obtained from Marble 20 MHz VCXO (Y3).&nbsp; This
+              should be done only during development when no other
+              pulse-per-second reference is available.&nbsp; Note that
+              the 20 MHz VCXO has a much wider adjustment range than the
+              25 MHz VCXO (Y1) used to generate the system clocks.</span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">Marble:VCXO:DAC_Y1</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">longout</span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="text-align: left;"><span style="font-family: Times
+              New Roman, Times, serif;">Writng a value of -32768 closes
+              the phase-locked loop driving the Marble </span><span
+              style="font-family: Times New Roman, Times, serif;"><span
+                style="font-family: Times New Roman, Times, serif;">25
+                MHz VCXO (Y1) used to generate system clocks including
+                the multi-gigabit transceivers 125 MHz reference.&nbsp;
+                Writing any other value opens the loop and drives the
+                VCXO DAC with the specified value.<br>
+              </span></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">Marble:VCXO:DAC_Y3</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">longout</span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="text-align: left;"><span style="font-family: Times
+              New Roman, Times, serif;"><span style="font-family: Times
+                New Roman, Times, serif;"> Drives the </span></span><span
+              style="font-family: Times New Roman, Times, serif;"><span
+                style="font-family: Times New Roman, Times, serif;"><span
+                  style="font-family: Times New Roman, Times, serif;">Marble
+
+                  20 MHz VCXO (Y3) DAC</span> with the specified value.</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <span style="font-family: Times New Roman, Times, serif;"><br>
     </span>
     <p><span style="font-family: Times New Roman, Times, serif;"> </span></p>
     <span style="font-family: Times New Roman, Times, serif;"><span
