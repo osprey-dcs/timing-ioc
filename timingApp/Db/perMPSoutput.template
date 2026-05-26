@@ -1,0 +1,72 @@
+# initialize :$(N)array registers Con connect PHAS=-1
+record(longin, "$(P)$(R)M:$(N)_") {
+    field(DTYP, "FEED On Connect")
+    field(INP , "@name=$(PORT)")
+    field(SCAN, "I/O Intr")
+    field(PHAS, "-1") # prepare for Flush in perFPGA.template
+    field(FLNK, "$(P)$(R)M:$(N)F_")
+}
+record(fanout, "$(P)$(R)M:$(N)F_") {
+    field(LNK5, "$(P)$(R)MPS:chkInputs:$(N)")
+    field(LNK6, "$(P)$(R)MPS:goodState:$(N)")
+}
+record(longout, "$(P)$(R)MPS:chkInputs:$(N)") {
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(PORT) reg=MPS:check:$(N)")
+    info(autosaveFields_pass0, "VAL")
+}
+record(longout, "$(P)$(R)MPS:goodState:$(N)") {
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(PORT) reg=MPS:goodState:$(N)")
+    info(autosaveFields_pass0, "VAL")
+}
+record(longin, "$(P)$(R)MPS:status:$(N)") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(PORT) reg=MPS:status:$(N)")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)$(R)MPS:status:$(N):trp")
+}
+record(bi, "$(P)$(R)MPS:status:$(N):trp") {
+    field(DESC, "Latched state")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)$(R)MPS:status:$(N) MS")
+    field(MASK, "0x1")
+    field(ZNAM, "Normal")
+    field(ONAM, "Tripped")
+    field(OSV , "MAJOR")
+    field(FLNK, "$(P)$(R)MPS:status:$(N):cur")
+}
+record(bi, "$(P)$(R)MPS:status:$(N):cur") {
+    field(DESC, "Instant state")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)$(R)MPS:status:$(N) MS")
+    field(MASK, "0x2")
+    field(ZNAM, "Ok")
+    field(ONAM, "Fault")
+    field(OSV , "MAJOR")
+    field(FLNK, "$(P)$(R)MPS:chkTrip:$(N)_")
+}
+record(calcout, "$(P)$(R)MPS:chkTrip:$(N)_") {
+    field(DESC, "Trigger first-fault readbacks")
+    field(INPA, "$(P)$(R)MPS:status:$(N) MS")
+    field(CALC, "A&1")
+    field(OOPT, "Transition To Non-zero")
+    field(OUT,  "$(P)$(R)MPS:firstRBK:$(N)_.PROC")
+}
+record(fanout, "$(P)$(R)MPS:firstRBK:$(N)_") {
+    field(LNK4, "$(P)$(R)MPS:firstInputs:$(N)")
+    field(LNK5, "$(P)$(R)MPS:firstSeconds:$(N)")
+    field(LNK6, "$(P)$(R)MPS:firstTicks:$(N)")
+}
+record(longin, "$(P)$(R)MPS:firstInputs:$(N)") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(PORT) reg=MPS:firstFault:$(N)")
+}
+record(longin, "$(P)$(R)MPS:firstSeconds:$(N)") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(PORT) reg=MPS:faultSeconds:$(N)")
+}
+record(longin, "$(P)$(R)MPS:firstTicks:$(N)") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(PORT) reg=MPS:faultTicks:$(N)")
+}

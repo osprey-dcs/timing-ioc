@@ -22,6 +22,14 @@ file "perBuildDate.template" {
 {NAME="\$(NAME)", P="\$(P)Date:SW-I", REG="softwareBuildDate"}
 }
 
+file "perMPSoutput.template" {
+  pattern { P, N }
+  { \$(P),     1 }
+  { \$(P),     2 }
+  { \$(P),     3 }
+  { \$(P),     4 }
+}
+
 file "perSysmonAI.template" {
   pattern { P,NAME,                 REG,     EGU,           ESLO,    EOFF, PREC,  ADEL,  LOLO,   LOW,  HIGH,  HIHI, DESC }
   { \$(P),\$(NAME),  "FPGA:Temperature", "deg C",   0.0076885223, -273.15,    1,     0,     0,     0,    70,    75, "FPGA temperature" }
