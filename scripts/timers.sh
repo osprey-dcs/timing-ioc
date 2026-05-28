@@ -2,7 +2,7 @@
 
 set -ex
 
-P="EVG:"
+P="EVT:"
 if [ $# -gt 0 ]
 then
     P="$1"
