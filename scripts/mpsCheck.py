@@ -8,12 +8,14 @@ import time
 # FIXME -- should allow testing of MPS outputs other than first
 parser = argparse.ArgumentParser(description='Test MPS', \
          formatter_class=argparse.ArgumentDefaultsHelpFormatter, \
-         epilog="""It is assumed that the EVG and fanout 'MPS:required' records
-                 are correct.  If not you'll likely get compaints about the
-                 hardware output being asserted or not asserted incorrectly.""")
+         epilog="""If the MPS mitigation outputs are being checked it is
+                 assumed that the EVG and fanout 'MPS:required' records
+                 are correct.  If one or more of these records is incorrect
+                 you'll likely get complaints about mitigation outputs behaving
+                 imroperly.""")
 parser.add_argument('-e', '--evg', default='EVG:', help='EVG PV name prefix')
 parser.add_argument('-i', '--inputs', default=8, type=int, choices=range(1,9), help='Number of MPS inputs')
-parser.add_argument('-m', '--hw', action='store_true', help='Check MPS mitigation hardware outputs')
+parser.add_argument('-m', '--mitigate', action='store_true', help='Check EVG MPS mitigation outputs')
 parser.add_argument('-o', '--output', default=1, type=int, choices=range(1,9), help='MPS output number')
 parser.add_argument('-r', '--evr', default='EVR:1:', help='EVR PV name prefix')
 parser.add_argument('-v', '--verbose', action='store_true', help='Show channel access actions')
@@ -66,7 +68,7 @@ def checkStatus(expectStatus, \
                expectFirstTicks=None):
     time.sleep(0.5)
     failed = False
-    if (args.hw):
+    if (args.mitigate):
         caput(trippedPV_PROC, 1)
         tripped = (caget(trippedPV) & outputBit) != 0
     caput(statusPV_PROC, 1)
@@ -92,9 +94,9 @@ def checkStatus(expectStatus, \
             if (firstSeconds != expectFirstSeconds): failed = True
             if (firstTicks != expectFirstTicks): failed = True
     print(" -- %s" % ("FAIL" if failed else "PASS"), end='')
-    if (args.hw and (tripped != expectTripped)):
+    if (args.mitigate and (tripped != expectTripped)):
         print(" -- Warning: hardware output is%s asserted." % \
-                                            ("" if tripped else "n ot"), end='')
+                                            ("" if tripped else " not"), end='')
     print("")
     if (failed): raise(Exception("MPS status"))
     
@@ -113,11 +115,17 @@ firstTicksPV_PROC = openTest('MPS:firstTicks:%s.PROC' % (outputStr))
 forceTripPV = openTest('MPS:forceTrip')
 
 clearPV = openEVG('EVG:swEvent') 
-if (args.hw):
+if (args.mitigate):
     trippedPV = openEVG('MPS:tripped')
     trippedPV_PROC = openEVG('MPS:tripped.PROC')
 
 try:
+    ########################################################################
+    # Attemp to clear any outstanding trips
+    caput(forceTripPV, 0)
+    caput(clearPV, mpsClearEventCode)
+    checkStatus(0)
+
     ########################################################################
     # Ensure that a 'force trip' has the desired result
     caput(forceTripPV, outputBit)

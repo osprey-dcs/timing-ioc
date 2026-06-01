@@ -3,8 +3,31 @@ record(longout, "$(P)MPS:invert") {
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MPS:invert")
 }
-record(longout, "$(P)MPS:forceTrip") {
+record(mbboDirect, "$(P)MPS:forceTrip") {
+    field(DESC, "Bitmap of MPS outputs to trip")
+    field(NOBT, "8")
+    field(OUT,  "$(P)MPS:forceTrip_ PP MS")
+}
+record(longout, "$(P)MPS:forceTrip_") {
     field(DESC, "Bitmap of MPS outputs to trip")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MPS:forceTrip")
 }
+record(mbboDirect, "$(P)MPS:required") {
+    field(DESC, "Bitmap of 'important' fiber links")
+    field(NOBT, "8")
+    field(OUT, "$(P)MPS:required_ PP MS")
+    field(VAL , "0xfe") # default to all required
+    info(autosaveFields_pass0, "VAL")
+}
+record(longout, "$(P)MPS:required_") {
+    field(DESC, "Bitmap of 'important' fiber links")
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(NAME) reg=MPS:required")
+}   
+record(longin, "$(P)MPS:tripped") {
+    field(DESC, "Bitmap of tripped MPS outputs")
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=MPS:tripped")
+    field(SCAN, "1 second")
+}   
