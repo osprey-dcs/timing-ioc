@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(description='Test MPS', \
                  are correct.  If one or more of these records is incorrect
                  you'll likely get complaints about mitigation outputs behaving
                  imroperly.""")
-parser.add_argument('-e', '--evg', default='EVG:', help='EVG PV name prefix')
+parser.add_argument('-g', '--evg', default='EVG:', help='EVG PV name prefix')
 parser.add_argument('-i', '--inputs', default=8, type=int, choices=range(1,9), help='Number of MPS inputs')
 parser.add_argument('-m', '--mitigate', action='store_true', help='Check EVG MPS mitigation outputs')
 parser.add_argument('-o', '--output', default=1, type=int, choices=range(1,9), help='MPS output number')
