@@ -61,6 +61,7 @@ def caput(pv, val):
     if (args.verbose): print(f'caput {pv.pvname} {val}')
     pv.put(val, wait=True)
 
+
 # Check MPS status
 def checkStatus(expectStatus, \
                expectFirstInputs=None, \
@@ -68,8 +69,8 @@ def checkStatus(expectStatus, \
                expectFirstTicks=None):
     failed = False
     caput(statusPV_PROC, 1)
+    time.sleep(0.1)
     if (args.mitigate): caput(trippedPV_PROC, 1)
-    time.sleep(0.5)
     status = caget(statusPV) & 0xFFFFFFFF
     if (args.mitigate): tripped = (caget(trippedPV) & outputBit) != 0
     expectTripped = (status & 0x1) != 0
