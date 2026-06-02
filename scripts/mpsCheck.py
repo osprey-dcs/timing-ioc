@@ -66,13 +66,12 @@ def checkStatus(expectStatus, \
                expectFirstInputs=None, \
                expectFirstSeconds=None, \
                expectFirstTicks=None):
-    time.sleep(0.5)
     failed = False
-    if (args.mitigate):
-        caput(trippedPV_PROC, 1)
-        tripped = (caget(trippedPV) & outputBit) != 0
     caput(statusPV_PROC, 1)
+    if (args.mitigate): caput(trippedPV_PROC, 1)
+    time.sleep(0.5)
     status = caget(statusPV) & 0xFFFFFFFF
+    if (args.mitigate): tripped = (caget(trippedPV) & outputBit) != 0
     expectTripped = (status & 0x1) != 0
     print("Status:%06X" % (status), end='')
     if (status != expectStatus):
@@ -93,10 +92,11 @@ def checkStatus(expectStatus, \
         if (expectFirstSeconds != None):
             if (firstSeconds != expectFirstSeconds): failed = True
             if (firstTicks != expectFirstTicks): failed = True
-    print(" -- %s" % ("FAIL" if failed else "PASS"), end='')
     if (args.mitigate and (tripped != expectTripped)):
-        print(" -- Warning: hardware output is%s asserted." % \
+        print(" -- Mitigation output is%s asserted." % \
                                             ("" if tripped else " not"), end='')
+        failed = True
+    print(" -- %s" % ("FAIL" if failed else "PASS"), end='')
     print("")
     if (failed): raise(Exception("MPS status"))
     
