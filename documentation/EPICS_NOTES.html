@@ -27,6 +27,7 @@
 
 
 
+
         Information<br>
       </span></h2>
     <h2 style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
@@ -540,6 +541,7 @@
 
 
 
+
                         hardware PPS marker is valid.</span><span
                         style="font-family: &quot;Times New Roman&quot;,
                         Times, serif;"><br>
@@ -558,6 +560,7 @@
                       style="font-family: &quot;Times New Roman&quot;,
                       Times, serif;"><span style="font-family:
                         &quot;Times New Roman&quot;, Times, serif;">Toggles
+
 
 
 
@@ -667,6 +670,7 @@
 
 
 
+
               inputs.</span></td>
         </tr>
       </tbody>
@@ -692,14 +696,441 @@
         style="font-family: Times New Roman, Times, serif;"><span
           style="font-family: Times New Roman, Times, serif;">multi-gigabit
 
+
           transceivers reference clock </span></span><span
         style="font-family: Times New Roman, Times, serif;">source.&nbsp;
+
 
         Typical values are FPGA_REFCLK0 which selects the Marble system
         125 MHz clock and FMC1_GBTCLK0 which selects the front panel SMA
         clock.&nbsp; The value is stored in Marble non-volatile memory
-        and used for subsequent FPGA reboots.</span><br>
-      <span style="font-family: Times New Roman, Times, serif;"></span></p>
+        and used for subsequent FPGA reboots.<br>
+        <br>
+      </span> <span style="font-family: Times New Roman, Times, serif;"></span></p>
+    <h2 style=" caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-style: normal; font-variant-caps:
+      normal; letter-spacing: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none;"><span style="font-family: &quot;Times New
+        Roman&quot;, Times, serif;">Machine Protection</span></h2>
+    <p><span style="font-family: Times New Roman, Times, serif;">The
+        following table describes the records associated with the
+        machine protection operations handled locally by each
+        node.&nbsp; The value <span style="font-style: italic;">o</span>&nbsp;is
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        the machine protection mitigation output number, ranging from 1
+        to 8.<br>
+      </span></p>
+    <p><span style="font-family: Times New Roman, Times, serif;">An open
+        or undriven input appears as a logic 0.&nbsp;&nbsp; On power-up
+        all outputs are in the 'tripped' state.&nbsp; On the event
+        generator node the outputs are driven by the combination of
+        local tripped status from all nodes as described below by the
+        MPS:required and&nbsp; MPS:tripped records.&nbsp; On all other
+        nodes the outputs are driven by the local 'tripped' as described
+        below by the MPS:status:<span style="font-style: italic;">o</span>
+        records.<br>
+      </span></p>
+    <br style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-size: 12px; font-style: normal;
+      font-variant-caps: normal; font-weight: 400; letter-spacing:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none;">
+    <table style=" font-family: Helvetica; letter-spacing: normal;
+      text-transform: none; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration: none; color:
+      rgb(0, 0, 0); font-variant-caps: normal; width: 80%;"
+      cellspacing="2" cellpadding="2" border="1">
+      <tbody>
+        <tr>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">Name</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">Type</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td style="vertical-align: middle; text-align: center;"><span
+              style="font-weight: bold;"><span style="font-family:
+                &quot;Times New Roman&quot;, Times, serif;">Description</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:invert</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longout</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td style="vertical-align: middle; text-align: left;"><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">Bitmap specifying the local MPS hardware inputs to
+              invert.&nbsp; Intended primarily for MPS firmware/hardware
+              validation.<span style="font-style: italic;"></span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><span style="font-style: italic;"></span></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:chkInputs</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">:<span style="font-style: italic;">o</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longout</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;">Least significant eight bits are bitmap
+              specifying the local MPS hardware inputs for which a 'bad'</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><span style="font-style: italic;"></span>&nbsp;value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              will trip the specified MPS output.</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:goodState</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">:<span style="font-style: italic;">o</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longout</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;">Bitmap specifying the logic state (1/0) for
+              which each local MPS hardware input will be considered
+              'good'.</span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"><span style="font-style:
+                italic;"></span></span><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;"></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:status</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">:<span style="font-style: italic;">o</span></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longin</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"></span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">Least significant bit is the
+                local node 'tripped' status.&nbsp; It is set when any of
+                the conditions above are met and cleared by an event
+                from the top-level node.&nbsp; If </span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;"><span style="font-family:
+                  &quot;Times New Roman&quot;, Times, serif;"><span
+                    style="font-family: &quot;Times New Roman&quot;,
+                    Times, serif;">any of the </span></span><span
+                  style="font-family: &quot;Times New Roman&quot;,
+                  Times, serif;"><span style="font-family: &quot;Times
+                    New Roman&quot;, Times, serif;">conditions above are
+                    met when </span></span>the clear event arrives </span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">the 'tripped' status remains
+                set and the 'first fault' values are updated.</span></span><br>
+            <span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;"><span style="font-family:
+                  &quot;Times New Roman&quot;, Times, serif;"><span
+                    style="font-family: &quot;Times New Roman&quot;,
+                    Times, serif;"></span></span>The next-to-least
+                significant bit is set when any of the conditions that
+                would cause a trip are present.<br>
+              </span></span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"> Bits starting 16 and up are the current state of
+              the local MPS hardware inputs after application of </span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">MPS:invert.</span><br>
+            <span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;"></span></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:firstSeconds:<span
+                style="font-style: italic;">o</span></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longin</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;"></span><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">The time
+              (POSIX seconds) at which </span><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;"><span
+                style="font-family: &quot;Times New Roman&quot;, Times,
+                serif;"></span><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">'tripped' status </span>became
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              set.<br>
+              <span style="font-style: italic;"></span></span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:firstTicks:<span
+                style="font-style: italic;">o</span></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longin</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"></span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;">The time (event system ticks) at which </span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span><span style="font-family: &quot;Times New
+              Roman&quot;, Times, serif;"></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"> 'tripped status' became set.</span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:firstInputs</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">:<span style="font-style: italic;">o</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longin</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">B</span>itmap of&nbsp;</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">the local MPS hardware inputs </span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;">that caused the </span><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">'tripped'
+              status to become set.</span><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;"><br>
+            </span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">MPS:forceTrip</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              Times New Roman, Times, serif;">mbboDirect</span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+          <td style="vertical-align: middle; text-align: left;"><span
+              style="font-family: Times New Roman, Times, serif;">Bitmap
+              of MPS outputs to force into the 'tripped' state.</span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+            </span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-size: 12px; font-style: normal;
+      font-variant-caps: normal; font-weight: 400; letter-spacing:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none; margin-left: 80px;"><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span></div>
+    <h2 style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-style: normal; font-variant-caps:
+      normal; letter-spacing: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none; margin-left: 40px;"><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span></h2>
+    <span style="font-family: Times New Roman, Times, serif;">In
+      addition to the records above, event fanout and event generator
+      nodes provide the following records to control the merging of MPS
+      'tripped' status from downstream nodes.</span><br>
+    <span style="font-family: Times New Roman, Times, serif;"></span><span
+      style="font-family: Times New Roman, Times, serif;"> </span> <br
+      style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-size: 12px; font-style: normal;
+      font-variant-caps: normal; font-weight: 400; letter-spacing:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none;">
+    <table style=" font-family: Helvetica; letter-spacing: normal;
+      text-transform: none; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; text-decoration: none; color:
+      rgb(0, 0, 0); font-variant-caps: normal; width: 80%;"
+      cellspacing="2" cellpadding="2" border="1">
+      <tbody>
+        <tr>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">Name</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td style="text-align: center;"><span style="font-weight:
+              bold;"><span style="font-family: &quot;Times New
+                Roman&quot;, Times, serif;">Type</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td style="vertical-align: middle; text-align: center;"><span
+              style="font-weight: bold;"><span style="font-family:
+                &quot;Times New Roman&quot;, Times, serif;">Description</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:required</span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">mbboDirect</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: &quot;Times New Roman&quot;,
+              Times, serif;">Bitmap specifying the fiber links from
+              which MPS 'tripped' status will be merged.<span
+                style="font-style: italic;"></span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><span style="font-style: italic;"></span><br>
+              The least significant bit is ignored since it corresponds
+              to the incoming event receiver link.<br>
+            </span></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">MPS:tripped</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+          <td style="text-align: center;"><span style="font-family:
+              &quot;Times New Roman&quot;, Times, serif;">longin</span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"><br>
+            </span></td>
+          <td><span style="font-family: Times New Roman, Times, serif;">Least
+
+
+
+
+
+
+
+
+
+
+
+              significant bits are map indicating the combined MPS
+              'tripped' status from all downstream nodes.</span><span
+              style="font-family: Times New Roman, Times, serif;"></span><span
+              style="font-family: Times New Roman, Times, serif;"><br>
+              For the event generator the value of </span><span
+              style="font-family: Times New Roman, Times, serif;"><span
+                style="font-family: Times New Roman, Times, serif;"></span><span
+                style="font-family: Times New Roman, Times, serif;"><span
+                  style="font-family: Times New Roman, Times, serif;">MPS:forceTrip
+
+
+                  is also combined and the value of MPS:tripped</span></span>
+              is the value written to the MPS mitigation hardware
+              outputs.</span><span style="font-family: Times New Roman,
+              Times, serif;"><br>
+            </span><span style="font-family: Times New Roman, Times,
+              serif;"> </span><span style="font-family: Times New
+              Roman, Times, serif;"><span style="font-family:
+                &quot;Times New Roman&quot;, Times, serif;">If a
+                required fiber link is not receiving a valid stream all
+                the bits in this record will be set.</span></span><span
+              style="font-family: &quot;Times New Roman&quot;, Times,
+              serif;"></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-size: 12px; font-style: normal;
+      font-variant-caps: normal; font-weight: 400; letter-spacing:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none; margin-left: 80px;"><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span></div>
+    <h2 style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+      font-family: Helvetica; font-style: normal; font-variant-caps:
+      normal; letter-spacing: normal; orphans: auto; text-align: start;
+      text-indent: 0px; text-transform: none; white-space: normal;
+      widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      text-decoration: none; margin-left: 40px;"><span
+        style="font-family: &quot;Times New Roman&quot;, Times, serif;"></span></h2>
+    <br class="Apple-interchange-newline">
     <h2><span style="font-family: Times New Roman, Times, serif;">Development</span><span
         style="font-family: Times New Roman, Times, serif;"> Records</span></h2>
     <p><span style="font-family: Times New Roman, Times, serif;">These
@@ -828,6 +1259,7 @@
               style="font-family: Times New Roman, Times, serif;"><span
                 style="font-family: Times New Roman, Times, serif;"><span
                   style="font-family: Times New Roman, Times, serif;">Marble
+
 
 
                   20 MHz VCXO (Y3) DAC</span> with the specified value.</span></span></td>
