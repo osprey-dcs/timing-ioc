@@ -32,6 +32,10 @@ file "perMPSoutput.template" {
   { \$(P),\$(NAME), 2 }
   { \$(P),\$(NAME), 3 }
   { \$(P),\$(NAME), 4 }
+  { \$(P),\$(NAME), 5 }
+  { \$(P),\$(NAME), 6 }
+  { \$(P),\$(NAME), 7 }
+  { \$(P),\$(NAME), 8 }
 }
 
 file "perSysmonAI.template" {
