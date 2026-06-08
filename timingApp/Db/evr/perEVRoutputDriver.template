@@ -44,6 +44,8 @@ record(mbbo, "$(P)EVR:OUT:$(N):source") {
     field(TWST, "Dbus $(TRG)")
     field(THVL, "7")
     field(THST, "Static 1")
+    field(FRVL, "4")
+    field(FRST, "MPS mitigation")
     info(autosaveFields_pass0, "RVAL")
 }
 record(ao, "$(P)EVR:OUT:$(N):delay") {
