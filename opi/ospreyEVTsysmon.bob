@@ -983,7 +983,7 @@ Link</text>
     <transparent>true</transparent>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor_16</name>
-      <pv_name>$(P)Marble:VCXO:PPS</pv_name>
+      <pv_name>$(P)MARBLE:VCXO:PPS</pv_name>
       <x>66</x>
       <y>20</y>
       <width>20</width>

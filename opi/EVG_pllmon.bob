@@ -55,7 +55,7 @@
       </widget>
       <widget type="textupdate" version="2.0.0">
         <name>Text Update_16</name>
-        <pv_name>$(P)Marble:VCXO:PPS</pv_name>
+        <pv_name>$(P)MARBLE:VCXO:PPS</pv_name>
         <x>155</x>
         <format>4</format>
         <show_units>false</show_units>
@@ -79,7 +79,7 @@
       </widget>
       <widget type="textupdate" version="2.0.0">
         <name>Text Update_13</name>
-        <pv_name>$(P)Marble:VCXO:SR</pv_name>
+        <pv_name>$(P)MARBLE:VCXO:SR</pv_name>
         <x>155</x>
         <format>4</format>
         <show_units>false</show_units>
@@ -104,7 +104,7 @@
       </widget>
       <widget type="textupdate" version="2.0.0">
         <name>Text Update_14</name>
-        <pv_name>$(P)Marble:VCXO:ASR</pv_name>
+        <pv_name>$(P)MARBLE:VCXO:ASR</pv_name>
         <x>155</x>
         <format>4</format>
         <show_units>false</show_units>
