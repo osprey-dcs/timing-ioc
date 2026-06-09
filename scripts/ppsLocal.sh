@@ -7,5 +7,5 @@ then
 fi
 
 set -ex
-caput "${P}Marble:VCXO:DAC_Y1" 0
-caput "${P}Marble:PPS:Local" 1
+caput "${P}MARBLE:VCXO:DAC_Y1" 0
+caput "${P}MARBLE:PPS:Local" 1

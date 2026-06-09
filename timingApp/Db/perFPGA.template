@@ -9,7 +9,7 @@ record(longout, "$(P)FPGA:reboot_") {
     field(VAL , "100")
 }
 
-record(longin, "$(P)Marble:onConn_") {
+record(longin, "$(P)MARBLE:onConn_") {
     field(DTYP, "FEED On Connect")
     field(INP, "@name=$(NAME)")
     field(SCAN, "I/O Intr")
@@ -40,7 +40,7 @@ record(calc, "$(P)Ref:TN_") {
     field(CALC, "A*B")
 }
 
-record(mbbo, "$(P)Marble:PPS:Local") {
+record(mbbo, "$(P)MARBLE:PPS:Local") {
     field(DESC, "local PPS marker source")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MARBLE:PPS:LOCAL:CSR")
@@ -51,7 +51,7 @@ record(mbbo, "$(P)Marble:PPS:Local") {
     field(TWVL, "2")
     field(TWST, "VCXO20")
 }
-record(mbbo, "$(P)Marble:MGTCLK0") {
+record(mbbo, "$(P)MARBLE:MGTCLK0") {
     field(DESC, "Set MGTCLK0 source")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MARBLE:mgtRefClk0")
@@ -74,7 +74,7 @@ record(mbbo, "$(P)Marble:MGTCLK0") {
     field(EIVL, "8")
     field(EIST, "Disable")
 }
-record(longout, "$(P)Marble:VCXO:DAC_Y1") {
+record(longout, "$(P)MARBLE:VCXO:DAC_Y1") {
     field(DESC, "Set system clock DAC")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MARBLE:PLL:SET_Y1")
@@ -83,7 +83,7 @@ record(longout, "$(P)Marble:VCXO:DAC_Y1") {
     field(DRVL, "-32768")
     field(DRVH, "32767")
 }
-record(longout, "$(P)Marble:VCXO:DAC_Y3") {
+record(longout, "$(P)MARBLE:VCXO:DAC_Y3") {
     field(DESC, "Set CLK20 adjust DAC")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MARBLE:PLL:SET_Y3")
@@ -106,7 +106,7 @@ record(bi, "$(P)FPGA:Mode") {
 # Marble:VCXO:PPS
 record(bi, "$(P)PPS:Ok") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     field(MASK, "0x80000000")
     field(ZNAM, "Invalid")
     field(ZSV , "MAJOR")
@@ -114,7 +114,7 @@ record(bi, "$(P)PPS:Ok") {
 }
 record(mbbi, "$(P)PPS:Src") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     # 0x40000000 - source 3 valid (recovered/internal)
     # 0x20000000 - source 2 valid (PMOD)
     # 0x10000000 - source 1 valid (FMC)
@@ -133,14 +133,14 @@ record(mbbi, "$(P)PPS:Src") {
 }
 record(bi, "$(P)PPS:Tgl") {
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(P)Marble:VCXO:PPS CP")
+    field(INP , "$(P)MARBLE:VCXO:PPS CP")
     field(MASK, "0x08000000")
     field(ZNAM, "*")
     field(ONAM, ".")
 }
 record(calc, "$(P)PPS:Err") {
     field(DESC, "PPS period error")
-    field(INPA, "$(P)Marble:VCXO:PPS CP")
+    field(INPA, "$(P)MARBLE:VCXO:PPS CP")
     field(INPB, "0x07ffffff")
     field(INPC, "8e-9") # tick period (s)
     field(INPD, "1.0") # expected period
