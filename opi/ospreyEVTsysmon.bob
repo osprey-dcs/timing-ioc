@@ -3,7 +3,7 @@
   <name>EVG System Monitors</name>
   <x>8</x>
   <y>88</y>
-  <width>708</width>
+  <width>763</width>
   <height>480</height>
   <background_color>
     <color name="GLOBAL canvas" red="200" green="200" blue="200">
@@ -1215,6 +1215,60 @@ Link</text>
       <name>Label_26</name>
       <text>PPS Activity</text>
       <y>133</y>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Group_1</name>
+    <x>500</x>
+    <y>417</y>
+    <width>255</width>
+    <height>45</height>
+    <style>3</style>
+    <transparent>true</transparent>
+    <widget type="group" version="3.0.0">
+      <name>QSFPval_3</name>
+      <width>255</width>
+      <height>20</height>
+      <style>3</style>
+      <transparent>true</transparent>
+      <widget type="label" version="2.0.0">
+        <name>Label_16</name>
+        <text>FMC Clock 1</text>
+        <width>150</width>
+        <horizontal_alignment>2</horizontal_alignment>
+        <vertical_alignment>1</vertical_alignment>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update_40</name>
+        <pv_name>$(P)MARBLE:RFIN:level1</pv_name>
+        <x>155</x>
+        <horizontal_alignment>2</horizontal_alignment>
+        <vertical_alignment>1</vertical_alignment>
+        <wrap_words>false</wrap_words>
+      </widget>
+    </widget>
+    <widget type="group" version="3.0.0">
+      <name>QSFPval_4</name>
+      <y>25</y>
+      <width>255</width>
+      <height>20</height>
+      <style>3</style>
+      <transparent>true</transparent>
+      <widget type="label" version="2.0.0">
+        <name>Label_30</name>
+        <text>FMC Clock 2</text>
+        <width>150</width>
+        <horizontal_alignment>2</horizontal_alignment>
+        <vertical_alignment>1</vertical_alignment>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update_41</name>
+        <pv_name>$(P)MARBLE:RFIN:level2</pv_name>
+        <x>155</x>
+        <horizontal_alignment>2</horizontal_alignment>
+        <vertical_alignment>1</vertical_alignment>
+        <wrap_words>false</wrap_words>
+      </widget>
     </widget>
   </widget>
 </display>
