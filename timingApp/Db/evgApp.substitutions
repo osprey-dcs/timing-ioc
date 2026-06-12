@@ -69,8 +69,8 @@ file "perSysmonAI.template" {
   { \$(P),\$(NAME),  "MARBLE:U27:Tach2",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
   { \$(P),\$(NAME),   "MARBLE:U27:Fan1",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
   { \$(P),\$(NAME),   "MARBLE:U27:Fan2",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
-  { \$(P),\$(NAME),"MARBLE:RFIN:level1",  "Vrms",          24e-6,       0,    0,     2,   0.2,   0.4,    4.0   5.0, "RFIN FMC input 1 level" }
-  { \$(P),\$(NAME),"MARBLE:RFIN:level2",  "Vrms",          24e-6,       0,    0,     2,   0.2,   0.3,    4.0   5.0, "RFIN FMC input 2 level" }
+  { \$(P),\$(NAME),"MARBLE:RFIN:level1",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.4,    4.0   5.0, "RFIN FMC input 1 level" }
+  { \$(P),\$(NAME),"MARBLE:RFIN:level2",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.3,    4.0   5.0, "RFIN FMC input 2 level" }
 }
 
 file "perSysmonLI.template" {
