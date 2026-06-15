@@ -51,28 +51,39 @@ record(mbbo, "$(P)MARBLE:PPS:Local") {
     field(TWVL, "2")
     field(TWST, "VCXO20")
 }
+# All connections to clock crosspoint switch on Marble (U2)
+#
+# 0 - Marble Ext 0
+# 1 - Marble Ext 1
+# 2 - FPGA_REFCLK0: Y1 (25MHz) -> U20 (125MHz)
+# 3 - Si570 (Y6)
+# 4 - FMC1_GBTCLK0
+# 5 - FMC1_GBTCLK1
+# 6 - FMC2_GBTCLK0
+# 7 - FMC2_GBTCLK1
+#
+# Connections on clk-input-fmc
+#
+# FMCx_GBTCLK0 <- CLKout8 <- CLKin1 <- CLK1
+# FMCx_GBTCLK1 <- CLKout4 <- CLKin0 <- CLK2
+#
+# EVG-16-4 chassis.  rf-input-fmc1 in FMC1, LVTTL PMOD in PMOD1 (J12)
+#
+# FMC1 CLK1 <= CLKIN1
+# FMC1 CLK2 <= CLKIN2
+#
 record(mbbo, "$(P)MARBLE:MGTCLK0") {
     field(DESC, "Set MGTCLK0 source")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=MARBLE:mgtRefClk0")
-    field(ZRVL, "0")
-    field(ZRST, "Ext0")
-    field(ONVL, "1")
-    field(ONST, "Ext1")
-    field(TWVL, "2")
-    field(TWST, "FPGA_REFCLK0")
-    field(THVL, "3")
-    field(THST, "SI570")
-    field(FRVL, "4")
-    field(FRST, "FMC1_GBTCLK0")
-    field(FVVL, "5")
-    field(FVST, "FMC1_GBTCLK1")
-    field(SXVL, "6")
-    field(SXST, "FMC2_GBTCLK0")
-    field(SVVL, "7")
-    field(SVST, "FMC2_GBTCLK1")
-    field(EIVL, "8")
-    field(EIST, "Disable")
+    field(ZRVL, "2") # FPGA_REFCLK0
+    field(ZRST, "Int. 125MHz")
+    field(ONVL, "4") # FMC1_GBTCLK0
+    field(ONST, "CLKIN1")
+    field(TWVL, "5") # FMC1_GBTCLK1
+    field(TWST, "CLKIN2")
+    field(RVAL, "2") # Int.
+    info(autosaveFields_pass0, "RVAL")
 }
 record(longout, "$(P)MARBLE:VCXO:DAC_Y1") {
     field(DESC, "Set system clock DAC")
