@@ -64,8 +64,8 @@ record(mbbo, "$(P)MARBLE:PPS:Local") {
 #
 # Connections on clk-input-fmc
 #
-# FMCx_GBTCLK0 <- CLKout8 <- CLKin1 <- CLK1
-# FMCx_GBTCLK1 <- CLKout4 <- CLKin0 <- CLK2
+# FMCx_GBTCLK0 <- CLKout8 <- CLKin1 <- CLK2
+# FMCx_GBTCLK1 <- CLKout4 <- CLKin0 <- CLK1
 #
 # EVG-16-4 chassis.  rf-input-fmc1 in FMC1, LVTTL PMOD in PMOD1 (J12)
 #
@@ -78,9 +78,9 @@ record(mbbo, "$(P)MARBLE:MGTCLK0") {
     field(OUT,  "@name=$(NAME) reg=MARBLE:mgtRefClk0")
     field(ZRVL, "2") # FPGA_REFCLK0
     field(ZRST, "Int. 125MHz")
-    field(ONVL, "4") # FMC1_GBTCLK0
+    field(ONVL, "5") # FMC1_GBTCLK1
     field(ONST, "CLKIN1")
-    field(TWVL, "5") # FMC1_GBTCLK1
+    field(TWVL, "4") # FMC1_GBTCLK0
     field(TWST, "CLKIN2")
     field(RVAL, "2") # Int.
     info(autosaveFields_pass0, "RVAL")
