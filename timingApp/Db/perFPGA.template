@@ -106,12 +106,22 @@ record(longout, "$(P)MARBLE:VCXO:DAC_Y3") {
 
 # FPGA:IO:select
 # 0x00000001 - 0 = EVR, 1 = EVG
+# 0x00000002 - 0 = P1 Empty, 1 = P1 Populated
 record(bi, "$(P)FPGA:Mode") {
     field(DTYP, "FEED Register Read")
     field(INP,  "@name=$(NAME) reg=FPGA:IO:select")
     field(MASK, "0x1")
     field(ZNAM, "EVR Only")
     field(ONAM, "EVG/EVR")
+    field(FLNK, "$(P)FMC:1")
+}
+record(bi, "$(P)FMC:1") {
+    field(DESC, "FMC P1 conn.")
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=FPGA:IO:select wait=false")
+    field(MASK, "0x2")
+    field(ZNAM, "Empty")
+    field(ONAM, "Clk Inp")
 }
 
 # Marble:VCXO:PPS
