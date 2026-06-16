@@ -13,7 +13,11 @@ record(longin, "$(P)MARBLE:onConn_") {
     field(DTYP, "FEED On Connect")
     field(INP, "@name=$(NAME)")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)FPGA:Mode")
+    field(FLNK, "$(P)MARBLE:onC_")
+}
+record(fanout, "$(P)MARBLE:onC_") {
+    field(LNK0, "$(P)FPGA:Mode")
+    field(LNK1, "$(P)MARBLE:MGTCLK0")
 }
 
 # currently static
