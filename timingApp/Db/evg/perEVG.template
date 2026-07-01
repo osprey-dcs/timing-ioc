@@ -196,3 +196,18 @@ record(longin, "$(P)EVG:TMR:status") {
     field(INP, "@name=$(NAME) reg=EVG:TMR:status")
     field(SCAN, ".5 second")
 }
+
+# shift out next second value when in EVG mode
+record(longin, "$(P)Nxt:Sec_") {
+    field(SDIS, "$(P)FPGA:Mode NPP MSI")
+    field(DISV, "0") # disable in "EVR Only" mode
+    field(DTYP, "Next Second")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P)Nxt:Sec")
+}
+record(longout, "$(P)Nxt:Sec") {
+    field(DOL , "$(P)Nxt:Sec_")
+    field(OMSL, "closed_loop")
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=EVG:setSeconds")
+}
