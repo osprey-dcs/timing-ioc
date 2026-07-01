@@ -20,6 +20,7 @@ ospreyTiming_SRCS += copyTime.c
 ospreyTiming_SRCS += goldenBoot.c
 ospreyTiming_SRCS += bitTable.cpp
 ospreyTiming_SRCS += eventTable.cpp
+ospreyTiming_SRCS += secphase.cpp
 ospreyTiming_SRCS += seqMux.c
 ospreyTiming_SRCS += si570Calc.c
 

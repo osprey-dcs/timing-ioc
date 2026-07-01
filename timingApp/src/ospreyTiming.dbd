@@ -23,5 +23,8 @@ device(longin, INST_IO, devEventTableLast, "Event Table Last")
 # INP="@log=NAME queue=QNAME autoclear=true"
 device(aai, INST_IO, devEventTableBuf, "Event Table Buffer")
 
+device(longin, CONSTANT, devLISecPhaseNext, "Next Second")
+registrar(secondsPhaseRegistrar)
+
 function(timingSeqMux)
 function(si570Calc)
