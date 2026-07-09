@@ -58,6 +58,11 @@ record(longin, "$(P)EVG:config") {
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:config")
 }
+record(longout, "$(P)EVG:setSeconds") {
+    field(DESC, "Set EVG POSIX seconds")
+    field(DTYP, "FEED Register Write")
+    field(OUT, "@name=$(NAME) reg=EVG:setSeconds")
+}
 record(longout, "$(P)EVG:SEQ:disarm:I_") {
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:disarm")
