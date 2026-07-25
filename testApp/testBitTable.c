@@ -32,7 +32,7 @@ MAIN(testBitTable)
 
     // default to zero bits per word, so empty output
     {
-        epicsUInt32 unused;
+        epicsUInt32 unused = 42;
         testdbGetArrFieldEqual("TST:Tbl-I", DBF_ULONG, 2, 0, &unused);
     }
 
