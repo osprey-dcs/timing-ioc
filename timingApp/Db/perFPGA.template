@@ -149,32 +149,90 @@ record(mbbi, "$(P)PPS:Src") {
     field(ZRST, "NO PPS")
     field(ZRSV, "MAJOR")
     field(ONVL, "1")
-    field(ONST, "Rcv/Int")
+    field(ONST, "FMC1")
     field(TWVL, "2")
     field(TWST, "PMOD")
     field(THVL, "4")
-    field(THST, "FMC1")
+    field(THST, "Rcv/Int")
     field(UNSV, "MAJOR")
 }
 record(bi, "$(P)PPS:Tgl") {
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(P)MARBLE:VCXO:PPS CP")
     field(MASK, "0x08000000")
-    field(ZNAM, "*")
-    field(ONAM, ".")
+    field(ZNAM, "X")
+    field(ONAM, "+")
 }
-record(calc, "$(P)PPS:Err") {
+record(calc, "$(P)PPS:IErr") {
     field(DESC, "PPS period error")
     field(INPA, "$(P)MARBLE:VCXO:PPS CP")
     field(INPB, "0x07ffffff")
-    field(INPC, "8e-9") # tick period (s)
-    field(INPD, "1.0") # expected period
+    field(INPC, "8") # tick period (ns)
+    field(INPD, "1e9") # expected period (ns)
     field(CALC, "(A&B)*C-D")
-    field(EGU , "s")
-    field(PREC, "3")
-    field(HIGH, "20e-9")
-    field(LOW , "-20e-9")
+    field(EGU , "ns")
+    field(HIGH, "24")
+    field(LOW , "-24")
     field(HSV , "MAJOR")
     field(LSV , "MAJOR")
-    info(Q:form, "Engineering")
+}
+
+# MARBLE:VCXO:ASR
+record(calc, "$(P)PPS:Jtr") {
+    field(DESC, "PPS Jitter")
+    field(INPA, "$(P)MARBLE:VCXO:ASR CP")
+    field(INPB, "0xffff0000")
+    field(CALC, "(A&B)>>16")
+    field(EGU , "ns")
+}
+record(calc, "$(P)PPS:DAC") {
+    field(DESC, "PPS DAC RBV")
+    field(INPA, "$(P)MARBLE:VCXO:ASR CP")
+    field(INPB, "0xffff")
+    field(CALC, "A&B")
+    field(EGU , "arb")
+}
+
+# MARBLE:VCXO:SR
+record(bi, "$(P)PPS:Lck") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MARBLE:VCXO:SR CP")
+    field(MASK, "0x80000000")
+    field(ZNAM, "Open")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Lock")
+}
+record(bi, "$(P)PPS:Act") {
+    field(DESC, "PLL Activity")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MARBLE:VCXO:SR CP")
+    field(MASK, "0x40000000")
+    field(ZNAM, "X")
+    field(ONAM, "+")
+}
+record(bi, "$(P)PPS:Ena") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MARBLE:VCXO:SR CP")
+    field(MASK, "0x20000000")
+    field(ZNAM, "Opened")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Closed")
+}
+record(bi, "$(P)PPS:JtrH") {
+    field(DESC, "PLL Jitter Est")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MARBLE:VCXO:SR CP")
+    field(MASK, "0x10000000")
+    field(ZNAM, "Low")
+    field(ONAM, "High")
+    field(OSV , "MINOR")
+}
+record(calc, "$(P)PPS:Err") {
+    field(DESC, "PPS Jitter")
+    field(INPA, "$(P)MARBLE:VCXO:SR CP")
+    field(INPB, "0x00ffffff")
+    field(INPC, "0xff800000")
+    # D - before sign extend
+    field(CALC, "D:=A&B;D&C?D|C:D")
+    field(EGU , "ns")
 }
