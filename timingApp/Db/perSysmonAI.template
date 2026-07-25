@@ -2,7 +2,7 @@ record(ai, "$(P)$(REG)") {
     field(DESC, "$(DESC)")
     field(DTYP, "FEED Register Read")
     field(INP,  "@name=$(NAME) reg=$(REG)")
-    field(SCAN, "2 second")
+    field(SCAN, "1 second")
     field(PREC, "$(PREC)")
     field(LINR, "LINEAR")
     field(ESLO, "$(ESLO)")
