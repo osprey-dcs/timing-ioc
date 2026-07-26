@@ -18,6 +18,7 @@ record(longin, "$(P)MARBLE:onConn_") {
 record(fanout, "$(P)MARBLE:onC_") {
     field(LNK0, "$(P)FPGA:Mode")
     field(LNK1, "$(P)MARBLE:MGTCLK0")
+    field(LNK2, "$(P)MARBLE:570:REF")
 }
 
 # currently static
@@ -55,6 +56,51 @@ record(mbbo, "$(P)MARBLE:PPS:Local") {
     field(TWVL, "2")
     field(TWST, "VCXO20")
 }
+
+record(longin, "$(P)MARBLE:570:REF") {
+    field(DTYP, "FEED __metadata__")
+    field(INP , "@name=$(NAME) reg=si570Ref")
+    field(FLNK, "$(P)MARBLE:570:CAL")
+}
+record(aai, "$(P)MARBLE:570:CAL") {
+    field(FTVL, "ULONG")
+    field(NELM, "2")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=MARBLE:SI570:CAL")
+    field(FLNK, "$(P)MARBLE:SYNTH")
+}
+record(ao, "$(P)MARBLE:SYNTH") {
+    field(EGU , "MHz")
+    field(PREC, "3")
+    field(HIGH, "810")
+    field(DRVH, "810")
+    field(DRVL, "10")
+    field(LOW , "10")
+    field(VAL , "125")
+    field(FLNK, "$(P)MARBLE:570_")
+    info(autosaveFields_pass0, "VAL")
+}
+record(aSub, "$(P)MARBLE:570_") {
+    field(SNAM, "si570Calc")
+    field(FTA , "DOUBLE") # default/calibration output frequency
+    field(INPA, "$(P)MARBLE:570:REF NPP MSS")
+    field(FTB , "DOUBLE") # desired output frequency
+    field(INPB, "$(P)MARBLE:SYNTH NPP MSS")
+    field(FTC , "LONG") # default/calibration register values
+    field(NOC , "2")
+    field(INPC, "$(P)MARBLE:570:CAL NPP MSS")
+    field(FTVA, "LONG")
+    field(NOVA, "2")
+    field(OUTA, "$(P)MARBLE:570:SET PP MSS")
+}
+record(aao, "$(P)MARBLE:570:SET") {
+    field(FTVL, "ULONG")
+    field(NELM, "2")
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=MARBLE:SI570:SET")
+}
+
+
 # All connections to clock crosspoint switch on Marble (U2)
 #
 # 0 - Marble Ext 0
@@ -86,6 +132,8 @@ record(mbbo, "$(P)MARBLE:MGTCLK0") {
     field(ONST, "CLKIN1")
     field(TWVL, "4") # FMC1_GBTCLK0
     field(TWST, "CLKIN2")
+    field(THVL, "3") # Si570
+    field(THST, "Int. Synth.")
     field(RVAL, "2") # Int.
     info(autosaveFields_pass0, "RVAL")
 }
