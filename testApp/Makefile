@@ -18,6 +18,11 @@ testBitTable_SRCS += testBitTable.c
 testBitTable_SRCS += testBitTable_registerRecordDeviceDriver.cpp
 TESTS += testBitTable
 
+TESTPROD_IOC += testsi570Calc
+testsi570Calc_SRCS += testsi570Calc.c
+testsi570Calc_SRCS += testBitTable_registerRecordDeviceDriver.cpp
+TESTS += testsi570Calc
+
 TESTPROD_IOC += testEventTable
 testEventTable_SRCS += testEventTable.c
 testEventTable_SRCS += testBitTable_registerRecordDeviceDriver.cpp

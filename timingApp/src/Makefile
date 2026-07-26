@@ -21,6 +21,7 @@ ospreyTiming_SRCS += goldenBoot.c
 ospreyTiming_SRCS += bitTable.cpp
 ospreyTiming_SRCS += eventTable.cpp
 ospreyTiming_SRCS += seqMux.c
+ospreyTiming_SRCS += si570Calc.c
 
 # Finally link to the EPICS Base libraries
 ospreyTiming_LIBS += $(EPICS_BASE_IOC_LIBS)

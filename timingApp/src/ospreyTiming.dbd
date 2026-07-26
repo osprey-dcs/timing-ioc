@@ -24,3 +24,4 @@ device(longin, INST_IO, devEventTableLast, "Event Table Last")
 device(aai, INST_IO, devEventTableBuf, "Event Table Buffer")
 
 function(timingSeqMux)
+function(si570Calc)
