@@ -4,83 +4,86 @@
 # NAME - Device instance name
 # IPADDR - Device hostname / IP address, and optional port (default 50006)
 
+global {
+P="\$(P)",NAME="\$(NAME)"
+}
+
 file "feed_base.template" {
 {NAME="\$(NAME)", PREF="\$(P)APP:", ADDR="\$(IPADDR)"    , DEBUG="\$(DEBUG=0)"}
 {NAME="\$(P)GLD", PREF="\$(P)GLD:", ADDR="\$(IPADDR):803", DEBUG="\$(DEBUG=0)"}
 }
 
 file "goldenCtrl.template" {
-{P="\$(P)"}
+{}
 }
 
 file "perFPGA.template" {
-{ NAME="\$(NAME)", P="\$(P)"}
+{}
 }
 
 file "perBuildDate.template" {
-{NAME="\$(NAME)", P="\$(P)Date:FW-I", REG="firmwareBuildDate"}
-{NAME="\$(NAME)", P="\$(P)Date:SW-I", REG="softwareBuildDate"}
+{P="\$(P)Date:FW-I", REG="firmwareBuildDate"}
+{P="\$(P)Date:SW-I", REG="softwareBuildDate"}
 }
 
 file "perMPSnode.template" {
-  pattern { P,NAME }
-  { \$(P),\$(NAME) }
+  {}
 }
 file "perMPSoutput.template" {
-  pattern { P,NAME, N }
-  { \$(P),\$(NAME), 1 }
-  { \$(P),\$(NAME), 2 }
-  { \$(P),\$(NAME), 3 }
-  { \$(P),\$(NAME), 4 }
-  { \$(P),\$(NAME), 5 }
-  { \$(P),\$(NAME), 6 }
-  { \$(P),\$(NAME), 7 }
-  { \$(P),\$(NAME), 8 }
+  pattern { N }
+  { 1 }
+  { 2 }
+  { 3 }
+  { 4 }
+  { 5 }
+  { 6 }
+  { 7 }
+  { 8 }
 }
 
 file "perSysmonAI.template" {
-  pattern { P,NAME,                 REG,     EGU,           ESLO,    EOFF, PREC,  ADEL,  LOLO,   LOW,  HIGH,  HIHI, DESC }
-  { \$(P),\$(NAME),  "FPGA:Temperature", "deg C",   0.0076885223, -273.15,    1,     0,     0,     0,    70,    75, "FPGA temperature" }
-  { \$(P),\$(NAME),       "FPGA:VccINT",     "V",   4.577637e-05,       0,    3,  0.05,  0.95,  0.98,  1.02   1.05, "FPGA VccINT" }
-  { \$(P),\$(NAME),       "FPGA:VccAUX",     "V",   4.577637e-05,       0,    3,  0.05, 1.710, 1.746, 1.854, 1.890, "FPGA VccAUX" }
-  { \$(P),\$(NAME),        "FPGA:VBRAM",     "V",   4.577637e-05,       0,    3,  0.05,  0.95,  0.98,  1.02,  1.05, "FPGA VBRAM" }
-  { \$(P),\$(NAME),  "MARBLE:FMC1:P12I",     "A",     121.951e-6,       0,    2,  0.05,  -1.0,  -1.0,   0.9,   1.0, "INA219 U17 current" }
-  { \$(P),\$(NAME),  "MARBLE:FMC1:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U17 voltage" }
-  { \$(P),\$(NAME),  "MARBLE:FMC2:P12I",     "A",     121.951e-6,       0,    2,  0.05,  -1.0,  -1.0,   1.9,   2.0, "INA219 U32 current" }
-  { \$(P),\$(NAME),  "MARBLE:FMC2:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U32 voltage" }
-  { \$(P),\$(NAME),       "MARBLE:P12I",     "A",    -365.854e-6,       0,    2,  0.05,  0.45,   0.5,   2.8,   3.0, "INA219 U57 current" }
-  { \$(P),\$(NAME),       "MARBLE:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U57 voltage" }
-  { \$(P),\$(NAME), "QSFP1:Temperature", "deg C",     0.00390625,       0,    1,     1,     0,     0,    70,    75, "QSFP 1 temperature" }
-  { \$(P),\$(NAME),         "QSFP1:Vcc",     "V",         1.0e-4,       0,    2,  0.05, 3.145, 3.201, 3.399, 3.465, "QSFP 1 Vcc" }
-  { \$(P),\$(NAME),    "QSFP1:RxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 1 receiver power" }
-  { \$(P),\$(NAME),    "QSFP1:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 2 receiver power" }
-  { \$(P),\$(NAME),    "QSFP1:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 3 receiver power" }
-  { \$(P),\$(NAME),    "QSFP1:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 4 receiver power" }
-  { \$(P),\$(NAME), "QSFP2:Temperature", "deg C",     0.00390625,       0,    1,     1,     0,     0,    70,    75, "QSFP 2 temperature" }
-  { \$(P),\$(NAME),         "QSFP2:Vcc",     "V",         1.0e-4,       0,    2,  0.05, 3.145, 3.201, 3.399, 3.465, "QSFP 2 Vcc" }
-  { \$(P),\$(NAME),    "QSFP2:RxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 1 receiver power" }
-  { \$(P),\$(NAME),    "QSFP2:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 2 receiver power" }
-  { \$(P),\$(NAME),    "QSFP2:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 3 receiver power" }
-  { \$(P),\$(NAME),    "QSFP2:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 4 receiver power" }
-  { \$(P),\$(NAME),   "MARBLE:U29:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U29 temperature" }
-  { \$(P),\$(NAME),   "MARBLE:U28:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U28 temperature" }
-  { \$(P),\$(NAME),  "MARBLE:U27:Temp1", "deg C",            1.0,       0,    0,     2,     0,     0,    70,    75, "Marble U27 external temp 1" }
-  { \$(P),\$(NAME),  "MARBLE:U27:Tach1",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
-  { \$(P),\$(NAME),  "MARBLE:U27:Tach2",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
-  { \$(P),\$(NAME),   "MARBLE:U27:Fan1",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
-  { \$(P),\$(NAME),   "MARBLE:U27:Fan2",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
-  { \$(P),\$(NAME),"MARBLE:RFIN:level1",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.4,    4.0   5.0, "RFIN FMC input 1 level" }
-  { \$(P),\$(NAME),"MARBLE:RFIN:level2",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.3,    4.0   5.0, "RFIN FMC input 2 level" }
+  pattern {          REG,     EGU,           ESLO,    EOFF, PREC,  ADEL,  LOLO,   LOW,  HIGH,  HIHI, DESC }
+  {   "FPGA:Temperature", "deg C",   0.0076885223, -273.15,    1,     0,     0,     0,    70,    75, "FPGA temperature" }
+  {        "FPGA:VccINT",     "V",   4.577637e-05,       0,    3,  0.05,  0.95,  0.98,  1.02   1.05, "FPGA VccINT" }
+  {        "FPGA:VccAUX",     "V",   4.577637e-05,       0,    3,  0.05, 1.710, 1.746, 1.854, 1.890, "FPGA VccAUX" }
+  {         "FPGA:VBRAM",     "V",   4.577637e-05,       0,    3,  0.05,  0.95,  0.98,  1.02,  1.05, "FPGA VBRAM" }
+  {   "MARBLE:FMC1:P12I",     "A",     121.951e-6,       0,    2,  0.05,  -1.0,  -1.0,   0.9,   1.0, "INA219 U17 current" }
+  {   "MARBLE:FMC1:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U17 voltage" }
+  {   "MARBLE:FMC2:P12I",     "A",     121.951e-6,       0,    2,  0.05,  -1.0,  -1.0,   1.9,   2.0, "INA219 U32 current" }
+  {   "MARBLE:FMC2:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U32 voltage" }
+  {        "MARBLE:P12I",     "A",    -365.854e-6,       0,    2,  0.05,  0.45,   0.5,   2.8,   3.0, "INA219 U57 current" }
+  {        "MARBLE:P12V",     "V",         4.0e-3,       0,    2,  0.05,  11.0,  11.2,  12.8,  13.0, "INA219 U57 voltage" }
+  {  "QSFP1:Temperature", "deg C",     0.00390625,       0,    1,     1,     0,     0,    70,    75, "QSFP 1 temperature" }
+  {          "QSFP1:Vcc",     "V",         1.0e-4,       0,    2,  0.05, 3.145, 3.201, 3.399, 3.465, "QSFP 1 Vcc" }
+  {     "QSFP1:RxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 1 receiver power" }
+  {     "QSFP1:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 2 receiver power" }
+  {     "QSFP1:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 3 receiver power" }
+  {     "QSFP1:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 4 receiver power" }
+  {  "QSFP2:Temperature", "deg C",     0.00390625,       0,    1,     1,     0,     0,    70,    75, "QSFP 2 temperature" }
+  {          "QSFP2:Vcc",     "V",         1.0e-4,       0,    2,  0.05, 3.145, 3.201, 3.399, 3.465, "QSFP 2 Vcc" }
+  {     "QSFP2:RxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 1 receiver power" }
+  {     "QSFP2:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 2 receiver power" }
+  {     "QSFP2:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 3 receiver power" }
+  {     "QSFP2:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 4 receiver power" }
+  {    "MARBLE:U29:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U29 temperature" }
+  {    "MARBLE:U28:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U28 temperature" }
+  {   "MARBLE:U27:Temp1", "deg C",            1.0,       0,    0,     2,     0,     0,    70,    75, "Marble U27 external temp 1" }
+  {   "MARBLE:U27:Tach1",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
+  {   "MARBLE:U27:Tach2",     "%", -0.39215686274,     100,    0,     2,     0,     0,    255   255, "Marble MAX6639 Tach 1 reg" }
+  {    "MARBLE:U27:Fan1",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
+  {    "MARBLE:U27:Fan2",     "%", 0.833333333333,       0,    0,     2,     0,     0,    100   100, "Marble MAX6639 Fan 1 duty cycle" }
+  { "MARBLE:RFIN:level1",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.4,    4.0   5.0, "RFIN FMC input 1 level" }
+  { "MARBLE:RFIN:level2",  "Vrms",          24e-6,       0,    2,     2,   0.2,   0.3,    4.0   5.0, "RFIN FMC input 2 level" }
 }
 
 file "perSysmonLI.template" {
-  pattern { P,NAME,                 REG,    EGU,  LOLO,  LOW, HIGH, HIHI,     LLSV,      LSV,      HSV,     HHSV,  DESC }
-  { \$(P),\$(NAME),     "FPGA:powerUp_",     "",     0,   0,    2,    2, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "FPGA has powered up" }
-  { \$(P),\$(NAME),       "FPGA:uptime",    "s",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "FPGA uptime" }
-  { \$(P),\$(NAME),        "MGT:status",     "",     1,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Bitmap of good MGT Rx" }
-  { \$(P),\$(NAME),    "MARBLE:VCXO:SR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust status register" }
-  { \$(P),\$(NAME),   "MARBLE:VCXO:ASR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust auxiliary status register" }
-  { \$(P),\$(NAME),   "MARBLE:VCXO:PPS",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust PPS status register" }
-  { \$(P),\$(NAME),"MARBLE:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
-  { \$(P),\$(NAME),"MARBLE:RFIN:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of RFIN FMC input lines" }
+  pattern {          REG,    EGU,  LOLO,  LOW, HIGH, HIHI,     LLSV,      LSV,      HSV,     HHSV,  DESC }
+  {      "FPGA:powerUp_",     "",     0,   0,    2,    2, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "FPGA has powered up" }
+  {        "FPGA:uptime",    "s",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "FPGA uptime" }
+  {         "MGT:status",     "",     1,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Bitmap of good MGT Rx" }
+  {     "MARBLE:VCXO:SR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust status register" }
+  {    "MARBLE:VCXO:ASR",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust auxiliary status register" }
+  {    "MARBLE:VCXO:PPS",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "Clock adjust PPS status register" }
+  { "MARBLE:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
+  { "MARBLE:RFIN:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of RFIN FMC input lines" }
 }
