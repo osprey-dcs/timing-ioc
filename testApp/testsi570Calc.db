@@ -1,0 +1,9 @@
+record(aSub, "$(P)si570") {
+    field(SNAM, "si570Calc")
+    field(FTA , "DOUBLE") # default/calibration output frequency
+    field(FTB , "DOUBLE") # desired output frequency
+    field(FTC , "LONG") # default/calibration register values
+    field(NOC , "2")
+    field(FTVA, "LONG")
+    field(NOVA, "2")
+}
