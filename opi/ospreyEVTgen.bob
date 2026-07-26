@@ -78,7 +78,7 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group</name>
-    <y>210</y>
+    <y>235</y>
     <width>100</width>
     <height>40</height>
     <style>3</style>
@@ -341,13 +341,25 @@ Event#</text>
   <widget type="label" version="2.0.0">
     <name>Label_32</name>
     <text>FMC P1 Option</text>
-    <y>180</y>
+    <y>205</y>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_10</name>
     <pv_name>$(P)FMC:1</pv_name>
     <x>110</x>
-    <y>180</y>
+    <y>205</y>
+    <width>90</width>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_33</name>
+    <text>Synth. Freq.</text>
+    <y>175</y>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_6</name>
+    <pv_name>$(P)MARBLE:SYNTH</pv_name>
+    <x>110</x>
+    <y>175</y>
     <width>90</width>
   </widget>
 </display>
