@@ -236,3 +236,37 @@ record(calc, "$(P)PPS:Err") {
     field(CALC, "D:=A&B;D&C?D|C:D")
     field(EGU , "ns")
 }
+
+# MGT:clkStatus
+record(bi, "$(P)MGT:Q1:LCK") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MGT:clkStatus CP")
+    field(MASK, "0x08000000")
+    field(ZNAM, "Err")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Lck")
+}
+record(bi, "$(P)MGT:Q1:LST") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MGT:clkStatus CP")
+    field(MASK, "0x04000000")
+    field(ZNAM, "Pres")
+    field(ONAM, "Lost")
+    field(OSV , "MAJOR")
+}
+record(bi, "$(P)MGT:Q2:LCK") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MGT:clkStatus CP")
+    field(MASK, "0x02000000")
+    field(ZNAM, "Err")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Lck")
+}
+record(bi, "$(P)MGT:Q2:LST") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)MGT:clkStatus CP")
+    field(MASK, "0x01000000")
+    field(ZNAM, "Pres")
+    field(ONAM, "Lost")
+    field(OSV , "MAJOR")
+}
