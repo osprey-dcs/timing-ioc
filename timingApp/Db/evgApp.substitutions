@@ -88,3 +88,10 @@ file "perSysmonLI.template" {
   { "MARBLE:PMOD:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of PMOD input lines" }
   { "MARBLE:RFIN:inputs",     "",     0,   0,    0,    0, NO_ALARM, NO_ALARM, NO_ALARM, NO_ALARM, "State of RFIN FMC input lines" }
 }
+
+file "perSysmonLI.template" {
+ { R="FMC:1:SN", REG="FMC:1:serialNumber", DESC="FMC 1 serial number"}
+ { R="FMC:1:PN", REG="FMC:1:partNumber", DESC="FMC 1 part number"}
+ { R="FMC:2:SN", REG="FMC:2:serialNumber", DESC="FMC 2 serial number"}
+ { R="FMC:2:PN", REG="FMC:2:partNumber", DESC="FMC 2 part number"}
+}
