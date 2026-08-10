@@ -7,6 +7,7 @@
 #include <stdexcept>
 
 #include <time.h>
+#include <pthread.h>
 
 #define USE_TYPED_DRVET
 #define USE_TYPED_RSET
@@ -35,22 +36,29 @@ typedef epicsGuard<epicsMutex> Guard;
 
 struct secondsGbl final : private epicsThreadRunable {
     IOSCANPVT onSec;
-    std::atomic<bool> running{true};
+    bool running{true};
     std::atomic<uint32_t> nextSec{0};
+    pthread_mutex_t ll;
+    pthread_cond_t cc;
     epicsThread worker;
 
     secondsGbl()
-        :worker(*this, "secondsTick", 0)
+        :ll(PTHREAD_MUTEX_INITIALIZER)
+        ,cc(PTHREAD_COND_INITIALIZER)
+        ,worker(*this, "secondsTick", 0)
     {
         scanIoInit(&onSec);
     }
 
     ~secondsGbl() {
-        running = false;
-        worker.exitWait();
+        (void)pthread_cond_destroy(&cc);
+        (void)pthread_mutex_destroy(&ll);
     }
 
     virtual void run() override final {
+        if(pthread_mutex_lock(&ll))
+            throw std::runtime_error("pthread_mutex_lock");
+
         while(running) {
             struct timespec until{};
 
@@ -61,11 +69,16 @@ struct secondsGbl final : private epicsThreadRunable {
             until.tv_nsec = 0;
             until.tv_sec++;
 
-            if(clock_nanosleep(CLOCK_REALTIME,
-                                TIMER_ABSTIME,
-                                &until,
-                                NULL))
-                throw std::runtime_error("secondsGbl clock_nanosleep errors");
+            auto ret(pthread_cond_timedwait(&cc, &ll, &until));
+            if(ret==ETIMEDOUT) {
+                // expected
+            } else if(!ret || ret==EINTR) {
+                // interrupted, or shutdown
+                continue;
+            } else {
+                errlogPrintf("%s pthread_cond_timedwait error %d\n", __FILE__, ret);
+                continue; // try again
+            }
 
             nextSec = until.tv_sec+1; // send next next second
 
@@ -73,6 +86,9 @@ struct secondsGbl final : private epicsThreadRunable {
             scanIoImmediate(onSec, priorityMedium);
             scanIoImmediate(onSec, priorityLow);
         }
+
+        if(pthread_mutex_unlock(&ll))
+            throw std::runtime_error("pthread_mutex_lock");
     }
 } *secGbl = nullptr;
 
@@ -93,7 +109,7 @@ long secondsGetNextNext(longinRecord *prec)
     }
     prec->val = secGbl->nextSec;
     if(prec->tse == epicsTimeEventDeviceTime) {
-        prec->time.secPastEpoch = secGbl->nextSec - POSIX_TIME_AT_EPICS_EPOCH;
+        prec->time.secPastEpoch = prec->val - POSIX_TIME_AT_EPICS_EPOCH;
         prec->time.nsec = 0;
     }
     return 0;
@@ -110,13 +126,26 @@ longindset devLISecPhaseNext = {
     secondsGetNextNext,
 };
 
+void secondsFree(void*) noexcept
+{
+    try {
+        delete secGbl;
+        secGbl = nullptr;
+
+    } catch(std::exception& e) {
+        fprintf(stderr, ERL_ERROR ": %s : %s\n", __func__, e.what());
+        return;
+    }
+}
+
 void secondsShutdown(void*) noexcept
 {
     try {
+        (void)pthread_mutex_lock(&secGbl->ll);
         secGbl->running = false;
+        (void)pthread_cond_signal(&secGbl->cc);
+        (void)pthread_mutex_unlock(&secGbl->ll);
         secGbl->worker.exitWait();
-        delete secGbl;
-        secGbl = nullptr;
 
     } catch(std::exception& e) {
         fprintf(stderr, ERL_ERROR ": %s : %s\n", __func__, e.what());
@@ -130,19 +159,26 @@ void secondsInit(initHookState state) noexcept
         return;
 
     try {
-        secGbl = new secondsGbl();
         secGbl->worker.start();
 
     } catch(std::exception& e) {
         fprintf(stderr, ERL_ERROR ": %s : %s\n", __func__, e.what());
         return;
     }
-
     epicsAtExit(secondsShutdown, NULL);
+
 }
 
 void secondsPhaseRegistrar() noexcept
 {
+    try {
+        secGbl = new secondsGbl();
+
+    } catch(std::exception& e) {
+        fprintf(stderr, ERL_ERROR ": %s : %s\n", __func__, e.what());
+        return;
+    }
+    epicsAtExit(secondsFree, NULL);
     (void)initHookRegister(secondsInit);
 }
 
