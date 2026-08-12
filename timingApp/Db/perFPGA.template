@@ -176,6 +176,18 @@ record(bi, "$(P)FMC:1") {
     field(ONAM, "Clk Inp")
 }
 
+record(bi, "$(P)MGT:RST") {
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+    field(UDF , "0")
+    field(FLNK, "$(P)MGT:RST_")
+}
+record(longout, "$(P)MGT:RST_") {
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=MGT:reset")
+    field(VAL , "1")
+}
+
 # Marble:VCXO:PPS
 record(bi, "$(P)PPS:Ok") {
     field(DTYP, "Raw Soft Channel")

@@ -59,12 +59,20 @@ file "perSysmonAI.template" {
   {     "QSFP1:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 2 receiver power" }
   {     "QSFP1:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 3 receiver power" }
   {     "QSFP1:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 4 receiver power" }
+  {     "QSFP1:TxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 1 tx power" }
+  {     "QSFP1:TxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 2 tx power" }
+  {     "QSFP1:TxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 3 tx power" }
+  {     "QSFP1:TxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 1 channel 4 tx power" }
   {  "QSFP2:Temperature", "deg C",     0.00390625,       0,    1,     1,     0,     0,    70,    75, "QSFP 2 temperature" }
   {          "QSFP2:Vcc",     "V",         1.0e-4,       0,    2,  0.05, 3.145, 3.201, 3.399, 3.465, "QSFP 2 Vcc" }
   {     "QSFP2:RxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 1 receiver power" }
   {     "QSFP2:RxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 2 receiver power" }
   {     "QSFP2:RxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 3 receiver power" }
   {     "QSFP2:RxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 4 receiver power" }
+  {     "QSFP2:TxPower1",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 1 tx power" }
+  {     "QSFP2:TxPower2",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 2 tx power" }
+  {     "QSFP2:TxPower3",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 3 tx power" }
+  {     "QSFP2:TxPower4",    "uW",            0.1,       0,    1,    30,    30,    40, 10000, 10000, "QSFP 2 channel 4 tx power" }
   {    "MARBLE:U29:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U29 temperature" }
   {    "MARBLE:U28:Temp", "deg C",            0.5,       0,    1,     1,     0,     0,    70,    75, "Marble U28 temperature" }
   {   "MARBLE:U27:Temp1", "deg C",            1.0,       0,    0,     2,     0,     0,    70,    75, "Marble U27 external temp 1" }
