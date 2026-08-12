@@ -112,7 +112,7 @@
     <name>Optics</name>
     <x>280</x>
     <y>108</y>
-    <width>180</width>
+    <width>244</width>
     <height>310</height>
     <style>1</style>
     <foreground_color>
@@ -143,490 +143,11 @@ Link</text>
       <name>Label_41</name>
       <text>Latency
 (ns)</text>
-      <x>112</x>
+      <x>177</x>
       <width>60</width>
       <height>35</height>
       <horizontal_alignment>1</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group</name>
-      <x>7</x>
-      <y>38</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_20</name>
-        <text>1</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_17</name>
-        <pv_name>$(P)QSFP1:RxPower1</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_19</name>
-        <pv_name>$(P)EVG:LINK:1:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_8</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_4</name>
-      <x>7</x>
-      <y>63</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_42</name>
-        <text>2</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_20</name>
-        <pv_name>$(P)QSFP1:RxPower2</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_21</name>
-        <pv_name>$(P)EVG:LINK:2:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_9</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>1</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_5</name>
-      <x>7</x>
-      <y>88</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_43</name>
-        <text>3</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_22</name>
-        <pv_name>$(P)QSFP1:RxPower3</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_23</name>
-        <pv_name>$(P)EVG:LINK:3:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_10</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>2</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_6</name>
-      <x>7</x>
-      <y>113</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_44</name>
-        <text>4</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_24</name>
-        <pv_name>$(P)QSFP1:RxPower4</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_25</name>
-        <pv_name>$(P)EVG:LINK:4:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_11</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>3</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_8</name>
-      <x>7</x>
-      <y>138</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_45</name>
-        <text>5</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_26</name>
-        <pv_name>$(P)QSFP2:RxPower1</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_27</name>
-        <pv_name>$(P)EVG:LINK:5:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_12</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>4</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_9</name>
-      <x>7</x>
-      <y>163</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_46</name>
-        <text>6</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_28</name>
-        <pv_name>$(P)QSFP2:RxPower2</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_29</name>
-        <pv_name>$(P)EVG:LINK:6:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_13</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>5</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_10</name>
-      <x>7</x>
-      <y>188</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_47</name>
-        <text>7</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_32</name>
-        <pv_name>$(P)QSFP2:RxPower3</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_37</name>
-        <pv_name>$(P)EVG:LINK:7:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_14</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>6</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>Group_11</name>
-      <x>7</x>
-      <y>213</y>
-      <width>165</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_48</name>
-        <text>8</text>
-        <y>1</y>
-        <width>8</width>
-        <height>16</height>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <auto_size>true</auto_size>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_38</name>
-        <pv_name>$(P)QSFP2:RxPower4</pv_name>
-        <x>40</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_39</name>
-        <pv_name>$(P)EVG:LINK:8:latency</pv_name>
-        <x>105</x>
-        <width>60</width>
-        <format>1</format>
-        <precision>1</precision>
-        <show_units>false</show_units>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-      <widget type="byte_monitor" version="2.0.0">
-        <name>Byte Monitor_15</name>
-        <pv_name>$(P)MGT:status</pv_name>
-        <x>15</x>
-        <width>20</width>
-        <startBit>7</startBit>
-        <numBits>1</numBits>
-        <square>true</square>
-        <off_color>
-          <color name="Button_Background" red="210" green="210" blue="210">
-          </color>
-        </off_color>
-        <on_color>
-          <color name="OK" red="0" green="255" blue="0">
-          </color>
-        </on_color>
-      </widget>
     </widget>
     <widget type="led" version="2.0.0">
       <name>LED_13</name>
@@ -696,10 +217,579 @@ Link</text>
       <square>true</square>
       <labels_from_pv>true</labels_from_pv>
     </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_19</name>
+      <pv_name>$(P)EVG:LINK:1:latency</pv_name>
+      <x>177</x>
+      <y>38</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_21</name>
+      <pv_name>$(P)EVG:LINK:2:latency</pv_name>
+      <x>177</x>
+      <y>63</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_23</name>
+      <pv_name>$(P)EVG:LINK:3:latency</pv_name>
+      <x>177</x>
+      <y>88</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_25</name>
+      <pv_name>$(P)EVG:LINK:4:latency</pv_name>
+      <x>177</x>
+      <y>113</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_27</name>
+      <pv_name>$(P)EVG:LINK:5:latency</pv_name>
+      <x>177</x>
+      <y>138</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_29</name>
+      <pv_name>$(P)EVG:LINK:6:latency</pv_name>
+      <x>177</x>
+      <y>163</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_37</name>
+      <pv_name>$(P)EVG:LINK:7:latency</pv_name>
+      <x>177</x>
+      <y>188</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_39</name>
+      <pv_name>$(P)EVG:LINK:8:latency</pv_name>
+      <x>177</x>
+      <y>213</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_20</name>
+      <text>1</text>
+      <x>7</x>
+      <y>39</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_17</name>
+      <pv_name>$(P)QSFP1:RxPower1</pv_name>
+      <x>47</x>
+      <y>38</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_8</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>38</y>
+      <width>20</width>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_42</name>
+      <text>2</text>
+      <x>7</x>
+      <y>64</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_20</name>
+      <pv_name>$(P)QSFP1:RxPower2</pv_name>
+      <x>47</x>
+      <y>63</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_9</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>63</y>
+      <width>20</width>
+      <startBit>1</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_43</name>
+      <text>3</text>
+      <x>7</x>
+      <y>89</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_22</name>
+      <pv_name>$(P)QSFP1:RxPower3</pv_name>
+      <x>47</x>
+      <y>88</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_10</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>88</y>
+      <width>20</width>
+      <startBit>2</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_44</name>
+      <text>4</text>
+      <x>7</x>
+      <y>114</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_24</name>
+      <pv_name>$(P)QSFP1:RxPower4</pv_name>
+      <x>47</x>
+      <y>113</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_11</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>113</y>
+      <width>20</width>
+      <startBit>3</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_45</name>
+      <text>5</text>
+      <x>7</x>
+      <y>139</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_26</name>
+      <pv_name>$(P)QSFP2:RxPower1</pv_name>
+      <x>47</x>
+      <y>138</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_12</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>138</y>
+      <width>20</width>
+      <startBit>4</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_46</name>
+      <text>6</text>
+      <x>7</x>
+      <y>164</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_28</name>
+      <pv_name>$(P)QSFP2:RxPower2</pv_name>
+      <x>47</x>
+      <y>163</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_13</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>163</y>
+      <width>20</width>
+      <startBit>5</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_47</name>
+      <text>7</text>
+      <x>7</x>
+      <y>189</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_32</name>
+      <pv_name>$(P)QSFP2:RxPower3</pv_name>
+      <x>47</x>
+      <y>188</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_14</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>188</y>
+      <width>20</width>
+      <startBit>6</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_48</name>
+      <text>8</text>
+      <x>7</x>
+      <y>214</y>
+      <width>8</width>
+      <height>16</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <auto_size>true</auto_size>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_38</name>
+      <pv_name>$(P)QSFP2:RxPower4</pv_name>
+      <x>47</x>
+      <y>213</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="byte_monitor" version="2.0.0">
+      <name>Byte Monitor_15</name>
+      <pv_name>$(P)MGT:status</pv_name>
+      <x>22</x>
+      <y>213</y>
+      <width>20</width>
+      <startBit>7</startBit>
+      <numBits>1</numBits>
+      <square>true</square>
+      <off_color>
+        <color name="Button_Background" red="210" green="210" blue="210">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </on_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_52</name>
+      <text>Tx Pwr
+(µW)</text>
+      <x>117</x>
+      <width>60</width>
+      <height>35</height>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_42</name>
+      <pv_name>$(P)QSFP1:TxPower1</pv_name>
+      <x>112</x>
+      <y>38</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_43</name>
+      <pv_name>$(P)QSFP1:TxPower2</pv_name>
+      <x>112</x>
+      <y>63</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_56</name>
+      <pv_name>$(P)QSFP1:TxPower3</pv_name>
+      <x>112</x>
+      <y>88</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_57</name>
+      <pv_name>$(P)QSFP1:TxPower4</pv_name>
+      <x>112</x>
+      <y>113</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_58</name>
+      <pv_name>$(P)QSFP2:TxPower1</pv_name>
+      <x>112</x>
+      <y>138</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_59</name>
+      <pv_name>$(P)QSFP2:TxPower2</pv_name>
+      <x>112</x>
+      <y>163</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_60</name>
+      <pv_name>$(P)QSFP2:TxPower3</pv_name>
+      <x>112</x>
+      <y>188</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_61</name>
+      <pv_name>$(P)QSFP2:TxPower4</pv_name>
+      <x>112</x>
+      <y>213</y>
+      <width>60</width>
+      <format>1</format>
+      <precision>1</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_1</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(pv_name)</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P)MGT:RST</pv_name>
+      <text>MGT Rst</text>
+      <x>155</x>
+      <y>241</y>
+      <width>66</width>
+      <height>20</height>
+    </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>EVR</name>
-    <x>466</x>
+    <x>530</x>
     <y>266</y>
     <width>202</width>
     <height>123</height>
@@ -1255,7 +1345,7 @@ Link</text>
   </widget>
   <widget type="group" version="3.0.0">
     <name>EVG</name>
-    <x>466</x>
+    <x>530</x>
     <y>108</y>
     <width>202</width>
     <height>151</height>
