@@ -4,6 +4,7 @@ record(fanout, "$(P)EVG:SEQ:$(I):I_") {
     field(LNK1, "$(P)EVG:SEQ:$(I):store")
     field(LNK2, "$(P)EVG:SEQ:$(I):HWrise")
     field(LNK3, "$(P)EVG:SEQ:$(I):HWfall")
+    field(LNK4, "$(P)EVG:SEQ:$(I):Tmr")
 }
 
 record(longout, "$(P)EVG:SEQ:$(I):HWrise") {
@@ -20,6 +21,16 @@ record(longout, "$(P)EVG:SEQ:$(I):HWfall") {
     field(DESC, "Bank $(I) falling edge hw trigger bitmap")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:$(I):hw:f")
+    field(LOPR, "0")
+    field(HOPR, "255")
+    field(DRVL, "0")
+    field(DRVH, "255")
+    info(autosaveFields_pass0, "VAL")
+}
+record(longout, "$(P)EVG:SEQ:$(I):Tmr") {
+    field(DESC, "Bank $(I) Timer trigger bitmap")
+    field(DTYP, "FEED Register Write")
+    field(OUT,  "@name=$(NAME) reg=EVG:SEQ:$(I):tmr")
     field(LOPR, "0")
     field(HOPR, "255")
     field(DRVL, "0")
