@@ -46,17 +46,29 @@ record(longin, "$(P)EVG:onConnect_") {
 # phase 3: (re)start
 record(fanout, "$(P)EVG:init:1_") {
     # probe static configuration
-    field(LNK1, "$(P)EVG:config")
+    field(LNK1, "$(P)EVG:nIn")
     # interrupt/shutdown
     field(LNK2, "$(P)EVG:SEQ:disarm:I_")
     field(LNK3, "$(P)EVG:SEQ:cancel:I_")
     field(LNK4, "$(P)EVG:TMR:stop_")
     field(FLNK, "$(P)EVG:sync:12_")
 }
-record(longin, "$(P)EVG:config") {
-    field(DESC, "EVG sequencer configuration")
+record(longin, "$(P)EVG:nIn") {
+    field(DESC, "EVG # of trig. inputs")
     field(DTYP, "FEED Register Read")
-    field(INP, "@name=$(NAME) reg=EVG:config")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nIn")
+    field(FLNK, "$(P)EVG:nTmr")
+}
+record(longin, "$(P)EVG:nTmr") {
+    field(DESC, "EVG # of event timers")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nTmr")
+    field(FLNK, "$(P)EVG:nBank")
+}
+record(longin, "$(P)EVG:nBank") {
+    field(DESC, "EVG # of seq. banks")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nBank")
 }
 record(longout, "$(P)EVG:SEQ:disarm:I_") {
     field(DTYP, "FEED Register Write")
@@ -77,8 +89,8 @@ record(longin, "$(P)EVG:sync:12_") {
 # (re)initialize sub-units
 record(fanout, "$(P)EVG:init:2_") {
     field(LNK1, "$(P)EVG:hbDivisor")
-    field(LNK2, "$(P)EVG:MAP:hwTrigger")
-    field(LNK3, "$(P)EVG:MAP:dbus")
+    field(LNK2, "")
+    field(LNK3, "")
     field(FLNK, "$(P)EVG:rdy2_")
 }
 record(longout, "$(P)EVG:rdy2_") {
@@ -156,19 +168,7 @@ record(longout, "$(P)EVG:SEQ:cancel") {
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:cancel")
 }
-record(longout, "$(P)EVG:MAP:hwTrigger") {
-    field(DESC, "Map hardware inputs to triggers")
-    field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:MAP:hwTrig")
-    field(VAL, "0x87654321") # 1 to 1 mapping
-    info(autosaveFields_pass0, "VAL")
-}
-record(longout, "$(P)EVG:MAP:dbus") {
-    field(DESC, "Map hardware inputs to distributed bus")
-    field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:MAP:dbus")
-    info(autosaveFields_pass0, "VAL")
-}
+# TODO: EVG:MAP:dbus array
 record(bo, "$(P)EVG:TMR:start") {
     field(DESC, "Reset/start all timers")
     field(ZNAM, "Reset")
