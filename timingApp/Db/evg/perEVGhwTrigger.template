@@ -13,3 +13,8 @@ record(longout, "$(P)EVG:TRIG:$(I):$(EDGE)") {
     field(DRVH, "255")
     info(autosaveFields_pass0, "VAL")
 }
+record(longin, "$(P)EVG:TRIG:$(I):N$(E)") {
+    field(DTYP, "FEED Register Read")
+    field(INP ,  "@name=$(NAME) reg=EVG:TRG:count offset=$(N)")
+    field(SCAN, "I/O Intr")
+}
