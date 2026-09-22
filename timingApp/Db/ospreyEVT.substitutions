@@ -82,23 +82,23 @@ file "evg/perEVGlink.template" {
   {I="8" }
 }
 file "evg/perEVGhwTrigger.template" {
-pattern { EDGE,   E,  I }
-  {"rise", "r", 1 }
-  {"fall", "f", 1 }
-  {"rise", "r", 2 }
-  {"fall", "f", 2 }
-  {"rise", "r", 3 }
-  {"fall", "f", 3 }
-  {"rise", "r", 4 }
-  {"fall", "f", 4 }
-  {"rise", "r", 5 }
-  {"fall", "f", 5 }
-  {"rise", "r", 6 }
-  {"fall", "f", 6 }
-  {"rise", "r", 7 }
-  {"fall", "f", 7 }
-  {"rise", "r", 8 }
-  {"fall", "f", 8 }
+pattern { EDGE, E, N, I }
+  {"rise", "r", 0, 1 }
+  {"fall", "f", 0, 1 }
+  {"rise", "r", 1, 2 }
+  {"fall", "f", 1, 2 }
+  {"rise", "r", 2, 3 }
+  {"fall", "f", 2, 3 }
+  {"rise", "r", 3, 4 }
+  {"fall", "f", 3, 4 }
+  {"rise", "r", 4, 5 }
+  {"fall", "f", 4, 5 }
+  {"rise", "r", 5, 6 }
+  {"fall", "f", 5, 6 }
+  {"rise", "r", 6, 7 }
+  {"fall", "f", 6, 7 }
+  {"rise", "r", 7, 8 }
+  {"fall", "f", 7, 8 }
 }
 file "evg/perEVGseqBank.template" {
   {I="1" }

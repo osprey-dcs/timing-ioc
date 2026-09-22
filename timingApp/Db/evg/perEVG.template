@@ -32,6 +32,12 @@ record(bi, "$(P)EVG:PPS:Tgl") {
     field(ONAM, "X")
 }
 
+record(longin, "$(P)EVG:TRIG:cnt_") {
+    field(DTYP, "FEED Register Read")
+    field(INP ,  "@name=$(NAME) reg=EVG:TRG:count")
+    field(SCAN, ".5 second")
+}
+
 record(longin, "$(P)EVG:onConnect_") {
     field(DESC, "Process records on FPGA connection")
     field(DTYP, "FEED On Connect")
