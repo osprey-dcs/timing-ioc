@@ -607,7 +607,19 @@
     <y>102</y>
     <width>140</width>
     <height>20</height>
+    <rules>
+      <rule name="Disable EVR Only" prop_id="enabled" out_exp="false">
+        <exp bool_exp="pvInt0!=0">
+          <value>true</value>
+        </exp>
+        <exp bool_exp="true">
+          <value>false</value>
+        </exp>
+        <pv_name>$(P)FPGA:Mode</pv_name>
+      </rule>
+    </rules>
     <tooltip>$(actions)</tooltip>
+    <enabled>false</enabled>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_23</name>

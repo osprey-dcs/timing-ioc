@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <class>TITLE</class>
+    <text>EVT Generator $(P) Sequencer Bank $(I)</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>550</width>
+    <height>31</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>sequence_table</name>
+    <pv_name>pva://$(P)EVG:SEQ:$(I)</pv_name>
+    <x>310</x>
+    <y>320</y>
+    <width>280</width>
+    <height>260</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>100</width>
+        <editable>true</editable>
+      </column>
+      <column>
+        <name>Column 2</name>
+        <width>100</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_9</name>
+    <text>Arm bank for triggering</text>
+    <x>20</x>
+    <y>26</y>
+    <width>260</width>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Trigger Source Selection</name>
+    <x>290</x>
+    <y>32</y>
+    <width>505</width>
+    <height>139</height>
+    <style>1</style>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_2</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(pv_name)</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P)EVG:SEQ:$(I):trig</pv_name>
+      <text>SW Trigger</text>
+      <x>140</x>
+      <y>3</y>
+      <height>20</height>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry</name>
+      <pv_name>$(P)EVG:SEQ:$(I):HWrise</pv_name>
+      <x>140</x>
+      <y>33</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+      <tooltip>$(pv_name)
+$(pv_value)
+
+Bit 0 connects first input</tooltip>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_1</name>
+      <pv_name>$(P)EVG:SEQ:$(I):HWfall</pv_name>
+      <x>140</x>
+      <y>63</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+      <tooltip>$(pv_name)
+$(pv_value)
+
+Bit 0 connects first input</tooltip>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_2</name>
+      <pv_name>$(P)EVG:SEQ:$(I):Tmr</pv_name>
+      <x>140</x>
+      <y>98</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+      <tooltip>$(pv_name)
+$(pv_value)
+
+bit 0 connects first clock divider</tooltip>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_1</name>
+      <text>Rising edge mask</text>
+      <y>33</y>
+      <width>130</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_2</name>
+      <text>Falling edge mask</text>
+      <y>63</y>
+      <width>130</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>Clock divider mask</text>
+      <y>98</y>
+      <width>130</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_14</name>
+      <text>External TTL Trigger inputs selection mask</text>
+      <x>250</x>
+      <y>38</y>
+      <width>230</width>
+      <height>50</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_15</name>
+      <text>Internal clock dividers selection mask</text>
+      <x>250</x>
+      <y>98</y>
+      <width>250</width>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Trigger Control</name>
+    <x>10</x>
+    <y>32</y>
+    <width>275</width>
+    <height>178</height>
+    <style>1</style>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(pv_name)</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P)EVG:SEQ:$(I):arm</pv_name>
+      <text>Arm</text>
+      <x>9</x>
+      <y>5</y>
+      <width>80</width>
+      <height>20</height>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_1</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(pv_name)</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P)EVG:SEQ:$(I):disarm</pv_name>
+      <text>Disarm</text>
+      <x>179</x>
+      <y>5</y>
+      <width>90</width>
+      <height>20</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_1</name>
+      <pv_name>$(P)EVG:SEQ:$(I):cnt</pv_name>
+      <x>169</x>
+      <y>83</y>
+      <width>90</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>Boolean Button</name>
+      <pv_name>$(P)EVG:SEQ:$(I):tMode</pv_name>
+      <x>99</x>
+      <y>129</y>
+      <width>90</width>
+      <height>20</height>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="bool_button" version="2.0.0">
+      <name>Boolean Button_1</name>
+      <pv_name>$(P)EVG:SEQ:$(I):armI</pv_name>
+      <x>209</x>
+      <y>30</y>
+      <width>60</width>
+      <height>20</height>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_1</name>
+      <pv_name>$(P)EVG:SEQ:$(I):tModeR</pv_name>
+      <x>199</x>
+      <y>129</y>
+      <width>70</width>
+      <square>true</square>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_2</name>
+      <pv_name>$(P)EVG:SEQ:$(I):armd</pv_name>
+      <x>99</x>
+      <y>5</y>
+      <width>70</width>
+      <square>true</square>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_3</name>
+      <pv_name>$(P)EVG:SEQ:$(I):tgd</pv_name>
+      <x>84</x>
+      <y>83</y>
+      <width>70</width>
+      <square>true</square>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED_4</name>
+      <pv_name>$(P)EVG:SEQ:$(I):actv</pv_name>
+      <x>5</x>
+      <y>83</y>
+      <width>70</width>
+      <square>true</square>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_8</name>
+      <text>Auto-arm on (re)connect</text>
+      <x>39</x>
+      <y>30</y>
+      <width>160</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>Pending</text>
+      <x>84</x>
+      <y>59</y>
+      <width>70</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_11</name>
+      <text>Active</text>
+      <x>5</x>
+      <y>59</y>
+      <width>70</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_12</name>
+      <text>Trig. Count</text>
+      <x>179</x>
+      <y>59</y>
+      <width>80</width>
+      <horizontal_alignment>1</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_13</name>
+      <text>Trig. Mode</text>
+      <y>129</y>
+      <width>80</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Event Table</name>
+    <x>290</x>
+    <y>180</y>
+    <width>492</width>
+    <height>130</height>
+    <style>1</style>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_3</name>
+      <pv_name>$(P)EVG:SEQ:$(I):slo</pv_name>
+      <x>360</x>
+      <y>85</y>
+      <format>3</format>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_4</name>
+      <pv_name>$(P)EVG:SEQ:$(I):codes</pv_name>
+      <x>140</x>
+      <width>350</width>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_5</name>
+      <pv_name>$(P)EVG:SEQ:$(I):times</pv_name>
+      <x>140</x>
+      <y>30</y>
+      <width>350</width>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>Action Button_3</name>
+      <actions>
+        <action type="write_pv">
+          <description>Write PV</description>
+          <pv_name>$(pv_name)</pv_name>
+          <value>0</value>
+        </action>
+      </actions>
+      <pv_name>$(P)EVG:SEQ:$(I):store</pv_name>
+      <text>Write</text>
+      <x>140</x>
+      <y>60</y>
+      <height>20</height>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED</name>
+      <pv_name>$(P)EVG:SEQ:$(I):vld</pv_name>
+      <x>260</x>
+      <y>60</y>
+      <width>70</width>
+      <off_color>
+        <color name="OK" red="0" green="255" blue="0">
+        </color>
+      </off_color>
+      <on_color>
+        <color name="MAJOR" red="255" green="0" blue="0">
+        </color>
+      </on_color>
+      <square>true</square>
+      <labels_from_pv>true</labels_from_pv>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_4</name>
+      <text>Delay scaling</text>
+      <x>360</x>
+      <y>60</y>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_5</name>
+      <text>Event codes</text>
+      <width>130</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_6</name>
+      <text>Event delays (EGU)</text>
+      <y>30</y>
+      <width>130</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_7</name>
+      <text>Update Table</text>
+      <y>60</y>
+      <width>130</width>
+    </widget>
+  </widget>
+</display>
