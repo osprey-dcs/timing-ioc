@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>EVG timer $(P).$(I)</name>
-  <width>255</width>
+  <width>350</width>
   <height>30</height>
   <widget type="textupdate" version="2.0.0">
     <name>Label_1</name>
@@ -17,7 +17,7 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Entry</name>
     <pv_name>$(P)EVG:TMR:$(I):event</pv_name>
-    <x>110</x>
+    <x>300</x>
     <y>5</y>
     <width>45</width>
     <horizontal_alignment>2</horizontal_alignment>
@@ -25,9 +25,16 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Entry_1</name>
     <pv_name>$(P)EVG:TMR:$(I):divisor</pv_name>
-    <x>160</x>
+    <x>110</x>
     <y>5</y>
     <width>90</width>
     <horizontal_alignment>2</horizontal_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(P)EVG:TMR:$(I):freq</pv_name>
+    <x>210</x>
+    <y>5</y>
+    <width>80</width>
   </widget>
 </display>
