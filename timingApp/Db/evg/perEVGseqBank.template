@@ -73,12 +73,12 @@ record(aSub, "$(P)EVG:SEQ:$(I):store") {
 
     field(FTVA, "ULONG") # mux.d output array
     field(NOVA, "2048") # 2x NOA
-    field(OUTA, "$(P)EVG:SEQ:$(I):pattern_")
+    field(OUTA, "$(P)EVG:SEQ:$(I):pattern_ PP MS")
     info(Q:group, {
         "$(P)EVG:SEQ:$(I)":{
             "":{+type:"meta", +channel:"VAL"},
             "_save":{+type:"proc",
-                     +channel:"VAL",
+                     +channel:"PROC",
                      +putorder:2,
                      +trigger:"*"}
         }
