@@ -57,11 +57,18 @@ long timingSeqMux(aSubRecord *prec)
                              "oflow @%u", (unsigned)n);
             dly = maxdelay;
         }
-        out[2*n+0] = codes[n];
-        out[2*n+1] = dly;
+        out[2*n+0] = dly;
+        out[2*n+1] = codes[n];
     }
 
-    prec->neva = 2*N;
+    // fill out with stop code
+    while(2*N < prec->nova) {
+        out[2*N+0] = 0;
+        out[2*N+1] = 255;
+        N++;
+    }
+
+    prec->neva = prec->nova;
 
     return 0;
 }
