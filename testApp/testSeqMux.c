@@ -39,7 +39,7 @@ MAIN(testSeqMux)
         testdbPutArrFieldOk("TST:mux.B", DBF_ULONG, NELEMENTS(delays), delays);
         testdbPutFieldOk("TST:mux.PROC", DBF_LONG, 0);
 
-        const epicsUInt32 expect[] = {5, 500, 10, 1000, 15, 1500, 20, 2000};
+        const epicsUInt32 expect[] = {500, 5, 1000, 10, 1500, 15, 2000, 20, 0, 255, 0, 255, 0, 255, 0, 255};
         testdbGetArrFieldEqual("TST:mux.VALA", DBF_ULONG, NELEMENTS(expect)+1, NELEMENTS(expect), expect);
         testdbGetFieldEqual("TST:mux.SEVR", DBF_LONG, NO_ALARM);
     }
@@ -50,7 +50,7 @@ MAIN(testSeqMux)
         testdbPutArrFieldOk("TST:mux.B", DBF_ULONG, NELEMENTS(delays), delays);
         testdbPutFieldOk("TST:mux.PROC", DBF_LONG, NO_ALARM);
 
-        const epicsUInt32 expect[] = {5, 500, 10, 1000, 15, 1500, 20, 0xfff};
+        const epicsUInt32 expect[] = {500, 5, 1000, 10, 1500, 15, 0xfff, 20, 0, 255, 0, 255, 0, 255, 0, 255};
         testdbGetArrFieldEqual("TST:mux.VALA", DBF_ULONG, NELEMENTS(expect)+1, NELEMENTS(expect), expect);
         testdbGetFieldEqual("TST:mux.SEVR", DBF_LONG, INVALID_ALARM); // overflow
     }
