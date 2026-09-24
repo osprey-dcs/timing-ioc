@@ -1,12 +1,78 @@
+# (re)connection
 record(fanout, "$(P)EVG:SEQ:$(I):I_") {
     field(SCAN, "Event")
     field(EVNT, "$(NAME):afterDisable") # <-- perEVG.template
-    field(LNK1, "$(P)EVG:SEQ:$(I):store")
+    field(LNK1, "$(P)EVG:SEQ:$(I):store_")
     field(LNK2, "$(P)EVG:SEQ:$(I):HWrise")
     field(LNK3, "$(P)EVG:SEQ:$(I):HWfall")
     field(LNK4, "$(P)EVG:SEQ:$(I):Tmr")
+    field(LNK5, "$(P)EVG:SEQ:$(I):tMode")
 }
 
+# arm/run control
+record(bo, "$(P)EVG:SEQ:$(I):armI") {
+    field(DESC, "Arm on connect?")
+    field(OUT , "$(P)EVG:SEQ:armI_.B$(N) PP MS")
+    field(VAL , "0")
+    field(PINI, "YES")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+    info(autosaveFields_pass0, "VAL")
+}
+record(bo, "$(P)EVG:SEQ:$(I):arm") {
+    field(ZNAM, "Arm")
+    field(ONAM, "Arm")
+    field(VAL , "0")
+    field(FLNK, "$(P)EVG:SEQ:$(I):arm_")
+}
+record(longout, "$(P)EVG:SEQ:$(I):arm_") {
+    field(VAL, "$(MASK)")
+    field(OUT, "$(P)EVG:SEQ:arm PP MS")
+}
+
+record(bo, "$(P)EVG:SEQ:$(I):disarm") {
+    field(ZNAM, "Dis-Arm")
+    field(ONAM, "Dis-Arm")
+    field(VAL , "0")
+    field(FLNK, "$(P)EVG:SEQ:$(I):disarm_")
+}
+record(longout, "$(P)EVG:SEQ:$(I):disarm_") {
+    field(VAL, "$(MASK)")
+    field(OUT, "$(P)EVG:SEQ:disarm PP MS")
+}
+
+record(bo, "$(P)EVG:SEQ:$(I):trig") {
+    field(ZNAM, "Force Trig.")
+    field(ONAM, "Force Trig.")
+    field(FLNK, "$(P)EVG:SEQ:$(I):trig_")
+}
+record(longout, "$(P)EVG:SEQ:$(I):trig_") {
+    field(VAL, "$(MASK)")
+    field(OUT, "$(P)EVG:SEQ:swTrig PP MS")
+}
+
+record(bi, "$(P)EVG:SEQ:$(I):armd") {
+    field(INP , "$(P)EVG:SEQ:armd.B$(N) CP MS")
+    field(ZNAM, "Disarm")
+    field(ONAM, "Arm")
+}
+record(bi, "$(P)EVG:SEQ:$(I):tgd") {
+    field(INP , "$(P)EVG:SEQ:tgd.B$(N) CP MS")
+    field(ZNAM, "Wait")
+    field(ONAM, "Pend")
+}
+record(calcout, "$(P)EVG:SEQ:$(I):actv_") {
+    field(INPA, "$(P)EVG:SEQ:actv CP MS")
+    field(INPB, "$(I)")
+    field(CALC, "A==B")
+    field(OUT , "$(P)EVG:SEQ:$(I):actv PP MS")
+}
+record(bi, "$(P)EVG:SEQ:$(I):actv") {
+    field(ZNAM, "Idle")
+    field(ONAM, "Run")
+}
+
+# trigger selection
 record(longout, "$(P)EVG:SEQ:$(I):HWrise") {
     field(DESC, "Bank $(I) rising edge hw trigger bitmap")
     field(DTYP, "FEED Register Write")
@@ -37,28 +103,54 @@ record(longout, "$(P)EVG:SEQ:$(I):Tmr") {
     field(DRVH, "255")
     info(autosaveFields_pass0, "VAL")
 }
+record(bo, "$(P)EVG:SEQ:$(I):tMode") {
+    field(OUT , "$(P)EVG:SEQ:$(I):tMode_.SELN PP MS")
+    field(PINI, "YES")
+    field(VAL , "0")
+    field(ZNAM, "Single")
+    field(ONAM, "Normal")
+    info(autosaveFields_pass0, "VAL")
+}
+record(fanout, "$(P)EVG:SEQ:$(I):tMode_") {
+    field(SELM, "Specified")
+    field(LNK0, "$(P)EVG:SEQ:$(I):tS_")
+    field(LNK1, "$(P)EVG:SEQ:$(I):tN_")
+}
+# EVG:SEQ:trgMode is a J/K flipflop with 8 bits.
+# bits 0x00FF set, bits 0xFF00 clear
+record(longout, "$(P)EVG:SEQ:$(I):tN_") {
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=EVG:SEQ:trgMode")
+    field(VAL , "$(MASK)")
+}
+record(longout, "$(P)EVG:SEQ:$(I):tS_") {
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=EVG:SEQ:trgMode")
+    field(VAL , "$(MASK)00") # hacky shift by <<8
+}
 
 record(ao, "$(P)EVG:SEQ:$(I):slo") {
     field(DESC, "sequencer time unit scale")
     field(PINI, "YES")
-    field(VAL , "1e-9")
+    field(VAL , "1e9")
     field(EGU , "EGU/s")
-    field(DRVL, "1e-9")
-    field(DRVH, "1e12")
+    field(DRVL, "1")
+    field(DRVH, "1e9")
     field(FLNK, "$(P)EVG:SEQ:$(I):slo_")
     info(autosaveFields_pass0, "VAL")
 }
 record(calcout, "$(P)EVG:SEQ:$(I):slo_") {
+    field(EGU , "EGU/tick")
     field(INPA, "$(P)EVG:SEQ:$(I):slo NPP MS") # EGU/sec
     field(INPB, "$(P)Ref:T CP MS") # sec/tick
-    field(CALC, "B/A")
-    field(OUT , "$(P)EVG:SEQ:$(I):store.D PP MS")
+    field(CALC, "B*A") # [sec/tick] * [EGU/sec]
+    field(OUT , "$(P)EVG:SEQ:$(I):store_.D PP MS")
 }
 
 record(aao, "$(P)EVG:SEQ:$(I):codes") {
+    field(PINI, "YES")
     field(FTVL, "UCHAR")
     field(NELM, "2048")
-    #field(FLNK, "$(P)EVG:SEQ:$(I):store")
     info(autosaveFields_pass1, "VAL")
     info(Q:group, {
         "$(P)EVG:SEQ:$(I)":{
@@ -67,17 +159,23 @@ record(aao, "$(P)EVG:SEQ:$(I):codes") {
     })
 }
 record(aao, "$(P)EVG:SEQ:$(I):times") {
+    field(PINI, "YES")
     field(FTVL, "DOUBLE")
     field(NELM, "2048")
-    #field(FLNK, "$(P)EVG:SEQ:$(I):store")
     info(autosaveFields_pass1, "VAL")
     info(Q:group, {
         "$(P)EVG:SEQ:$(I)":{
-            "value.ns":{+type:"plain", +channel:"VAL", +putorder:1}
+            "value.dly":{+type:"plain", +channel:"VAL", +putorder:1}
         }
     })
 }
-record(aSub, "$(P)EVG:SEQ:$(I):store") {
+record(bo, "$(P)EVG:SEQ:$(I):store") {
+    field(ZNAM, "Write")
+    field(ONAM, "Write")
+    field(UDF , "0")
+    field(FLNK, "$(P)EVG:SEQ:$(I):store_")
+}
+record(aSub, "$(P)EVG:SEQ:$(I):store_") {
     field(SNAM, "timingSeqMux")
     field(FTA , "UCHAR") # event codes
     field(NOA , "1024")
@@ -86,20 +184,18 @@ record(aSub, "$(P)EVG:SEQ:$(I):store") {
     field(NOB , "1024") # == NOA
     field(INPB, "$(P)EVG:SEQ:$(I):times MSS")
     field(FTC , "ULONG") # delay field bit width
-    field(INPC, "12") # TODO: link to EVG:config
+    field(INPC, "32")
     field(FTD , "DOUBLE")
     field(INPD, "1.0") # written above (EGU/s)
 
     field(FTVA, "ULONG") # mux.d output array
     field(NOVA, "2048") # 2x NOA
     field(OUTA, "$(P)EVG:SEQ:$(I):pattern_ PP MS")
+
+    field(FLNK, "$(P)EVG:SEQ:$(I):upd_")
     info(Q:group, {
         "$(P)EVG:SEQ:$(I)":{
-            "":{+type:"meta", +channel:"VAL"},
-            "_save":{+type:"proc",
-                     +channel:"PROC",
-                     +putorder:2,
-                     +trigger:"*"}
+            "":{+type:"meta", +channel:"VAL"}
         }
     })
 }
@@ -110,15 +206,53 @@ record(aao, "$(P)EVG:SEQ:$(I):pattern_") {
     field(FTVL, "ULONG")
     field(NELM, "4096")
 }
+record(calc, "$(P)EVG:SEQ:$(I):upd_") {
+    field(CALC, "(VAL+1)&0xf")
+    field(FLNK, "$(P)EVG:SEQ:$(I):vld_")
+    info(Q:group, {
+        "$(P)EVG:SEQ:$(I)":{
+            "_save":{+type:"proc",
+                     +channel:"VAL",
+                     +putorder:2,
+                     +trigger:"*"}
+        }
+    })
+}
+record(calcout, "$(P)EVG:SEQ:$(I):vld_") {
+    field(INPA, "$(P)EVG:SEQ:$(I):store_.SEVR MSS")
+    field(CALC, "A!=0")
+    field(OUT , "$(P)EVG:SEQ:$(I):vld PP MSS")
+}
+record(bi, "$(P)EVG:SEQ:$(I):vld") {
+    field(ZNAM, "Ok")
+    field(ONAM, "Err")
+    field(OSV , "MAJOR") # should be overridden by MSS
+}
 
 record(aai, "$(P)EVG:SEQ:$(I):L_") {
     field(FTVL, "STRING")
     field(NELM, "2")
-    field(INP , {const:["Evt", "NS"]})
+    field(INP , {const:["Code", "Delay (EGU)"]})
     info(Q:group, {
         "$(P)EVG:SEQ:$(I)":{
             +id:"epics:nt/NTTable:1.0",
             "labels":{+type:"plain", +channel:"VAL"}
         }
     })
+}
+
+# status
+record(longin, "$(P)EVG:SEQ:$(I):cnt") {
+    field(DESC, "Bank run count")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:SEQ:nTrg offset=$(N)")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)EVG:SEQ:$(I):tModeR") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)EVG:SEQ:tModeR_ CP MS")
+    field(MASK, "$(MASK)")
+    field(ZNAM, "Single")
+    field(ONAM, "Normal")
 }
