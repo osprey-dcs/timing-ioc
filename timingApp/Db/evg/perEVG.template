@@ -1,9 +1,39 @@
+# Status
 record(longin, "$(P)EVG:status") {
     field(DESC, "EVG status register")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
-    field(SCAN, ".5 second")
+    field(SCAN, ".1 second")
+    field(FLNK, "$(P)EVG:SEQ:armd_")
 }
+record(calcout, "$(P)EVG:SEQ:armd_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>4)&0xff")
+    field(OUT , "$(P)EVG:SEQ:armd PP MS")
+    field(FLNK, "$(P)EVG:SEQ:tgd_")
+}
+record(mbbiDirect, "$(P)EVG:SEQ:armd") {
+    field(NOBT, "8")
+}
+record(calcout, "$(P)EVG:SEQ:tgd_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>12)&0xff")
+    field(OUT , "$(P)EVG:SEQ:tgd PP MS")
+    field(FLNK, "$(P)EVG:SEQ:actv")
+}
+record(mbbiDirect, "$(P)EVG:SEQ:tgd") {
+    field(NOBT, "8")
+}
+record(calc, "$(P)EVG:SEQ:actv") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>20)&0xf")
+    field(FLNK, "$(P)EVG:SEQ:tModeR_")
+}
+record(calc, "$(P)EVG:SEQ:tModeR_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>24)&0xff")
+}
+
 record(bi, "$(P)EVG:PPS:Vld") {
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
@@ -31,6 +61,22 @@ record(bi, "$(P)EVG:PPS:Tgl") {
     field(ZNAM, "+")
     field(ONAM, "X")
 }
+record(bi, "$(P)EVG:SEQ:run") {
+    field(DESC, "PPS activity toggle")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:status")
+    field(SCAN, "I/O Intr")
+    field(MASK, "0x800000")
+    field(ZNAM, "Idle")
+    field(ONAM, "Run")
+}
+
+record(longin, "$(P)EVG:SEQ:cnt_") {
+    field(DESC, "Timer status")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:SEQ:nTrg")
+    field(SCAN, ".1 second")
+}
 
 record(longin, "$(P)EVG:TRIG:cnt_") {
     field(DTYP, "FEED Register Read")
@@ -38,6 +84,7 @@ record(longin, "$(P)EVG:TRIG:cnt_") {
     field(SCAN, ".5 second")
 }
 
+# initial
 record(longin, "$(P)EVG:onConnect_") {
     field(DESC, "Process records on FPGA connection")
     field(DTYP, "FEED On Connect")
@@ -122,10 +169,15 @@ record(longin, "$(P)EVG:sync:23_") {
     field(FLNK, "$(P)EVG:init:3_")
 }
 record(fanout, "$(P)EVG:init:3_") {
-    field(LNK1, "$(P)EVG:TMR:start")
+    field(LNK1, "$(P)EVG:SEQ:armI_")
+    field(LNK2, "$(P)EVG:TMR:start")
 }
 
-
+# settings
+record(mbboDirect, "$(P)EVG:SEQ:armI_") {
+    # B* fields pushed from perEVGseqBank.template
+    field(OUT , "$(P)EVG:SEQ:arm PP MS")
+}
 record(longout, "$(P)EVG:SEQ:arm") {
     field(DESC, "Bitmap of sequencer(s) to arm")
     field(DTYP, "FEED Register Write")
