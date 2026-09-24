@@ -38,6 +38,23 @@ record(longout, "$(P)EVG:SEQ:$(I):Tmr") {
     info(autosaveFields_pass0, "VAL")
 }
 
+record(ao, "$(P)EVG:SEQ:$(I):slo") {
+    field(DESC, "sequencer time unit scale")
+    field(PINI, "YES")
+    field(VAL , "1e-9")
+    field(EGU , "EGU/s")
+    field(DRVL, "1e-9")
+    field(DRVH, "1e12")
+    field(FLNK, "$(P)EVG:SEQ:$(I):slo_")
+    info(autosaveFields_pass0, "VAL")
+}
+record(calcout, "$(P)EVG:SEQ:$(I):slo_") {
+    field(INPA, "$(P)EVG:SEQ:$(I):slo NPP MS") # EGU/sec
+    field(INPB, "$(P)Ref:T CP MS") # sec/tick
+    field(CALC, "B/A")
+    field(OUT , "$(P)EVG:SEQ:$(I):store.D PP MS")
+}
+
 record(aao, "$(P)EVG:SEQ:$(I):codes") {
     field(FTVL, "UCHAR")
     field(NELM, "2048")
@@ -50,7 +67,7 @@ record(aao, "$(P)EVG:SEQ:$(I):codes") {
     })
 }
 record(aao, "$(P)EVG:SEQ:$(I):times") {
-    field(FTVL, "ULONG")
+    field(FTVL, "DOUBLE")
     field(NELM, "2048")
     #field(FLNK, "$(P)EVG:SEQ:$(I):store")
     info(autosaveFields_pass1, "VAL")
@@ -65,11 +82,13 @@ record(aSub, "$(P)EVG:SEQ:$(I):store") {
     field(FTA , "UCHAR") # event codes
     field(NOA , "1024")
     field(INPA, "$(P)EVG:SEQ:$(I):codes MSS")
-    field(FTB , "ULONG") # time delays (ns)
+    field(FTB , "DOUBLE") # time delays (EGU)
     field(NOB , "1024") # == NOA
     field(INPB, "$(P)EVG:SEQ:$(I):times MSS")
     field(FTC , "ULONG") # delay field bit width
     field(INPC, "12") # TODO: link to EVG:config
+    field(FTD , "DOUBLE")
+    field(INPD, "1.0") # written above (EGU/s)
 
     field(FTVA, "ULONG") # mux.d output array
     field(NOVA, "2048") # 2x NOA

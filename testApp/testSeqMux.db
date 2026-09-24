@@ -1,11 +1,12 @@
 record(aSub, "$(P)mux") {
     field(SNAM, "timingSeqMux")
     field(FTA , "UCHAR") # event codes
-    field(NOA , "8")
-    field(FTB , "ULONG") # time delays (ns)
-    field(NOB , "8") # == NOA
+    field(NOA , "16")
+    field(FTB , "DOUBLE") # time delays (EGU)
+    field(NOB , "16") # == NOA
     field(FTC , "ULONG") # delay field bit width
+    field(FTD , "DOUBLE") # period (EGU/tick)
 
-    field(FTVA, "ULONG") # mux.d output array
-    field(NOVA, "16") # 2x NOA
+    field(FTVA, "ULONG") # mux.d output array (tick and code...)
+    field(NOVA, "32") # 2x NOA
 }
