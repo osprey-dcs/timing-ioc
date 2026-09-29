@@ -146,9 +146,11 @@ record(fanout, "$(P)EVG:init:2_") {
     field(LNK3, "")
     field(FLNK, "$(P)EVG:rdy2_")
 }
-record(longout, "$(P)EVG:rdy2_") {
+record(calcout, "$(P)EVG:rdy2_") {
+    field(INPA, "$(NTMR=0)")
+    field(INPB, "$(NBANK=0)")
+    field(CALC, "A+B")
     field(OUT, "$(P)EVG:init4_ NPP") # prepare down counter
-    field(VAL, "$(NTMR=0)")
     field(FLNK, "$(P)EVG:onConn2_")
 }
 record(event, "$(P)EVG:onConn2_") {
@@ -158,7 +160,7 @@ record(event, "$(P)EVG:onConn2_") {
 
 record(calcout, "$(P)EVG:init4_") {
     field(SCAN, "Event")
-    field(EVNT, "$(NAME):afterTimers") # <-- perEVGtimer.template
+    field(EVNT, "$(NAME):afterPerUnit") # <-- from perEVG*.template
     field(CALC, "VAL-1")
     field(OOPT, "Transition To Zero")
     field(OUT , "$(P)EVG:sync:23_.PROC PP") # all outputs writes queued
