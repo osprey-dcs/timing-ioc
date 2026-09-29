@@ -6,7 +6,7 @@ record(fanout, "$(P)EVG:TMR:$(I):I_") {
     field(FLNK, "$(P)EVG:TMR:$(I):D_")
 }
 record(event, "$(P)EVG:TMR:$(I):D_") {
-    field(VAL, "$(NAME):afterTimers") # --> to perEVG.template
+    field(VAL, "$(NAME):afterPerUnit") # --> to perEVG.template
 }
 
 record(longout, "$(P)EVG:TMR:$(I):event") {

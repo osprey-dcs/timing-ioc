@@ -7,6 +7,10 @@ record(fanout, "$(P)EVG:SEQ:$(I):I_") {
     field(LNK3, "$(P)EVG:SEQ:$(I):HWfall")
     field(LNK4, "$(P)EVG:SEQ:$(I):Tmr")
     field(LNK5, "$(P)EVG:SEQ:$(I):tMode")
+    field(FLNK, "$(P)EVG:SEQ:$(I):D_")
+}
+record(event, "$(P)EVG:SEQ:$(I):D_") {
+    field(VAL, "$(NAME):afterPerUnit") # --> to perEVG.template
 }
 
 # arm/run control
@@ -44,6 +48,7 @@ record(longout, "$(P)EVG:SEQ:$(I):disarm_") {
 record(bo, "$(P)EVG:SEQ:$(I):trig") {
     field(ZNAM, "Force Trig.")
     field(ONAM, "Force Trig.")
+    field(VAL , "0")
     field(FLNK, "$(P)EVG:SEQ:$(I):trig_")
 }
 record(longout, "$(P)EVG:SEQ:$(I):trig_") {
