@@ -231,6 +231,7 @@ record(longout, "$(P)EVG:SEQ:cancel") {
 # TODO: EVG:MAP:dbus array
 record(bo, "$(P)EVG:TMR:start") {
     field(DESC, "Reset/start all timers")
+    field(VAL , "0")
     field(ZNAM, "Reset")
     field(ONAM, "Reset")
     field(FLNK, "$(P)EVG:TMR:start_")
