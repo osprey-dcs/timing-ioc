@@ -26,5 +26,13 @@ record(longout, "$(P)EVG:TMR:$(I):divisor") {
     field(DRVL, "40")
     field(DRVH, "0x7fffffff")
     field(VAL , "0x7fffffff")
+    field(FLNK, "$(P)EVG:TMR:$(I):freq")
     info(autosaveFields_pass0, "VAL")
+}
+record(calc, "$(P)EVG:TMR:$(I):freq") {
+    field(INPA, "$(P)EVG:TMR:$(I):divisor NPP MS")
+    field(INPB, "$(P)Ref:T CP MS")
+    field(CALC, "1/B/A")
+    field(EGU , "Hz")
+    field(PREC, "2")
 }
