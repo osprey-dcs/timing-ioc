@@ -101,6 +101,22 @@ pattern { EDGE, E, N, I }
   {"fall", "f", 6, 7 }
   {"rise", "r", 7, 8 }
   {"fall", "f", 7, 8 }
+  {"rise", "r", 8, 9 }
+  {"fall", "f", 8, 9 }
+  {"rise", "r", 9, 10 }
+  {"fall", "f", 9, 10 }
+  {"rise", "r", 10, 11 }
+  {"fall", "f", 10, 11 }
+  {"rise", "r", 11, 12 }
+  {"fall", "f", 11, 12 }
+  {"rise", "r", 12, 13 }
+  {"fall", "f", 12, 13 }
+  {"rise", "r", 13, 14 }
+  {"fall", "f", 13, 14 }
+  {"rise", "r", 14, 15 }
+  {"fall", "f", 14, 15 }
+  {"rise", "r", 15, 16 }
+  {"fall", "f", 15, 16 }
 }
 file "evg/perEVGseqBank.template" {
   {N="0", I="1", MASK="0x01" }

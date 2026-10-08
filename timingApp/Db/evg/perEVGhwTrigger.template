@@ -7,6 +7,7 @@ record(longout, "$(P)EVG:TRIG:$(I):$(EDGE)") {
     field(DESC, "Event code for hardware trigger $(I) $(EDGE)")
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:TRG:$(E)$(I):ev")
+    field(VAL , "0")
     field(LOPR, "0")
     field(HOPR, "255")
     field(DRVL, "0")
