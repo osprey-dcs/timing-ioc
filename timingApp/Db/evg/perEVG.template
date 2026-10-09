@@ -1,9 +1,39 @@
+# Status
 record(longin, "$(P)EVG:status") {
     field(DESC, "EVG status register")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
-    field(SCAN, ".5 second")
+    field(SCAN, ".1 second")
+    field(FLNK, "$(P)EVG:SEQ:armd_")
 }
+record(calcout, "$(P)EVG:SEQ:armd_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>4)&0xff")
+    field(OUT , "$(P)EVG:SEQ:armd PP MS")
+    field(FLNK, "$(P)EVG:SEQ:tgd_")
+}
+record(mbbiDirect, "$(P)EVG:SEQ:armd") {
+    field(NOBT, "8")
+}
+record(calcout, "$(P)EVG:SEQ:tgd_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>12)&0xff")
+    field(OUT , "$(P)EVG:SEQ:tgd PP MS")
+    field(FLNK, "$(P)EVG:SEQ:actv")
+}
+record(mbbiDirect, "$(P)EVG:SEQ:tgd") {
+    field(NOBT, "8")
+}
+record(calc, "$(P)EVG:SEQ:actv") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>20)&0xf")
+    field(FLNK, "$(P)EVG:SEQ:tModeR_")
+}
+record(calc, "$(P)EVG:SEQ:tModeR_") {
+    field(INPA, "$(P)EVG:status NPP MS")
+    field(CALC, "(A>>24)&0xff")
+}
+
 record(bi, "$(P)EVG:PPS:Vld") {
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
@@ -31,7 +61,30 @@ record(bi, "$(P)EVG:PPS:Tgl") {
     field(ZNAM, "+")
     field(ONAM, "X")
 }
+record(bi, "$(P)EVG:SEQ:run") {
+    field(DESC, "PPS activity toggle")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:status")
+    field(SCAN, "I/O Intr")
+    field(MASK, "0x800000")
+    field(ZNAM, "Idle")
+    field(ONAM, "Run")
+}
 
+record(longin, "$(P)EVG:SEQ:cnt_") {
+    field(DESC, "Timer status")
+    field(DTYP, "FEED Register Read")
+    field(INP, "@name=$(NAME) reg=EVG:SEQ:nTrg")
+    field(SCAN, ".1 second")
+}
+
+record(longin, "$(P)EVG:TRIG:cnt_") {
+    field(DTYP, "FEED Register Read")
+    field(INP ,  "@name=$(NAME) reg=EVG:TRG:count")
+    field(SCAN, ".5 second")
+}
+
+# initial
 record(longin, "$(P)EVG:onConnect_") {
     field(DESC, "Process records on FPGA connection")
     field(DTYP, "FEED On Connect")
@@ -46,17 +99,29 @@ record(longin, "$(P)EVG:onConnect_") {
 # phase 3: (re)start
 record(fanout, "$(P)EVG:init:1_") {
     # probe static configuration
-    field(LNK1, "$(P)EVG:config")
+    field(LNK1, "$(P)EVG:nIn")
     # interrupt/shutdown
     field(LNK2, "$(P)EVG:SEQ:disarm:I_")
     field(LNK3, "$(P)EVG:SEQ:cancel:I_")
     field(LNK4, "$(P)EVG:TMR:stop_")
     field(FLNK, "$(P)EVG:sync:12_")
 }
-record(longin, "$(P)EVG:config") {
-    field(DESC, "EVG sequencer configuration")
+record(longin, "$(P)EVG:nIn") {
+    field(DESC, "EVG # of trig. inputs")
     field(DTYP, "FEED Register Read")
-    field(INP, "@name=$(NAME) reg=EVG:config")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nIn")
+    field(FLNK, "$(P)EVG:nTmr")
+}
+record(longin, "$(P)EVG:nTmr") {
+    field(DESC, "EVG # of event timers")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nTmr")
+    field(FLNK, "$(P)EVG:nBank")
+}
+record(longin, "$(P)EVG:nBank") {
+    field(DESC, "EVG # of seq. banks")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=EVG:CONF:nBank")
 }
 record(longout, "$(P)EVG:SEQ:disarm:I_") {
     field(DTYP, "FEED Register Write")
@@ -77,13 +142,15 @@ record(longin, "$(P)EVG:sync:12_") {
 # (re)initialize sub-units
 record(fanout, "$(P)EVG:init:2_") {
     field(LNK1, "$(P)EVG:hbDivisor")
-    field(LNK2, "$(P)EVG:MAP:hwTrigger")
-    field(LNK3, "$(P)EVG:MAP:dbus")
+    field(LNK2, "")
+    field(LNK3, "")
     field(FLNK, "$(P)EVG:rdy2_")
 }
-record(longout, "$(P)EVG:rdy2_") {
+record(calcout, "$(P)EVG:rdy2_") {
+    field(INPA, "$(NTMR=0)")
+    field(INPB, "$(NBANK=0)")
+    field(CALC, "A+B")
     field(OUT, "$(P)EVG:init4_ NPP") # prepare down counter
-    field(VAL, "$(NTMR=0)")
     field(FLNK, "$(P)EVG:onConn2_")
 }
 record(event, "$(P)EVG:onConn2_") {
@@ -93,7 +160,7 @@ record(event, "$(P)EVG:onConn2_") {
 
 record(calcout, "$(P)EVG:init4_") {
     field(SCAN, "Event")
-    field(EVNT, "$(NAME):afterTimers") # <-- perEVGtimer.template
+    field(EVNT, "$(NAME):afterPerUnit") # <-- from perEVG*.template
     field(CALC, "VAL-1")
     field(OOPT, "Transition To Zero")
     field(OUT , "$(P)EVG:sync:23_.PROC PP") # all outputs writes queued
@@ -104,10 +171,15 @@ record(longin, "$(P)EVG:sync:23_") {
     field(FLNK, "$(P)EVG:init:3_")
 }
 record(fanout, "$(P)EVG:init:3_") {
-    field(LNK1, "$(P)EVG:TMR:start")
+    field(LNK1, "$(P)EVG:SEQ:armI_")
+    field(LNK2, "$(P)EVG:TMR:start")
 }
 
-
+# settings
+record(mbboDirect, "$(P)EVG:SEQ:armI_") {
+    # B* fields pushed from perEVGseqBank.template
+    field(OUT , "$(P)EVG:SEQ:arm PP MS")
+}
 record(longout, "$(P)EVG:SEQ:arm") {
     field(DESC, "Bitmap of sequencer(s) to arm")
     field(DTYP, "FEED Register Write")
@@ -156,21 +228,10 @@ record(longout, "$(P)EVG:SEQ:cancel") {
     field(DTYP, "FEED Register Write")
     field(OUT,  "@name=$(NAME) reg=EVG:SEQ:cancel")
 }
-record(longout, "$(P)EVG:MAP:hwTrigger") {
-    field(DESC, "Map hardware inputs to triggers")
-    field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:MAP:hwTrig")
-    field(VAL, "0x87654321") # 1 to 1 mapping
-    info(autosaveFields_pass0, "VAL")
-}
-record(longout, "$(P)EVG:MAP:dbus") {
-    field(DESC, "Map hardware inputs to distributed bus")
-    field(DTYP, "FEED Register Write")
-    field(OUT,  "@name=$(NAME) reg=EVG:MAP:dbus")
-    info(autosaveFields_pass0, "VAL")
-}
+# TODO: EVG:MAP:dbus array
 record(bo, "$(P)EVG:TMR:start") {
     field(DESC, "Reset/start all timers")
+    field(VAL , "0")
     field(ZNAM, "Reset")
     field(ONAM, "Reset")
     field(FLNK, "$(P)EVG:TMR:start_")
