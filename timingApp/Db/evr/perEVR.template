@@ -38,14 +38,14 @@ record(ao, "$(P)EVR:LOG:Nscl_") { # set scale for nsec column
     field(DTYP, "FEED Signal Scale")
     field(OUT , "@name=$(NAME) signal=$(P)EVR:LOG:N")
     field(OMSL, "closed_loop")
-    field(DOL , "$(P)Ref:TN_")
+    field(DOL , "$(P)Ref:TN_ CP")
     field(FLNK, "$(P)EVR:LOG2:Nscl_")
 }
 record(ao, "$(P)EVR:LOG2:Nscl_") {
     field(DTYP, "Event Table Set Mult")
     field(OUT , "@log=$(P)")
     field(OMSL, "closed_loop")
-    field(DOL , "$(P)Ref:TN_")
+    field(DOL , "$(P)Ref:TN_ CP")
     field(FLNK, "$(P)EVR:init2_")
 }
 record(longout, "$(P)EVR:init2_") {

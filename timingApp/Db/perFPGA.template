@@ -21,10 +21,32 @@ record(fanout, "$(P)MARBLE:onC_") {
     field(LNK2, "$(P)MARBLE:570:REF")
 }
 
-# currently static
-# TODO: when dynamic, add re-trigger of onConnect chain to recalculate delay/width
+# used with source other than internal 125MHz
+record(ao, "$(P)Ref:Req") {
+    field(OUT , "$(P)MARBLE:SYNTH PP MS")
+    field(PINI, "YES")
+    field(VAL , "125")
+    field(EGU , "MHz")
+    field(DRVH, "125")
+    field(HOPR, "125")
+    field(LOPR, "80")
+    field(DRVL, "80")
+    field(PREC, "2")
+    field(FLNK, "$(P)Ref:Freq_")
+    info(autosaveFields_pass0, "VAL")
+}
+record(calcout, "$(P)Ref:Freq_") {
+    field(INPA, "$(P)MARBLE:MGTCLK0 NPP MS")
+    field(INPB, "$(P)Ref:Req NPP MS")
+    field(INPC, "125")
+    field(CALC, "A==0?C:B")
+    field(OUT , "$(P)Ref:Freq PP MS")
+}
 record(ai, "$(P)Ref:Freq") {
-    field(INP , "125")
+    field(DESC, "Evt link ref. clock")
+    field(HOPR, "125")
+    field(LOPR, "80")
+    field(PREC, "2")
     field(PINI, "YES")
     field(EGU , "MHz")
     field(FLNK, "$(P)Ref:T")
@@ -135,6 +157,7 @@ record(mbbo, "$(P)MARBLE:MGTCLK0") {
     field(THVL, "3") # Si570
     field(THST, "Int. Synth.")
     field(RVAL, "2") # Int.
+    field(FLNK, "$(P)Ref:Freq_")
     info(autosaveFields_pass0, "RVAL")
 }
 record(longout, "$(P)MARBLE:VCXO:DAC_Y1") {
@@ -159,6 +182,7 @@ record(longout, "$(P)MARBLE:VCXO:DAC_Y3") {
 # FPGA:IO:select
 # 0x00000001 - 0 = EVR, 1 = EVG
 # 0x00000002 - 0 = P1 Empty, 1 = P1 Populated
+# 0x00000004 - 0 = P2 Empty, 1 = P2 Populated
 record(bi, "$(P)FPGA:Mode") {
     field(DTYP, "FEED Register Read")
     field(INP,  "@name=$(NAME) reg=FPGA:IO:select")
@@ -174,6 +198,15 @@ record(bi, "$(P)FMC:1") {
     field(MASK, "0x2")
     field(ZNAM, "Empty")
     field(ONAM, "Clk Inp")
+    field(FLNK, "$(P)FMC:2")
+}
+record(bi, "$(P)FMC:2") {
+    field(DESC, "FMC P2 conn.")
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=FPGA:IO:select wait=false")
+    field(MASK, "0x4")
+    field(ZNAM, "Empty")
+    field(ONAM, "Trg Out")
 }
 
 record(bi, "$(P)MGT:RST") {

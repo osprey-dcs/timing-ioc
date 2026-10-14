@@ -58,8 +58,10 @@ file "evr/perEVRevent.template" {
 # Input 7 -> PMOD2, IN3 -> Bit6
 # Input 8 -> PMOD2, IN4 -> Bit7
 
+# NTMR must match number of perEVGtimer instances
+# NBANK must match number of perEVGseqBank instances
 file "evg/perEVG.template" {
-{ NTMR="8" }
+{ NTMR="8", NBANK="1" }
 }
 file "evg/perEVGtimer.template" {
   {I="1" }
@@ -82,31 +84,47 @@ file "evg/perEVGlink.template" {
   {I="8" }
 }
 file "evg/perEVGhwTrigger.template" {
-pattern { EDGE,   E,  I }
-  {"rise", "r", 1 }
-  {"fall", "f", 1 }
-  {"rise", "r", 2 }
-  {"fall", "f", 2 }
-  {"rise", "r", 3 }
-  {"fall", "f", 3 }
-  {"rise", "r", 4 }
-  {"fall", "f", 4 }
-  {"rise", "r", 5 }
-  {"fall", "f", 5 }
-  {"rise", "r", 6 }
-  {"fall", "f", 6 }
-  {"rise", "r", 7 }
-  {"fall", "f", 7 }
-  {"rise", "r", 8 }
-  {"fall", "f", 8 }
+pattern { EDGE, E, N, I }
+  {"rise", "r", 0, 1 }
+  {"fall", "f", 0, 1 }
+  {"rise", "r", 1, 2 }
+  {"fall", "f", 1, 2 }
+  {"rise", "r", 2, 3 }
+  {"fall", "f", 2, 3 }
+  {"rise", "r", 3, 4 }
+  {"fall", "f", 3, 4 }
+  {"rise", "r", 4, 5 }
+  {"fall", "f", 4, 5 }
+  {"rise", "r", 5, 6 }
+  {"fall", "f", 5, 6 }
+  {"rise", "r", 6, 7 }
+  {"fall", "f", 6, 7 }
+  {"rise", "r", 7, 8 }
+  {"fall", "f", 7, 8 }
+  {"rise", "r", 8, 9 }
+  {"fall", "f", 8, 9 }
+  {"rise", "r", 9, 10 }
+  {"fall", "f", 9, 10 }
+  {"rise", "r", 10, 11 }
+  {"fall", "f", 10, 11 }
+  {"rise", "r", 11, 12 }
+  {"fall", "f", 11, 12 }
+  {"rise", "r", 12, 13 }
+  {"fall", "f", 12, 13 }
+  {"rise", "r", 13, 14 }
+  {"fall", "f", 13, 14 }
+  {"rise", "r", 14, 15 }
+  {"fall", "f", 14, 15 }
+  {"rise", "r", 15, 16 }
+  {"fall", "f", 15, 16 }
 }
 file "evg/perEVGseqBank.template" {
-  {I="1" }
-  {I="2" }
-  {I="3" }
-  {I="4" }
-  {I="5" }
-  {I="6" }
-  {I="7" }
-  {I="8" }
+  {N="0", I="1", MASK="0x01" }
+#  {N="1", I="2", MASK="0x02" }
+#  {N="2", I="3", MASK="0x04" }
+#  {N="3", I="4", MASK="0x08" }
+#  {N="4", I="5", MASK="0x10" }
+#  {N="5", I="6", MASK="0x20" }
+#  {N="6", I="7", MASK="0x40" }
+#  {N="7", I="8", MASK="0x80" }
 }

@@ -17,7 +17,7 @@ record(event, "$(P)EVR:OUT:$(N):onConn2_") {
 
 # calculate scale from ns to delay ticks
 record(calcout, "$(P)EVR:OUT:$(N):scl_") {
-    field(INPA, "$(P)Ref:T MS") # ref clock period (s)
+    field(INPA, "$(P)Ref:T CP MS") # ref clock period (s)
     field(INPB, "$(P)EVR:Mlt MS") # EVR output resolution multiplier (aka. SERDES_FACTOR)
     field(INPC, "1e-9") # ns
     field(CALC, "A/C/B")
