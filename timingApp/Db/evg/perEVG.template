@@ -34,15 +34,6 @@ record(calc, "$(P)EVG:SEQ:tModeR_") {
     field(CALC, "(A>>24)&0xff")
 }
 
-record(bi, "$(P)EVG:PPS:Vld") {
-    field(DTYP, "FEED Register Read")
-    field(INP, "@name=$(NAME) reg=EVG:status")
-    field(SCAN, "I/O Intr")
-    field(MASK, "0x1")
-    field(ZNAM, "No PPS")
-    field(ZSV , "MAJOR")
-    field(ONAM, "Valid")
-}
 record(bi, "$(P)EVG:TS:Vld") {
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVG:status")
@@ -262,4 +253,33 @@ record(longout, "$(P)Nxt:Sec") {
     field(OMSL, "closed_loop")
     field(DTYP, "FEED Register Write")
     field(OUT , "@name=$(NAME) reg=EVG:setSeconds")
+}
+
+# PPS period sanity check
+record(longin, "$(P)Lst:Tck_") {
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=EVG:PPS:mon")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)EVG:PPS:Err")
+}
+record(calc, "$(P)EVG:PPS:Err") {
+    field(INPA, "$(P)Lst:Tck_ NPP MSS") # ticks / "PPS period" ~= Hz
+    field(INPB, "$(P)Ref:Freq NPP MS") # MHz
+    field(INPC, "1e6") # Hz / MHz
+    # D - ref freq in HZ
+    field(CALC, "D:=B*C;(A-D)/D*100") # percentage error (signed)
+    field(PREC, "6")
+    field(EGU , "%")
+    field(LOW , "-0.0001")
+    field(HIGH, "0.0001")
+    field(LSV , "MAJOR")
+    field(HSV , "MAJOR")
+    field(FLNK, "$(P)EVG:PPS:Vld")
+}
+record(bi, "$(P)EVG:PPS:Vld") {
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(P)EVG:PPS:Err.SEVR")
+    field(ZNAM, "Valid")
+    field(ONAM, "No PPS")
+    field(OSV , "MAJOR")
 }
