@@ -923,7 +923,7 @@ Link</text>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_33</name>
-      <text>PPS Valid</text>
+      <text>PPS Input</text>
       <x>236</x>
       <y>25</y>
     </widget>
@@ -993,7 +993,7 @@ Link</text>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_49</name>
-      <text>PPS Loop Err</text>
+      <text>VCXO Loop Err</text>
       <y>75</y>
     </widget>
     <widget type="textupdate" version="2.0.0">
@@ -1006,7 +1006,7 @@ Link</text>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_50</name>
-      <text>PPS Loop</text>
+      <text>VCXO Lock</text>
       <y>25</y>
     </widget>
     <widget type="led" version="2.0.0">
@@ -1041,7 +1041,7 @@ Link</text>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_51</name>
-      <text>PPS Ctrl</text>
+      <text>VCXO Ctrl</text>
       <y>50</y>
     </widget>
     <widget type="led" version="2.0.0">
@@ -1427,12 +1427,12 @@ Link</text>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_24</name>
-      <text>PPS Valid</text>
+      <text>Clock vs PPS</text>
       <y>58</y>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_25</name>
-      <text>NTP Time Vld</text>
+      <text>PPS Time Vld</text>
       <y>83</y>
     </widget>
     <widget type="label" version="2.0.0">

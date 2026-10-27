@@ -279,7 +279,7 @@ record(calc, "$(P)EVG:PPS:Err") {
 record(bi, "$(P)EVG:PPS:Vld") {
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(P)EVG:PPS:Err.SEVR")
-    field(ZNAM, "Valid")
-    field(ONAM, "No PPS")
+    field(ZNAM, "OK")
+    field(ONAM, "Off Freq")
     field(OSV , "MAJOR")
 }
