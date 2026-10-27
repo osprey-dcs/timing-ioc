@@ -8,6 +8,8 @@
  * https://github.com/BerkeleyLab/Bedrock/blob/master/badger/spi_flash_engine.v
  */
 
+#define USE_TYPED_DSET
+
 #include <osiSock.h>
 
 #include <stdlib.h>
@@ -18,6 +20,7 @@
 #include <cantProceed.h>
 #include <epicsStdio.h>
 #include <dbDefs.h>
+#include <dbCommon.h>
 #include <longoutRecord.h>
 #include <errlog.h>
 
@@ -115,8 +118,9 @@ typedef struct {
 } goldenBootPvt;
 
 static
-long goldenBootInit(longoutRecord *prec)
+long goldenBootInit(dbCommon *pcom)
 {
+    longoutRecord *prec = (longoutRecord*)pcom;
     goldenBootPvt *pvt;
     if(prec->out.type!=INST_IO)
         return -2;
