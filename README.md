@@ -58,3 +58,8 @@ EVT_IPADDR=1.2.3.4 ./st.cmd
 
 Virtual control panel display files for [Phoebus](http://phoebus.org/)
 are provided under `opi/`.
+
+## Details
+
+- [Boot control](documentation/boot.md)
+- [Timing system reference](documentation/README.md)

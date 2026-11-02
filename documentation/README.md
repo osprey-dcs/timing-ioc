@@ -18,8 +18,8 @@ All configurations have eight (8x) fiber transceivers.
 ## Event Link model
 
 Timing nodes are connected by unidirectional or bidirectional fiber optic links in a tree topology.
-One to many way from the root node,
-and many to one towards the root node.
+The one-to-many direction away from the root/generator node,
+and optional a many-to-one direction towards the root node.
 These links send a digital clock and data stream independently in either direction.
 Each receiver recovers and uses the transmitter clock for globally synchronous operation.
 
@@ -87,7 +87,7 @@ The Receiver input (1) uses the decoded event stream as described in the Receive
 ### Concentrator
 
 The Concentrator connects input 2 with outputs 3 through 8 (fanout direction).
-Also the reverse, connecting inputs 3 through 8 with output 2 (concentrator direction).
+Also, the reverse, connecting inputs 3 through 8 with output 2 (concentrator direction).
 
 When in the EVG role, input/output 2 is not used, and instead the internal Generator logic is connected.
 
@@ -101,7 +101,7 @@ Concentration of data buffers is not currently supported.
 
 ## Reference clock
 
-The reference clock for an EVG node may be selected from one of the following sources:
+The reference clock for a root/Generator (EVG) node may be selected from one of the following sources:
 
 - Internal 125Mhz
   - PPS disciplined
@@ -109,12 +109,42 @@ The reference clock for an EVG node may be selected from one of the following so
 - External (80Mhz -> 125MHz)
   - EVG-16-4 configuration only
 
+Non-root / Receiver nodes will use the Internal synthesizer.
+
+![Ref. clock selection](images/evr-ref-clk.png)
+
+Records:
+
+- `$(P)Ref:Freq` Readback of effective reference frequency.  In megahertz.
+- `$(P)MARBLE:MGTCLK0` Reference clock selection
+  - `Int. 125MHz`
+  - `Int. Synth.`
+  - `CLKIN1`
+  - `CLKIN2`
+- `$(P)Ref:Req` Frequency selection.
+  - Ignored for `Int. 125MHz` source.
+  - Setting for `Int. Synth`.
+  - Information about external source when `CLKIN1` or `CLKIN2` selected.
+
 ## Generator function
 
 The Event Generator function logically acts on the state of local inputs,
 and produces an event stream.
 Actions may be taken based on the local electrical inputs,
 and divisions of the reference clock.
+
+In this example, fibers 1 (Receiver input) and 3 (fanout output) are active.
+Use the "Generator Config" button to access the EVG screen.
+The device mode shows "EVG/EVR", with the generator function active.
+
+![EVR top](images/evr-top.png)
+
+![EVG MGT](images/evg-mgt.png)
+
+Records:
+
+- `$(P)FPGA:Mode:S` Role/Mode setting
+- `$(P)FPGA:Mode` Role/Mode readback
 
 When multiple actions occur during the same reference clock tick,
 a priority queuing process adjudicates, delaying events from lower priority sources.
@@ -139,25 +169,51 @@ Software event
 
 An event code number sent by software is queued when written.
 
+![Software Event](images/evg-soft-event.png)
+
+Records:
+
+- `$(P)EVG:swEvent` Event code number.  Process with a number in the range 1 -> 255.
+
 ### Electrical trigger input edge event source
 
 Each electrical input may be assigned two event codes: rising and falling.
 These events will be queued when an input state change is detected.
 Inputs are sampled using the reference clock.
 
+![EVG Input](images/evg-input.png)
+
+Records:
+
+- `$(P)EVG:TRIG:$(I):rise` Event code to queue on rising edge
+- `$(P)EVG:TRIG:$(I):fall` Event code to queue on falling edge
+
 ### Clock Dividers
 
-A bank of 32-bit integer (counting) dividers is provided to produce lower frequency recurring actions.
+A bank of 32-bit integer (counting) dividers is provided to produce lower frequency recurring actions
+via the associated Single Event Source, or the Sequencer Table Source.
 For example, with a 125 MHz reference, a divider value of `125000000` will produce a 1 Hz rate.
 
 The Reset Phase control will synchronously zero all dividers,
 allowing a known phase relationship to be established.
 
+For example, with a reference clock frequency of 125 MHz, a divider of 125000000 yields a 1Hz rate.
+
+![Divider OPI](images/evg-divider.png)
+
+Records:
+
+- `$(P)EVG:TMR:$(I):divisor` Integer divisor.  Number of reference clock ticks.
+
 ### Divider Single Event Source
 
 The configured event number is queued each time the divider action is taken.
 
+- `$(P)EVG:TMR:$(I):event` Event number to queue when the associated counting divider wraps around.
+
 ### Sequencer Table Event Source
+
+![Sequencer entry point](images/evg-table-main.png)
 
 A Sequencer source accepts a table with two columns: event code number, and delay.
 Sequencer operation is designed to follow the model of some arbitrary waveform generators.
@@ -203,6 +259,11 @@ event 10 will be queued.
 Then two ticks later, event 20 will be queued.
 Then 29 ticks later, 32 ticks after the trigger, event 30 will be queued.
 
+In the following example a table with three events (101, 102, 103) is armed for repeated
+triggering on the rising edge of the second trigger input.
+
+![Sequencer example](images/evg-sequencer.png)
+
 ## Receiver function
 
 The Event Receiver function logically acts an event stream,
@@ -217,6 +278,15 @@ Each local electrical output may be connected/driven from one source:
 - Pulse
   - Drive from the associated delay generator
 
+![EVR trigger output](images/evr-output.png)
+
+Records:
+
+- `$(P)EVR:OUT:$(N):source` Output source
+  - `Static 0`  Output drive DC low
+  - `Static 1`  Output drive DC high
+  - `Pulse`  Output from delay generator
+
 ### Delay generator
 
 Each delay generator produces a binary pattern when triggered.
@@ -227,6 +297,12 @@ then low when returning to the idle state.
 A delay generator may be triggered on reception of an event code.
 Either a single code, or one of several.
 By default, control PVs are provided to select up to two events per generator.
+
+Records:
+
+- `$(P)EVR:OUT:$(N):delay` Time from trigger event RX to rising edge in nanoseconds.
+- `$(P)EVR:OUT:$(N):width` Time from rising to falling edge in nanoseconds.
+- `$(P)EVR:OUT:$(N):evt1` A triggering event code.
 
 ### Event Counters
 
@@ -241,6 +317,16 @@ This FIFO tracks event code and reception time.
 During readout, the associated counter PV will be process one for each FIFO entry
 with a matching event code.
 Update to this PV will carry a hardware timestamp.
+
+This example shows events 125 and 100 being counted.
+
+![Event RX counters](images/evr-log.png)
+
+Records:
+
+- `$(P)EVR:LOG:E.SCAN` Log readout period.
+- `$(P)EVR:LOG:evt$(N)` Code setting for logger `N`.
+- `$(P)EVR:LOG:cnt$(N)` Reception count for logger `N`.  Has hardware timestamp.
 
 ## Technical Reference
 
@@ -260,10 +346,10 @@ using the incoming event stream for any other action.
 
 Absolute time stamp distribution uses special events 112, 113, and 125.
 A 32-bit seconds shift register is maintained, as well as a latch seconds register,
-and a sub-second counter driven by a local clock (typically the reference clock).
-Reception of 112 shifts a zero into the least significant bit of the seconds shift register.
-Reception of 113 shifts a one.
-Reception of 125 latches the second shift register into the seconds latch register,
+and a 32-bit sub-second counter driven by a local clock (typically the reference clock).
+Reception of event code 112 shifts a zero into the least significant bit of the seconds shift register.
+Reception of code 113 shifts a one.
+Reception of code 125 latches the second shift register into the seconds latch register,
 and resets the sub-second counter.
 
 Typically, event 125 will be sent by an electrical input connected to a GPS receiver pulse-per-second signal.
