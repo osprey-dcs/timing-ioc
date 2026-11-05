@@ -399,3 +399,25 @@ record(calc, "$(P)LP:RT") {
     field(PREC, "0")
 }
 
+
+record(longin, "$(P)TO:sts:1") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:sts offset=0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)TO:sts:2")
+}
+record(longin, "$(P)TO:sts:2") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:sts offset=1 wait=false")
+}
+
+record(longin, "$(P)TO:id:1") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:ident offset=0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)TO:id:2")
+}
+record(longin, "$(P)TO:id:2") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:ident offset=1 wait=false")
+}
