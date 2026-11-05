@@ -381,3 +381,30 @@ record(bi, "$(P)MGT:Q2:LST") {
     field(ONAM, "Lost")
     field(OSV , "MAJOR")
 }
+
+record(longin, "$(P)TO:sts:1") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:sts offset=0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)TO:sts:2")
+}
+record(longin, "$(P)TO:sts:2") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:sts offset=1 wait=false")
+}
+
+record(longin, "$(P)TO:lsts:1") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:latch:sts offset=0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)TO:lsts:2")
+}
+record(longin, "$(P)TO:lsts:2") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:latch:sts offset=1 wait=false")
+}
+record(longin, "$(P)TO:stsx") {
+    field(DTYP, "FEED Register Read")
+    field(INP,  "@name=$(NAME) reg=TRGOUT:sts2 offset=0")
+    field(SCAN, "1 second")
+}

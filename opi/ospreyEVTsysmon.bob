@@ -1591,4 +1591,68 @@ Link</text>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
   </widget>
+  <widget type="group" version="3.0.0">
+    <name>TRGOUT</name>
+    <x>737</x>
+    <y>252</y>
+    <width>270</width>
+    <height>135</height>
+    <style>1</style>
+    <foreground_color>
+      <color name="Header_ForeGround" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <transparent>true</transparent>
+    <widget type="label" version="2.0.0">
+      <name>Label_17</name>
+      <text>fastlock/hold STS</text>
+      <x>7</x>
+      <y>55</y>
+      <width>150</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_62</name>
+      <pv_name>$(P)TO:stsx</pv_name>
+      <x>159</x>
+      <y>55</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_68</name>
+      <pv_name>$(P)TO:sts:1</pv_name>
+      <x>159</x>
+      <y>5</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_69</name>
+      <pv_name>$(P)TO:lsts:1</pv_name>
+      <x>159</x>
+      <y>30</y>
+      <format>4</format>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_59</name>
+      <text>STS 1</text>
+      <x>7</x>
+      <y>5</y>
+      <width>148</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_60</name>
+      <text>Latched STS 1</text>
+      <x>7</x>
+      <y>30</y>
+      <width>148</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+  </widget>
 </display>
