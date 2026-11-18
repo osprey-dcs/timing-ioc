@@ -381,3 +381,21 @@ record(bi, "$(P)MGT:Q2:LST") {
     field(ONAM, "Lost")
     field(OSV , "MAJOR")
 }
+record(longin, "$(P)LP:CNT_") {
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=FPGA:loops")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)LP:RT")
+}
+record(calc, "$(P)LP:RT") {
+    field(DESC, "firmware loop rate")
+    field(INPA, "$(P)LP:CNT_ NPP MSS")
+    field(INPB, "0x7fffffff")
+    # C - masked A
+    # D - previous C
+    # E - difference
+    field(CALC, "C:=A&B;E:=C-D;D:=C;E")
+    field(EGU , "Hz")
+    field(PREC, "0")
+}
+
