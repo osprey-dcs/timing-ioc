@@ -16,17 +16,21 @@ file "evgApp.db" {
 
 ## EVR ##
 
+# EVT
 # Output 1 -> PMOD1, OUT1 -> Bit0
-# Output 2 -> PMOD1, OUT2 -> Bit1
-# Output 3 -> PMOD1, OUT3 -> Bit2
+# ...
 # Output 4 -> PMOD1, OUT4 -> Bit3
 # Output 5 -> PMOD2, OUT1 -> Bit4
-# Output 6 -> PMOD2, OUT2 -> Bit5
-# Output 7 -> PMOD2, OUT3 -> Bit6
+# ...
 # Output 8 -> PMOD2, OUT4 -> Bit7
 
+# EVR
+# Output 1  -> FMC2,  OUT1 -> Bit0
+# ...
+# Output 16 -> FMC2, OUT16 -> Bit23
+
 file "evr/perEVR.template" {
-  {NOUT="8"}
+  {NOUT="16"}
 }
 # NOUT count must match the following
 file "evr/perEVRoutputDriver.template" {
@@ -38,6 +42,15 @@ file "evr/perEVRoutputDriver.template" {
   { N="6", TRG="5", DESC="OUT6" }
   { N="7", TRG="6", DESC="OUT7" }
   { N="8", TRG="7", DESC="OUT8" }
+
+  { N="9",  TRG="8",  DESC="OUT9" }
+  { N="10", TRG="9",  DESC="OUT10" }
+  { N="11", TRG="10", DESC="OUT11" }
+  { N="12", TRG="11", DESC="OUT12" }
+  { N="13", TRG="12", DESC="OUT13" }
+  { N="14", TRG="13", DESC="OUT14" }
+  { N="15", TRG="14", DESC="OUT15" }
+  { N="16", TRG="15", DESC="OUT16" }
 }
 file "evr/perEVRevent.template" {
   { N="1" }
@@ -49,14 +62,18 @@ file "evr/perEVRevent.template" {
 
 ## EVG ##
 
+# EVT
 # Input 1 -> PMOD1, IN1 -> Bit0
-# Input 2 -> PMOD1, IN2 -> Bit1
-# Input 3 -> PMOD1, IN3 -> Bit2
+# ...
 # Input 4 -> PMOD1, IN4 -> Bit3
 # Input 5 -> PMOD2, IN1 -> Bit4
-# Input 6 -> PMOD2, IN2 -> Bit5
-# Input 7 -> PMOD2, IN3 -> Bit6
+# ...
 # Input 8 -> PMOD2, IN4 -> Bit7
+
+# EVG
+# Input 1  -> FMC1,  IN1 -> Bit0
+# ...
+# Input 16 -> FMC1, IN16 -> Bit0
 
 # NTMR must match number of perEVGtimer instances
 # NBANK must match number of perEVGseqBank instances
