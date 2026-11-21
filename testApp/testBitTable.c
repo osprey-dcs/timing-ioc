@@ -54,12 +54,14 @@ MAIN(testBitTable)
     testdbPutFieldOk("TST:Action0_0-SP", DBF_LONG, 100);
     testdbPutFieldOk("TST:Action0_1-SP", DBF_LONG, 255);
     testdbPutFieldOk("TST:Action3_0-SP", DBF_LONG, 100);
+    testdbPutFieldOk("TST:ActionN2-SP", DBF_LONG, 101);
     testSyncCallback();
     testOk1(!iocshCmd("dbior \"\" 1"));
     {
         epicsUInt32 expected[256];
         memset(expected, 0, sizeof(expected));
         expected[100] = 0x9;
+        expected[101] = 0x4;
         expected[255] = 0x1;
 
         testdbGetArrFieldEqual("TST:Tbl-I", DBF_ULONG, 257, NELEMENTS(expected), &expected);
@@ -77,6 +79,7 @@ MAIN(testBitTable)
         epicsUInt32 expected[256];
         memset(expected, 0, sizeof(expected));
         expected[100] = 0x9;
+        expected[101] = 0x4;
         // 255 mapping cleared on error
 
         testdbGetArrFieldEqual("TST:Tbl-I", DBF_ULONG, NELEMENTS(expected), NELEMENTS(expected), &expected);
@@ -91,6 +94,7 @@ MAIN(testBitTable)
         epicsUInt32 expected[256];
         memset(expected, 0, sizeof(expected));
         expected[100] = 0x8009;
+        expected[101] = 0x4000;
         expected[255] = 0x1;
 
         testdbGetArrFieldEqual("TST:Tbl-I", DBF_ULONG, 257, NELEMENTS(expected), &expected);
@@ -105,6 +109,7 @@ MAIN(testBitTable)
         memset(expected, 0, sizeof(expected));
         expected[2*100+0] = 0x0080; // high word first
         expected[2*100+1] = 0x8009;
+        expected[2*101+0] = 1u<<(40-2-32);
         expected[2*255+1] = 0x1;
 
         testdbGetArrFieldEqual("TST:Tbl-I", DBF_ULONG, NELEMENTS(expected), NELEMENTS(expected), &expected);

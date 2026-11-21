@@ -35,6 +35,12 @@ record(longout, "$(P)Action39_0-SP") {
     field(VAL , "0")
 }
 
+record(longout, "$(P)ActionN2-SP") {
+    field(DTYP, "Bit Table Update")
+    field(OUT , "@table=$(P) action=-2")
+    field(VAL , "0")
+}
+
 record(aai, "$(P)Tbl-I") {
     field(DTYP, "Bit Table Read")
     field(INP , "@table=$(P)")

@@ -64,7 +64,7 @@ struct BitTable {
     unsigned wordsPerEvent=0u; // # of 32-bit words used to store bits
 
     // event, action, active (always true)
-    std::map<uint8_t, std::map<uint32_t, bool>> table;
+    std::map<uint8_t, std::map<int32_t, bool>> table;
 
     bool changing = false;
 
@@ -131,7 +131,7 @@ drvet drvBitTable = {
 struct BitDev {
     dbCommon* const prec;
     BitTable* const table;
-    const int action;
+    const int32_t action;
 
     uint8_t prevEvent = 0; // must lock BitTable::lock for read and write
 
@@ -148,7 +148,7 @@ long bitTableInitRecord(dbCommon *prec) noexcept {
 
 
         std::string tableName;
-        int action = -1;
+        int action = 0;
 
         char *saved = nullptr;
         for(char* word = epicsStrtok_r((char*)lstr.data(), " ", &saved)
@@ -249,11 +249,6 @@ long bitTableUpdate(longoutRecord *prec) noexcept
         }
         uint8_t newEvent = prec->val;
 
-        if(pvt->action<0) {
-            recGblSetSevrMsg(prec, WRITE_ALARM, INVALID_ALARM, "No Action");
-            return -1;
-        }
-
         bool change;
         {
             Guard G(pvt->table->lock);
@@ -342,13 +337,18 @@ long bitTableRead(aaiRecord *prec) noexcept
                 if(!apair.second) {
                     continue;
 
-                } else if(apair.first >= bitsPerEvent) {
+                }
+                auto action = apair.first;
+                if(action<0)
+                    action += bitsPerEvent;
+
+                if(action<0 || unsigned(action) >= bitsPerEvent) {
                     recGblSetSevrMsg(prec, READ_ALARM, MAJOR_ALARM, "OoR %u", unsigned(apair.first));
                     continue;
                 }
 
-                auto idx = apair.first / 32u;
-                auto bit = apair.first % 32u;
+                auto idx = action / 32u;
+                auto bit = action % 32u;
                 auto mask = 1u << bit;
 
                 idx = wordsPerEvent - 1u - idx; // high word first

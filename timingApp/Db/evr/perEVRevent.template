@@ -1,7 +1,7 @@
 
 record(longout, "$(P)EVR:LOG:evt$(N)") {
     field(DTYP, "Bit Table Update")
-    field(OUT , "@table=$(NAME) action=17")
+    field(OUT , "@table=$(NAME) action=-1")
     field(DRVH, "255")
     field(VAL , "0")
     field(PINI, "RUNNING")
