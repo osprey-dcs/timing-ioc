@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>EVT $(P)</name>
-  <width>900</width>
-  <height>730</height>
+  <width>966</width>
+  <height>870</height>
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
@@ -249,8 +249,8 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>FPGA Boot Control</name>
-    <x>123</x>
-    <y>483</y>
+    <x>610</x>
+    <y>10</y>
     <width>317</width>
     <height>137</height>
     <style>1</style>
@@ -549,101 +549,13 @@
     <x>123</x>
     <y>165</y>
     <width>472</width>
-    <height>300</height>
+    <height>705</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
       </color>
     </foreground_color>
     <transparent>true</transparent>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_8</name>
-      <macros>
-        <N>1</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>40</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_9</name>
-      <macros>
-        <N>2</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>70</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_10</name>
-      <macros>
-        <N>4</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>130</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_11</name>
-      <macros>
-        <N>3</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>100</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_12</name>
-      <macros>
-        <N>5</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>160</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_13</name>
-      <macros>
-        <N>6</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>190</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_14</name>
-      <macros>
-        <N>8</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>250</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
-    <widget type="embedded" version="2.0.0">
-      <name>Embedded Display_15</name>
-      <macros>
-        <N>7</N>
-      </macros>
-      <file>_ospreyEVRdelayout.bob</file>
-      <y>220</y>
-      <width>465</width>
-      <height>30</height>
-      <resize>2</resize>
-    </widget>
     <widget type="label" version="2.0.0">
       <name>Label_14</name>
       <text>Connect</text>
@@ -678,13 +590,103 @@
       <x>210</x>
       <width>80</width>
     </widget>
+    <widget type="template" version="2.0.0">
+      <name>Template/Instance_1</name>
+      <file>_ospreyEVRdelayout.bob</file>
+      <instances>
+        <instance>
+          <macros>
+            <N>1</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>2</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>3</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>4</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>5</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>6</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>7</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>8</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>9</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>10</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>11</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>12</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>13</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>14</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>15</N>
+          </macros>
+        </instance>
+        <instance>
+          <macros>
+            <N>16</N>
+          </macros>
+        </instance>
+      </instances>
+      <x>2</x>
+      <y>42</y>
+      <width>465</width>
+      <height>630</height>
+    </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Reference Clock</name>
-    <x>550</x>
-    <y>10</y>
+    <x>737</x>
+    <y>165</y>
     <width>229</width>
-    <height>151</height>
+    <height>150</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
@@ -708,14 +710,14 @@
     <widget type="label" version="2.0.0">
       <name>Label_36</name>
       <text>FMC P1 Option</text>
-      <y>83</y>
+      <y>105</y>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_13</name>
       <pv_name>$(P)FMC:1</pv_name>
       <x>110</x>
-      <y>83</y>
+      <y>105</y>
       <width>90</width>
     </widget>
     <widget type="label" version="2.0.0">
@@ -732,19 +734,6 @@
       <width>90</width>
     </widget>
     <widget type="textupdate" version="2.0.0">
-      <name>Text Update_14</name>
-      <pv_name>$(P)FMC:2</pv_name>
-      <x>110</x>
-      <y>108</y>
-      <width>90</width>
-    </widget>
-    <widget type="label" version="2.0.0">
-      <name>Label_38</name>
-      <text>FMC P2 Option</text>
-      <y>108</y>
-      <horizontal_alignment>2</horizontal_alignment>
-    </widget>
-    <widget type="textupdate" version="2.0.0">
       <name>Text Update_15</name>
       <pv_name>$(P)Ref:Freq</pv_name>
       <x>110</x>
@@ -755,6 +744,20 @@
       <name>Label_39</name>
       <text>Ext. Ref. Req.</text>
       <y>55</y>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Entry_7</name>
+      <pv_name>$(P)Ref:Div</pv_name>
+      <x>155</x>
+      <y>80</y>
+      <width>45</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_43</name>
+      <text>Divider</text>
+      <y>80</y>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
   </widget>
