@@ -18,8 +18,10 @@ record(longin, "$(P)MARBLE:onConn_") {
 record(fanout, "$(P)MARBLE:onC_") {
     field(LNK0, "$(P)FPGA:Mode:S")
     field(LNK1, "$(P)FPGA:IO_")
-    field(LNK2, "$(P)MARBLE:MGTCLK0")
-    field(LNK3, "$(P)MARBLE:570:REF")
+    # push divider config before (maybe) switching to external clock
+    field(LNK2, "$(P)Ref:Div")
+    field(LNK3, "$(P)MARBLE:MGTCLK0")
+    field(LNK4, "$(P)MARBLE:570:REF")
 }
 
 # used with source other than internal 125MHz
@@ -28,19 +30,38 @@ record(ao, "$(P)Ref:Req") {
     field(PINI, "YES")
     field(VAL , "125")
     field(EGU , "MHz")
-    field(DRVH, "125")
-    field(HOPR, "125")
+    field(DRVH, "1300")
+    field(HOPR, "1300")
     field(LOPR, "80")
     field(DRVL, "80")
     field(PREC, "2")
     field(FLNK, "$(P)Ref:Freq_")
     info(autosaveFields_pass0, "VAL")
 }
+record(longout, "$(P)Ref:Div") {
+    field(DESC, "Divider for ext ref")
+    field(VAL , "1")
+    field(DRVH, "64")
+    field(HOPR, "64")
+    field(LOPR, "1")
+    field(DRVL, "1")
+    field(FLNK, "$(P)Ref:Div_")
+    info(autosaveFields_pass0, "VAL")
+}
+record(fanout, "$(P)Ref:Div_") {
+    field(LNK1, "$(P)CLK:DIV:1")
+    field(LNK2, "$(P)CLK:DIV:2")
+    field(LNK3, "$(P)Ref:Freq_")
+}
 record(calcout, "$(P)Ref:Freq_") {
     field(INPA, "$(P)MARBLE:MGTCLK0 NPP MS")
     field(INPB, "$(P)Ref:Req NPP MS")
     field(INPC, "125")
-    field(CALC, "A==0?C:B")
+    field(INPD, "$(P)Ref:Div NPP MS")
+    # if source is internal crystal (0), then always 125MHz
+    # if an external (1,2), the use divider
+    # otherwise (3) assume si570 synth
+    field(CALC, "A==0?C:B/((A==1||A==2)?D:1)")
     field(OUT , "$(P)Ref:Freq PP MS")
 }
 record(ai, "$(P)Ref:Freq") {
@@ -225,6 +246,29 @@ record(bi, "$(P)FMC:2") {
     field(MASK, "0x4")
     field(ZNAM, "Empty")
     field(ONAM, "Trg Out")
+}
+
+record(longout, "$(P)CLK:DIV:1") {
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=CLKIN:div1")
+    field(VAL , "1")
+    field(DRVH, "64")
+    field(HOPR, "64")
+    field(LOPR, "1")
+    field(DRVL, "1")
+    field(DOL , "$(P)Ref:Div NPP MS")
+    field(OMSL, "closed_loop")
+}
+record(longout, "$(P)CLK:DIV:2") {
+    field(DTYP, "FEED Register Write")
+    field(OUT , "@name=$(NAME) reg=CLKIN:div2")
+    field(VAL , "1")
+    field(DRVH, "64")
+    field(HOPR, "64")
+    field(LOPR, "1")
+    field(DRVL, "1")
+    field(DOL , "$(P)Ref:Div NPP MS")
+    field(OMSL, "closed_loop")
 }
 
 record(bi, "$(P)MGT:RST") {
