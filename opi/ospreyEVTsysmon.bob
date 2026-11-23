@@ -34,10 +34,10 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Build Dates</name>
-    <x>5</x>
-    <y>38</y>
-    <width>227</width>
-    <height>65</height>
+    <x>893</x>
+    <y>5</y>
+    <width>409</width>
+    <height>82</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
@@ -92,6 +92,32 @@
         <vertical_alignment>1</vertical_alignment>
         <wrap_words>false</wrap_words>
       </widget>
+    </widget>
+    <widget type="group" version="3.0.0">
+      <name>BuildHash</name>
+      <y>42</y>
+      <width>225</width>
+      <height>20</height>
+      <style>3</style>
+      <transparent>true</transparent>
+      <widget type="label" version="2.0.0">
+        <name>Label_17</name>
+        <text>Git Rev</text>
+        <width>70</width>
+        <horizontal_alignment>2</horizontal_alignment>
+        <vertical_alignment>1</vertical_alignment>
+      </widget>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_70</name>
+      <pv_name>$(P)APP:FW_CODEHASH</pv_name>
+      <x>75</x>
+      <y>42</y>
+      <width>333</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
     </widget>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -785,6 +811,18 @@ Link</text>
       <y>241</y>
       <width>66</width>
       <height>20</height>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_71</name>
+      <pv_name>$(P)MGT:nRst</pv_name>
+      <x>155</x>
+      <y>266</y>
+      <width>60</width>
+      <precision>0</precision>
+      <show_units>false</show_units>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">

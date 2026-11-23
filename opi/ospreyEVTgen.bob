@@ -226,8 +226,19 @@ Event#</text>
       <pv_name>$(P)EVG:TMR:start</pv_name>
       <x>10</x>
       <y>25</y>
-      <width>130</width>
+      <width>90</width>
       <height>20</height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_25</name>
+      <text>Ref. Clk
+Division</text>
+      <x>143</x>
+      <y>5</y>
+      <width>55</width>
+      <height>45</height>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>2</vertical_alignment>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
@@ -397,12 +408,6 @@ Event#</text>
       <height>20</height>
       <tooltip>$(actions)</tooltip>
     </widget>
-    <widget type="label" version="2.0.0">
-      <name>Label_26</name>
-      <text>FW Config</text>
-      <x>210</x>
-      <y>25</y>
-    </widget>
     <widget type="led" version="2.0.0">
       <name>LED</name>
       <pv_name>$(P)EVG:PPS:Vld</pv_name>
@@ -445,27 +450,6 @@ Event#</text>
       </off_color>
       <square>true</square>
       <labels_from_pv>true</labels_from_pv>
-    </widget>
-    <widget type="textupdate" version="2.0.0">
-      <name>Text Update_9</name>
-      <pv_name>$(P)EVG:nIn</pv_name>
-      <x>290</x>
-      <y>25</y>
-      <width>40</width>
-    </widget>
-    <widget type="textupdate" version="2.0.0">
-      <name>Text Update_11</name>
-      <pv_name>$(P)EVG:nTmr</pv_name>
-      <x>340</x>
-      <y>25</y>
-      <width>40</width>
-    </widget>
-    <widget type="textupdate" version="2.0.0">
-      <name>Text Update_12</name>
-      <pv_name>$(P)EVG:nBank</pv_name>
-      <x>390</x>
-      <y>25</y>
-      <width>40</width>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
