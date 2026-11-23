@@ -1,12 +1,7 @@
 # initialize :$(N)array registers Con connect PHAS=-1
-record(longin, "$(P)M:$(N)_") {
-    field(DTYP, "FEED On Connect")
-    field(INP , "@name=$(NAME)")
-    field(SCAN, "I/O Intr")
-    field(PHAS, "-1") # prepare for Flush in perFPGA.template
-    field(FLNK, "$(P)M:$(N)F_")
-}
 record(fanout, "$(P)M:$(N)F_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):startConn")
     field(LNK5, "$(P)MPS:chkInputs:$(N)")
     field(LNK6, "$(P)MPS:goodState:$(N)")
 }

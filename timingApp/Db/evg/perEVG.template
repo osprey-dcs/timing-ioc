@@ -66,20 +66,14 @@ record(longin, "$(P)EVG:TRIG:cnt_") {
     field(SCAN, ".5 second")
 }
 
-# initial
-record(longin, "$(P)EVG:onConnect_") {
-    field(DESC, "Process records on FPGA connection")
-    field(DTYP, "FEED On Connect")
-    field(INP, "@name=$(NAME)")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)EVG:init:1_")
-}
 # phase 1: probe, interrupt/stop previous
 # sync
 # phase 2: write known configuration
 # sync
 # phase 3: (re)start
 record(fanout, "$(P)EVG:init:1_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):startConn")
     # probe static configuration
     field(LNK1, "$(P)EVG:nIn")
     # interrupt/shutdown

@@ -9,13 +9,21 @@ record(longout, "$(P)FPGA:reboot_") {
     field(VAL , "100")
 }
 
+# entry point for re-connect
 record(longin, "$(P)MARBLE:onConn_") {
     field(DTYP, "FEED On Connect")
     field(INP, "@name=$(NAME)")
     field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)MARBLE:onC_")
+    field(FLNK, "$(P)MARBLE:onConn1_")
 }
+record(event, "$(P)MARBLE:onConn1_") {
+    field(VAL, "$(NAME):startConn")
+    # trigger On Connect processing for various components
+}
+
 record(fanout, "$(P)MARBLE:onC_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):startConn")
     field(LNK0, "$(P)FPGA:Mode:S")
     field(LNK1, "$(P)FPGA:IO_")
     # push divider config before (maybe) switching to external clock
@@ -281,6 +289,35 @@ record(longout, "$(P)MGT:RST_") {
     field(DTYP, "FEED Register Write")
     field(OUT , "@name=$(NAME) reg=MGT:reset")
     field(VAL , "1")
+}
+
+record(longin, "$(P)MGT:nRst") {
+    field(DESC, "MGT Reset Counter")
+    field(DTYP, "FEED Register Read")
+    field(INP , "@name=$(NAME) reg=MGT:numReset")
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)MGT:nRst1_")
+}
+# HACK!!!!
+# Until firmware properly handles AXI writes while MGT clocks absent...
+# re-trigger On Connect sequence after recovery.
+# use numReset counter.
+# Avoids a reset loop because re-writing the same value to MARBLE:mgtRefClk0 is a no-op
+record(calcout, "$(P)MGT:nRst1_") {
+    field(INPA, "$(P)MGT:nRst NPP")
+    field(INPB, "$(P)MGT:nRst.SEVR NPP")
+    # C - prev count
+    # D - prev SEVR
+    # E - scratch
+    # -- force resync when previously INVALID (connect/IOC start)
+    #    or when numReset counter changed.
+    field(CALC, "E:=B==0&&(D!=0||A!=C);C:=A;D:=B;E")
+    field(OOPT, "When Non-zero")
+    field(OUT , "$(P)MGT:nRst2_.PROC PP")
+}
+record(event, "$(P)MGT:nRst2_") {
+    field(VAL , "$(NAME):startConn")
+    field(TPRO, "1")
 }
 
 # Marble:VCXO:PPS

@@ -11,13 +11,9 @@
 # 4. Write enable/arm
 #   event action mapping table
 # 5. live!
-record(longin, "$(P)EVR:onConn_") {
-    field(DTYP, "FEED On Connect")
-    field(INP, "@name=$(NAME)")
-    field(SCAN, "I/O Intr")
-    field(FLNK, "$(P)EVR:status_")
-}
 record(longin, "$(P)EVR:status_") {
+    field(SCAN, "Event")
+    field(EVNT, "$(NAME):startConn")
     field(DESC, "EVR status register")
     field(DTYP, "FEED Register Read")
     field(INP, "@name=$(NAME) reg=EVR:status") # async
