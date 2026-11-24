@@ -338,11 +338,29 @@ Records:
   - first character only, frame alignment marker
 
 A receiver establishes the bit phase of incoming event stream by waiting for a successful
-reception of a K28.5 character.
-A transmitter should send K28.5 occasionally as the first byte in place of a zero event.
+reception of a K28.5 character (K bit and 0xBC).
+A transmitter should prefer to send a K28.5 on as the first character in place of a zero event
+of every fourth (4th) frame.
 
-Receivers should wait until some number of K28.5 "events" have been received before
+![Idle timing link](link-idle.png)
+
+Example of idle timing link.
+
+Receivers should wait until some number of K28.5 event characters have been received before
 using the incoming event stream for any other action.
+
+### Event codes
+
+![Event code](link-event.png)
+
+![Event code](link-event2.png)
+
+Two examples of event code 0x2A.
+In one case in a time slot between two K28.5 alignment characters.
+In the second case an event code 0x2A preempts a K28.5.
+
+A well configured event timing system will ensure that sufficient K28.5 characters are sent.
+Use Distributed Bus bits or local clock dividers instead of high frequency event codes.
 
 Absolute time stamp distribution uses special events 112, 113, and 125.
 A 32-bit seconds shift register is maintained, as well as a latch seconds register,
@@ -358,4 +376,19 @@ an event 112 (zero) or 113 (one) for each bit in MSBF order.
 
 An absolute time is established by latching the values of the seconds latch and sub-second counter registers.
 
+### Distributed Bus
+
+The second character in each frame is treated as eight independent bits,
+which may represent 8 clock or data signals.
+
+![DBus bit 0](link-dbus.png)
+
+In this example Distributed Bus bit 0 goes high for eight frames.
+
+#### Data buffer
+
 TODO: describe data buffer sub-protocol.
+
+![DBuf](link-dbuf.png)
+
+In this example a 4 byte message is sent (`0xdeadbeef`).
