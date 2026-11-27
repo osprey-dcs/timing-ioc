@@ -503,3 +503,9 @@ record(longin, "$(P)TO:id:2") {
     field(DTYP, "FEED Register Read")
     field(INP,  "@name=$(NAME) reg=TRGOUT:ident offset=1 wait=false")
 }
+
+record(stringin, "$(P)SELF:VCS-I") {
+    field(DTYP, "ODCS Timing Version")
+    field(INP , "@")
+    field(PINI, "YES")
+}

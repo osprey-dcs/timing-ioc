@@ -12,6 +12,8 @@ include $(TOP)/configure/CONFIG
 #=============================
 # Build the IOC application
 
+GENVERSION = timingVersion.h
+
 LIBRARY_IOC = ospreyTiming
 # evg.dbd will be created and installed
 DBD += ospreyTiming.dbd
@@ -23,6 +25,7 @@ ospreyTiming_SRCS += eventTable.cpp
 ospreyTiming_SRCS += secphase.cpp
 ospreyTiming_SRCS += seqMux.c
 ospreyTiming_SRCS += si570Calc.c
+ospreyTiming_SRCS += devVersion.c
 
 # Finally link to the EPICS Base libraries
 ospreyTiming_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -33,3 +36,4 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
+devVersion$(DEP): $(COMMON_DIR)/$(GENVERSION)
