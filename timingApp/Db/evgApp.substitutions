@@ -102,4 +102,14 @@ file "perSysmonLI.template" {
  { R="FMC:1:PN", REG="FMC:1:partNumber", DESC="FMC 1 part number"}
  { R="FMC:2:SN", REG="FMC:2:serialNumber", DESC="FMC 2 serial number"}
  { R="FMC:2:PN", REG="FMC:2:partNumber", DESC="FMC 2 part number"}
+ { R="MGT0:freq",  REG="MARBLE:mgtRefClk0:freq", EGU="Hz",
+   LOW="80000000", HIGH="125000000", LSV="MAJOR", HSV="MAJOR" }
+ { R="EXT0:freq",  REG="MARBLE:mgt:freq", INP="offset=0", EGU="Hz"}
+ { R="EXT1:freq",  REG="MARBLE:mgt:freq", INP="offset=1", EGU="Hz", SCAN="I/O Intr"}
+ { R="Y:freq",     REG="MARBLE:mgt:freq", INP="offset=2", EGU="Hz", SCAN="I/O Intr"}
+ { R="SYNTH:freq", REG="MARBLE:mgt:freq", INP="offset=3", EGU="Hz", SCAN="I/O Intr"}
+ { R="CLK:freq:1", REG="MARBLE:mgt:freq", INP="offset=4", EGU="Hz", SCAN="I/O Intr"}
+ { R="CLK:freq:2", REG="MARBLE:mgt:freq", INP="offset=5", EGU="Hz", SCAN="I/O Intr"}
+ { R="TO:freq:1",  REG="MARBLE:mgt:freq", INP="offset=6", EGU="Hz", SCAN="I/O Intr"}
+ { R="TO:freq:2",  REG="MARBLE:mgt:freq", INP="offset=7", EGU="Hz", SCAN="I/O Intr"}
 }
