@@ -258,7 +258,8 @@ record(bi, "$(P)FMC:2") {
 
 record(longout, "$(P)CLK:DIV:1") {
     field(DTYP, "FEED Register Write")
-    field(OUT , "@name=$(NAME) reg=CLKIN:div1")
+    # readback register after setting, in case requested divisor is not possible
+    field(OUT , "@name=$(NAME) reg=CLKIN:div1 wait=true rbv=true")
     field(VAL , "1")
     field(DRVH, "64")
     field(HOPR, "64")
@@ -269,7 +270,7 @@ record(longout, "$(P)CLK:DIV:1") {
 }
 record(longout, "$(P)CLK:DIV:2") {
     field(DTYP, "FEED Register Write")
-    field(OUT , "@name=$(NAME) reg=CLKIN:div2")
+    field(OUT , "@name=$(NAME) reg=CLKIN:div2 wait=true rbv=true")
     field(VAL , "1")
     field(DRVH, "64")
     field(HOPR, "64")
