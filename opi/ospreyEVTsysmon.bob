@@ -3,8 +3,8 @@
   <name>EVT Sys $(P)</name>
   <x>8</x>
   <y>88</y>
-  <width>1307</width>
-  <height>705</height>
+  <width>1330</width>
+  <height>800</height>
   <background_color>
     <color name="GLOBAL canvas" red="200" green="200" blue="200">
     </color>
@@ -33,86 +33,131 @@
     <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="group" version="3.0.0">
-    <name>Build Dates</name>
-    <x>893</x>
-    <y>5</y>
-    <width>409</width>
-    <height>82</height>
+    <name>Versions</name>
+    <x>5</x>
+    <y>536</y>
+    <width>425</width>
+    <height>170</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
       </color>
     </foreground_color>
     <transparent>true</transparent>
-    <widget type="group" version="3.0.0">
-      <name>BuildDate</name>
-      <width>225</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_10</name>
-        <text>Firmware</text>
-        <width>70</width>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_11</name>
-        <pv_name>$(P)Date:FW-I</pv_name>
-        <x>75</x>
-        <width>140</width>
-        <transparent>true</transparent>
-        <format>6</format>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>BuildDate_1</name>
-      <y>22</y>
-      <width>225</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_14</name>
-        <text>Software</text>
-        <width>70</width>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-      </widget>
-      <widget type="textupdate" version="2.0.0">
-        <name>Text Update_15</name>
-        <pv_name>$(P)Date:SW-I</pv_name>
-        <x>75</x>
-        <width>140</width>
-        <transparent>true</transparent>
-        <format>6</format>
-        <vertical_alignment>1</vertical_alignment>
-        <wrap_words>false</wrap_words>
-      </widget>
-    </widget>
-    <widget type="group" version="3.0.0">
-      <name>BuildHash</name>
-      <y>42</y>
-      <width>225</width>
-      <height>20</height>
-      <style>3</style>
-      <transparent>true</transparent>
-      <widget type="label" version="2.0.0">
-        <name>Label_17</name>
-        <text>Git Rev</text>
-        <width>70</width>
-        <horizontal_alignment>2</horizontal_alignment>
-        <vertical_alignment>1</vertical_alignment>
-      </widget>
-    </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_70</name>
+      <pv_name>$(P)SELF:VCS-I</pv_name>
+      <x>79</x>
+      <y>78</y>
+      <width>333</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_14</name>
+      <text>uBlaze</text>
+      <x>4</x>
+      <y>6</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_15</name>
+      <pv_name>$(P)Date:SW-I</pv_name>
+      <x>79</x>
+      <y>6</y>
+      <width>140</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>Firmware</text>
+      <x>4</x>
+      <y>31</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_11</name>
+      <pv_name>$(P)Date:FW-I</pv_name>
+      <x>79</x>
+      <y>31</y>
+      <width>140</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_64</name>
+      <text>FW Rev</text>
+      <x>4</x>
+      <y>53</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_81</name>
+      <pv_name>$(P)APP:VCS-I</pv_name>
+      <x>79</x>
+      <y>103</y>
+      <width>333</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_80</name>
+      <text>FEED Rev</text>
+      <x>4</x>
+      <y>103</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_17</name>
+      <text>IOC Rev</text>
+      <x>4</x>
+      <y>78</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_82</name>
+      <pv_name>$(P)APP:BASE:Ver-I</pv_name>
+      <x>79</x>
+      <y>123</y>
+      <width>333</width>
+      <transparent>true</transparent>
+      <format>6</format>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_81</name>
+      <text>Base</text>
+      <x>4</x>
+      <y>123</y>
+      <width>70</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_79</name>
       <pv_name>$(P)APP:FW_CODEHASH</pv_name>
-      <x>75</x>
-      <y>42</y>
+      <x>79</x>
+      <y>51</y>
       <width>333</width>
       <transparent>true</transparent>
       <format>6</format>
@@ -120,24 +165,10 @@
       <wrap_words>false</wrap_words>
     </widget>
   </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>Action Button</name>
-    <actions>
-      <action type="open_display">
-        <description>PLL Monitors</description>
-        <file>EVG_pllmon.bob</file>
-        <target>tab</target>
-      </action>
-    </actions>
-    <text>More...</text>
-    <x>424</x>
-    <y>57</y>
-    <tooltip>$(actions)</tooltip>
-  </widget>
   <widget type="group" version="3.0.0">
     <name>Optics</name>
     <x>280</x>
-    <y>108</y>
+    <y>44</y>
     <width>244</width>
     <height>310</height>
     <style>1</style>
@@ -828,7 +859,7 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>EVR</name>
     <x>530</x>
-    <y>266</y>
+    <y>202</y>
     <width>202</width>
     <height>123</height>
     <style>1</style>
@@ -905,8 +936,8 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>PPS</name>
     <x>280</x>
-    <y>423</y>
-    <width>495</width>
+    <y>359</y>
+    <width>440</width>
     <height>165</height>
     <style>1</style>
     <foreground_color>
@@ -917,7 +948,7 @@ Link</text>
     <widget type="textupdate" version="2.0.0">
       <name>LED_5</name>
       <pv_name>$(P)PPS:Src</pv_name>
-      <x>346</x>
+      <x>314</x>
       <y>50</y>
       <width>90</width>
       <horizontal_alignment>2</horizontal_alignment>
@@ -925,19 +956,19 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_31</name>
       <text>PPS Source</text>
-      <x>236</x>
+      <x>204</x>
       <y>50</y>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_32</name>
       <text>PPS Itvl Err</text>
-      <x>236</x>
+      <x>204</x>
       <y>75</y>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_48</name>
       <pv_name>$(P)PPS:IErr</pv_name>
-      <x>346</x>
+      <x>314</x>
       <y>75</y>
       <width>90</width>
       <horizontal_alignment>2</horizontal_alignment>
@@ -945,7 +976,7 @@ Link</text>
     <widget type="led" version="2.0.0">
       <name>LED_6</name>
       <pv_name>$(P)PPS:Ok</pv_name>
-      <x>346</x>
+      <x>314</x>
       <y>25</y>
       <width>90</width>
       <off_color>
@@ -962,13 +993,13 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_33</name>
       <text>PPS Input</text>
-      <x>236</x>
+      <x>204</x>
       <y>25</y>
     </widget>
     <widget type="led" version="2.0.0">
       <name>LED_7</name>
       <pv_name>$(P)PPS:Tgl</pv_name>
-      <x>441</x>
+      <x>284</x>
       <y>25</y>
       <width>28</width>
       <off_color>
@@ -981,39 +1012,39 @@ Link</text>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_49</name>
       <pv_name>$(P)MARBLE:VCXO:PPS</pv_name>
-      <x>346</x>
+      <x>314</x>
       <width>90</width>
       <format>4</format>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_35</name>
       <text>VCXO PPS</text>
-      <x>236</x>
+      <x>204</x>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_36</name>
       <text>PPS Jitter</text>
-      <x>236</x>
+      <x>204</x>
       <y>100</y>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_50</name>
       <pv_name>$(P)PPS:Jtr</pv_name>
-      <x>346</x>
+      <x>360</x>
       <y>100</y>
-      <width>90</width>
+      <width>44</width>
       <horizontal_alignment>2</horizontal_alignment>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_37</name>
       <text>PPS DAC RB</text>
-      <x>236</x>
+      <x>204</x>
       <y>125</y>
     </widget>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_51</name>
       <pv_name>$(P)PPS:DAC</pv_name>
-      <x>346</x>
+      <x>314</x>
       <y>125</y>
       <width>90</width>
       <horizontal_alignment>2</horizontal_alignment>
@@ -1067,7 +1098,7 @@ Link</text>
     <widget type="led" version="2.0.0">
       <name>LED_9</name>
       <pv_name>$(P)PPS:Act</pv_name>
-      <x>205</x>
+      <x>79</x>
       <y>25</y>
       <width>28</width>
       <off_color>
@@ -1102,7 +1133,7 @@ Link</text>
     <widget type="led" version="2.0.0">
       <name>LED_11</name>
       <pv_name>$(P)PPS:JtrH</pv_name>
-      <x>441</x>
+      <x>299</x>
       <y>100</y>
       <width>51</width>
       <off_color>
@@ -1120,7 +1151,7 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>Health</name>
     <x>5</x>
-    <y>108</y>
+    <y>44</y>
     <width>270</width>
     <height>429</height>
     <style>1</style>
@@ -1402,7 +1433,7 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>EVG</name>
     <x>530</x>
-    <y>108</y>
+    <y>44</y>
     <width>202</width>
     <height>151</height>
     <style>1</style>
@@ -1500,9 +1531,9 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>CLKIN (P1)</name>
     <x>737</x>
-    <y>247</y>
+    <y>183</y>
     <width>270</width>
-    <height>171</height>
+    <height>220</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
@@ -1521,8 +1552,9 @@ Link</text>
     <widget type="textupdate" version="2.0.0">
       <name>Text Update_40</name>
       <pv_name>$(P)MARBLE:RFIN:level1</pv_name>
-      <x>161</x>
+      <x>159</x>
       <y>55</y>
+      <width>102</width>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
       <wrap_words>false</wrap_words>
@@ -1531,7 +1563,7 @@ Link</text>
       <name>Text Update_41</name>
       <pv_name>$(P)MARBLE:RFIN:level2</pv_name>
       <x>161</x>
-      <y>102</y>
+      <y>128</y>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
       <wrap_words>false</wrap_words>
@@ -1540,7 +1572,7 @@ Link</text>
       <name>Label_30</name>
       <text>FMC Clock 2</text>
       <x>7</x>
-      <y>102</y>
+      <y>128</y>
       <width>150</width>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -1596,7 +1628,7 @@ Link</text>
       <name>Label_61</name>
       <text>Divider</text>
       <x>7</x>
-      <y>127</y>
+      <y>153</y>
       <width>150</width>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
@@ -1605,17 +1637,53 @@ Link</text>
       <name>Text Update_63</name>
       <pv_name>$(P)CLK:DIV:2</pv_name>
       <x>215</x>
-      <y>127</y>
+      <y>153</y>
       <width>46</width>
       <horizontal_alignment>2</horizontal_alignment>
       <vertical_alignment>1</vertical_alignment>
       <wrap_words>false</wrap_words>
     </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_72</name>
+      <pv_name>$(P)CLK:freq:1</pv_name>
+      <x>157</x>
+      <y>104</y>
+      <width>104</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_73</name>
+      <pv_name>$(P)CLK:freq:2</pv_name>
+      <x>157</x>
+      <y>178</y>
+      <width>104</width>
+      <horizontal_alignment>2</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_78</name>
+      <text>Freq</text>
+      <x>93</x>
+      <y>104</y>
+      <width>51</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_79</name>
+      <text>Freq</text>
+      <x>93</x>
+      <y>178</y>
+      <width>51</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Option Cards</name>
     <x>737</x>
-    <y>108</y>
+    <y>44</y>
     <width>270</width>
     <height>135</height>
     <style>1</style>
@@ -1688,9 +1756,9 @@ Link</text>
   <widget type="group" version="3.0.0">
     <name>TRGOUT (P2)</name>
     <x>1012</x>
-    <y>108</y>
+    <y>44</y>
     <width>290</width>
-    <height>592</height>
+    <height>662</height>
     <style>1</style>
     <foreground_color>
       <color name="Header_ForeGround" red="255" green="255" blue="255">
@@ -1748,8 +1816,8 @@ Link</text>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor</name>
       <pv_name>$(P)TO:sts:1</pv_name>
-      <x>64</x>
-      <y>78</y>
+      <x>101</x>
+      <y>96</y>
       <width>20</width>
       <height>480</height>
       <numBits>32</numBits>
@@ -1767,8 +1835,8 @@ Link</text>
     <widget type="byte_monitor" version="2.0.0">
       <name>Byte Monitor_1</name>
       <pv_name>$(P)TO:sts:2</pv_name>
-      <x>101</x>
-      <y>78</y>
+      <x>138</x>
+      <y>96</y>
       <width>20</width>
       <height>480</height>
       <numBits>32</numBits>
@@ -1785,8 +1853,8 @@ Link</text>
     </widget>
     <widget type="polyline" version="2.0.0">
       <name>Polyline_1</name>
-      <x>122</x>
-      <y>198</y>
+      <x>159</x>
+      <y>216</y>
       <width>50</width>
       <height>1</height>
       <points>
@@ -1800,8 +1868,8 @@ Link</text>
     </widget>
     <widget type="polyline" version="2.0.0">
       <name>Polyline_2</name>
-      <x>122</x>
-      <y>319</y>
+      <x>159</x>
+      <y>337</y>
       <width>50</width>
       <height>1</height>
       <points>
@@ -1815,8 +1883,8 @@ Link</text>
     </widget>
     <widget type="polyline" version="2.0.0">
       <name>Polyline_3</name>
-      <x>122</x>
-      <y>440</y>
+      <x>159</x>
+      <y>458</y>
       <width>50</width>
       <height>1</height>
       <points>
@@ -1831,8 +1899,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_66</name>
       <text>FASTLOCK</text>
-      <x>121</x>
-      <y>514</y>
+      <x>158</x>
+      <y>532</y>
       <width>80</width>
       <height>13</height>
       <font>
@@ -1843,8 +1911,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_65</name>
       <text>HIST INVALID (Inv.)</text>
-      <x>121</x>
-      <y>527</y>
+      <x>158</x>
+      <y>545</y>
       <width>123</width>
       <height>17</height>
       <font>
@@ -1855,8 +1923,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_67</name>
       <text>SMBUS_TIMEOUT</text>
-      <x>122</x>
-      <y>111</y>
+      <x>159</x>
+      <y>129</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1867,8 +1935,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_68</name>
       <text>Loss of Sig. XAXB</text>
-      <x>122</x>
-      <y>139</y>
+      <x>159</x>
+      <y>157</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1879,8 +1947,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_69</name>
       <text>XAXB ERR</text>
-      <x>122</x>
-      <y>167</y>
+      <x>159</x>
+      <y>185</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1891,8 +1959,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_70</name>
       <text>SYSINCAL</text>
-      <x>122</x>
-      <y>183</y>
+      <x>159</x>
+      <y>201</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1917,8 +1985,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_73</name>
       <text>Out of Freq.</text>
-      <x>122</x>
-      <y>243</y>
+      <x>159</x>
+      <y>261</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1929,8 +1997,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_74</name>
       <text>Loss of Sig.</text>
-      <x>122</x>
-      <y>304</y>
+      <x>159</x>
+      <y>322</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1941,8 +2009,8 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_75</name>
       <text>Holdover</text>
-      <x>122</x>
-      <y>351</y>
+      <x>159</x>
+      <y>369</y>
       <width>122</width>
       <height>13</height>
       <font>
@@ -1953,14 +2021,36 @@ Link</text>
     <widget type="label" version="2.0.0">
       <name>Label_76</name>
       <text>Loss of Lock</text>
-      <x>122</x>
-      <y>409</y>
+      <x>159</x>
+      <y>427</y>
       <width>122</width>
       <height>13</height>
       <font>
         <font name="Fine Print" family="Liberation Sans" style="REGULAR" size="12.0">
         </font>
       </font>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_62</name>
+      <text>Freq</text>
+      <x>9</x>
+      <y>68</y>
+      <width>51</width>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_77</name>
+      <pv_name>$(P)TO:freq:1</pv_name>
+      <x>64</x>
+      <y>68</y>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_78</name>
+      <pv_name>$(P)TO:freq:2</pv_name>
+      <x>174</x>
+      <y>68</y>
+      <horizontal_alignment>2</horizontal_alignment>
     </widget>
   </widget>
 </display>
